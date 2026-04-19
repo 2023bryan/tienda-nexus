@@ -430,7 +430,7 @@
 
     </div>
 
-    <script>
+        <script>
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const productId = 7;
         const productName = 'Sistema de Sonido HiFi con Tubos de Vacío';
@@ -475,7 +475,7 @@
         function decreaseQuantity(id) {
             const existing = cart.find(item => item.id === id);
             if (existing && existing.quantity > 0) {
-                existing.quantity--;
+                existing.quantity--; 
                 if (existing.quantity === 0) {
                     cart = cart.filter(item => item.id !== id);
                 }
@@ -495,47 +495,78 @@
             }
             localStorage.setItem('favorites', JSON.stringify(favorites));
             updateFavoriteButton(id);
+        }
 
+        function updateFavoriteButton(id) {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const btn = document.getElementById('fav-btn-' + id);
+            if (btn) {
+                if (favorites.includes(id)) {
+                    btn.classList.add('favorited');
+                    btn.textContent = '♥';
+                } else {
+                    btn.classList.remove('favorited');
+                    btn.textContent = '♡';
+                }
+            }
+        }
 
+        updateDisplay();
+        updateFavoriteButton(productId);
 
 
         // Actualizar tab activo al hacer scroll
         function updateActiveTab() {
             const sections = ['description', 'specifications', 'reviews', 'shipping'];
             const buttons = document.querySelectorAll('.tab-btn');
+            
+            // Remover active de todos
             buttons.forEach(btn => btn.classList.remove('active'));
-
+            
+            // Encontrar sección más cercana al top de la pantalla
             let current = 'description';
-            let currentTop = -Infinity;
-            let nextSectionTop = Infinity;
-
+            let minDist = Infinity;
+            
             sections.forEach(section => {
                 const elem = document.getElementById(section);
-                if (!elem) return;
-
-                const rect = elem.getBoundingClientRect();
-                if (rect.top <= 120 && rect.bottom > 0 && rect.top > currentTop) {
-                    currentTop = rect.top;
-                    current = section;
-                } else if (currentTop === -Infinity && rect.top >= 0 && rect.top < nextSectionTop) {
-                    nextSectionTop = rect.top;
-                    current = section;
+                if (elem) {
+                    const rect = elem.getBoundingClientRect();
+                    const dist = Math.abs(rect.top - 150);
+                    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                        if (dist < minDist) {
+                            minDist = dist;
+                            current = section;
+                        }
+                    }
                 }
             });
-
+            
+            if (minDist === Infinity) {
+                let maxTop = -Infinity;
+                sections.forEach(section => {
+                    const elem = document.getElementById(section);
+                    if (elem) {
+                        const rect = elem.getBoundingClientRect();
+                        if (rect.top <= 0 && rect.top > maxTop) {
+                            maxTop = rect.top;
+                            current = section;
+                        }
+                    }
+                });
+            }
+            
             const activeBtn = document.querySelector('.tab-btn[href="#' + current + '"]');
             if (activeBtn) {
                 activeBtn.classList.add('active');
             }
         }
-
+        
         window.addEventListener('scroll', updateActiveTab, { passive: true });
         window.addEventListener('resize', updateActiveTab);
         document.addEventListener('DOMContentLoaded', updateActiveTab);
         updateActiveTab();
 
-    </script>
-    <script src="chat.js"></script>
+    </script><script src="chat.js"></script>
     <script src="header.js" defer></script>
 
     <!-- Floating Menu -->
