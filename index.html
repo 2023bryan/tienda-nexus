@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nexus - Electrodomésticos de Calidad</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+        .add-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-radius: 6px;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(40,167,69,0.3);
+        }
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40,167,69,0.4);
+        }
+        .hero {
+            background: linear-gradient(135deg, rgba(26,35,126,0.8) 0%, rgba(40,53,147,0.8) 100%), url('https://via.placeholder.com/1200x400?text=Electrodomesticos+Nexus');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+        .hero a {
+            display: inline-block;
+            background: #ff5722;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .section {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            color: #1a237e;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.75rem;
+        }
+        .product {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 48px rgba(0,0,0,0.14);
+        }
+        .product-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(180deg, #f4f6ff 0%, #ffffff 100%);
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product:hover .product-image img {
+            transform: scale(1.08);
+        }
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            flex: 1;
+        }
+        .product-info h3 {
+            color: #1b2753;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        .product-info h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .product-info h3 a:hover {
+            color: #ff6f00;
+        }
+        .product-desc {
+            font-size: 0.95rem;
+            color: #5f6774;
+            margin: 0;
+            line-height: 1.6;
+            min-height: 3.2rem;
+        }
+        .product-prices {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin: 0;
+        }
+        .price-normal {
+            font-size: 0.9rem;
+            color: #a6afc7;
+            text-decoration: line-through;
+        }
+        .price-special {
+            font-size: 1.45rem;
+            color: #ff6f00;
+            font-weight: 700;
+        }
+        .favorite-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.96);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #a9a9a9;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+        .product:hover .favorite-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .favorite-btn:hover {
+            transform: translateY(-1px) scale(1.05);
+            color: #ff6f00;
+        }
+        .favorite-btn.favorited {
+            color: #ff6f00;
+            background: #fff0f1;
+        }
+        .price-normal {
+            font-size: 0.85rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 0.3rem;
+        }
+        .price-special {
+            font-size: 1.4rem;
+            color: #ff6f00;
+            font-weight: 700;
+        }
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .cart-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .cart-content h2 {
+            color: #1a237e;
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #ff6f00;
+            padding-bottom: 1rem;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .cart-item span {
+            flex: 1;
+            color: #2c3e50;
+        }
+        .cart-item button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cart-item button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        #cart-total {
+            color: #ff6f00;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        .cart-content > p {
+            text-align: right;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid #f0f0f0;
+        }
+        .cart-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .cart-buttons button {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cart-buttons button:first-child {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .cart-buttons button:first-child:hover {
+            background: #d0d0d0;
+        }
+        .cart-buttons button:last-child {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+        .cart-buttons button:last-child:hover {
+            transform: translateY(-2px);
+        }
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.3s;
+            margin-left: 0.5rem;
+        }
+        .favorite-btn.favorited {
+            color: #ff6f00;
+        }
+        footer {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 3px solid #ff6f00;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                height: 250px;
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section {
+                padding: 2rem 1rem;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .product-image {
+                height: 200px;
+            }
+            .product-info {
+                padding: 1rem;
+            }
+            .product-info h3 {
+                font-size: 1.1rem;
+            }
+            .product-desc {
+                font-size: 0.9rem;
+            }
+            .price-special {
+                font-size: 1.2rem;
+            }
+            .cart-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            .cart-content h2 {
+                font-size: 1.5rem;
+            }
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .cart-buttons {
+                flex-direction: column;
+            }
+            footer {
+                padding: 1rem;
+            }
+        }
+        /* Floating menu elementos */
+        .floating-menu {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 999;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #1a237e 0%, #2d3daa 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(26,35,126,0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(26,35,126,0.4);
+        }
+    </style>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <div id="site-header"></div>
+<section class="hero">
+        <div>
+            <h1>Bienvenido a Tienda Nexus</h1>
+            <p>Descubre los mejores electrodomésticos para tu hogar</p>
+            <a href="#productos" style="background: #ff5722; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px;">Ver Productos</a>
+        </div>
+    </section>
+    <section id="productos" class="section">
+        <h2>Productos Destacados</h2>
+        <div class="products">
+            <div class="product" data-id="1" data-name="Refrigerador Moderno" data-price="500" data-category="Refrigeración">
+                <div class="product-image">
+                    <a href="product1.html"><img src="https://via.placeholder.com/300x220?text=Refrigerador" alt="Refrigerador"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product1.html">Refrigerador Moderno</a></h3>
+                    <p class="product-desc">Capacidad de 400L, eficiente en energía.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q600.00</div>
+                        <div class="price-special">Q500.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-1" onclick="toggleFavorite(1)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="2" data-name="Lavadora Automática" data-price="300" data-category="Lavado">
+                <div class="product-image">
+                    <a href="productolavadora.html"><img src="images/lavadora.jpg" alt="Lavadora"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productolavadora.html">Lavadora Automática</a></h3>
+                    <p class="product-desc">8kg de capacidad, múltiples programas.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q350.00</div>
+                        <div class="price-special">Q300.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-2" onclick="toggleFavorite(2)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="3" data-name="Microondas Digital" data-price="100" data-category="Cocina">
+                <div class="product-image">
+                    <a href="product3.html"><img src="https://via.placeholder.com/300x220?text=Microondas" alt="Microondas"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product3.html">Microondas Digital</a></h3>
+                    <p class="product-desc">Potencia de 1000W, fácil de usar.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q130.00</div>
+                        <div class="price-special">Q100.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-3" onclick="toggleFavorite(3)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="4" data-name="Set de Cocina Antiadherente 13 Piezas" data-price="1485" data-category="Cocina">
+                <div class="product-image">
+                    <a href="product4.html"><img src="https://via.placeholder.com/300x220?text=Set+Cocina" alt="Set de Cocina"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product4.html">Set de Cocina 13 Piezas</a></h3>
+                    <p class="product-desc">Con tapas y utensilios, compatible con todas las estufas.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q1,700.00</div>
+                        <div class="price-special">Q1,485.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-4" onclick="toggleFavorite(4)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="5" data-name="Set de Cuchillos de Cocina 15 Piezas" data-price="1650" data-category="Cocina">
+                <div class="product-image">
+                    <a href="product5.html"><img src="https://via.placeholder.com/300x220?text=Set+Cuchillos" alt="Set de Cuchillos"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product5.html">Set de Cuchillos 15 Piezas</a></h3>
+                    <p class="product-desc">Con mango de madera y bloque afilador.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q1,900.00</div>
+                        <div class="price-special">Q1,650.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-5" onclick="toggleFavorite(5)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="6" data-name="Sistema de Cámaras de Seguridad Wi-Fi 6" data-price="1775" data-category="Seguridad">
+                <div class="product-image">
+                    <a href="product6.html"><img src="https://via.placeholder.com/300x220?text=Camaras+Seguridad" alt="Cámaras de Seguridad"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product6.html">Cámaras Seguridad Wi-Fi 6</a></h3>
+                    <p class="product-desc">8 Canales y 5MP con NVR 4K y Disco Duro de 1TB.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q2,000.00</div>
+                        <div class="price-special">Q1,775.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-6" onclick="toggleFavorite(6)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="7" data-name="Sistema de Sonido HiFi con Tubos de Vacío" data-price="2350" data-category="Entretenimiento">
+                <div class="product-image">
+                    <a href="product7.html"><img src="https://via.placeholder.com/300x220?text=Sistema+Sonido" alt="Sistema de Sonido"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product7.html">Sistema Sonido HiFi</a></h3>
+                    <p class="product-desc">Con tubos de vacío y reproductor 7 en 1.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q2,700.00</div>
+                        <div class="price-special">Q2,350.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-7" onclick="toggleFavorite(7)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="8" data-name="Selladora al Vacío Automática 2 en 1" data-price="430" data-category="Cocina">
+                <div class="product-image">
+                    <a href="product8.html"><img src="https://via.placeholder.com/300x220?text=Selladora+Vacuo" alt="Selladora al Vacío"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product8.html">Selladora al Vacío 2 en 1</a></h3>
+                    <p class="product-desc">Con 40 bolsas reutilizables y base magnética.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q490.00</div>
+                        <div class="price-special">Q430.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-8" onclick="toggleFavorite(8)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="9" data-name="Grifo de Cocina con Mango Único" data-price="255" data-category="Cocina">
+                <div class="product-image">
+                    <a href="product9.html"><img src="https://via.placeholder.com/300x220?text=Grifo+Cocina" alt="Grifo de Cocina"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="product9.html">Grifo de Cocina</a></h3>
+                    <p class="product-desc">Rociador extraíble con acero inoxidable.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q300.00</div>
+                        <div class="price-special">Q255.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-9" onclick="toggleFavorite(9)">♡</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="acerca" class="section">
+        <h2>Acerca de Tienda Nexus</h2>
+        <p>En Tienda Nexus, ofrecemos una amplia gama de electrodomésticos de las mejores marcas. Nuestro compromiso es brindarte productos de calidad a precios competitivos, con un servicio al cliente excepcional.</p>
+    </section>
+    <section id="contacto" class="section">
+        <h2>Contacto</h2>
+        <p>Dirección: Calle Principal 123, Ciudad</p>
+        <p>Teléfono: (123) 456-7890</p>
+        <p>Email: info@tiendanexus.com</p>
+    </section>
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <h2>Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <p>Total: Q<span id="cart-total">0</span></p>
+            <div class="cart-buttons">
+                <button onclick="closeCart()">Cerrar</button>
+                <button onclick="checkout()">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Menu -->
+    <div class="floating-menu">
+        <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
+        <a href="login.html" class="back-link" title="Iniciar sesión">←</a>
+    </div>
+    
+    <!-- Chat Panel -->
+    <div class="chat-panel hidden" id="chatPanel">
+        <div class="chat-header">
+            <h3>Tienda Nexus</h3>
+            <button class="chat-close" onclick="closeChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <strong>Hola, buenos tardes. 👋</strong><br>
+                Gracias por su comunicación a Tienda Nexus, mi nombre es Byron. 😊<br><br>
+                ¿Con quién tenemos el gusto?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-actions">
+                <button onclick="attachImage()" title="Enviar imagen">🖼️</button>
+                <button onclick="recordAudio()" title="Enviar audio">🎙️</button>
+            </div>
+            <textarea class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." rows="1"></textarea>
+            <button class="chat-send" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Tienda Nexus. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script src="chat.js"></script>
+    <script src="header.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Favoritos - Tienda Nexus</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+        .section {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            color: #1a237e;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .product {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .product:hover .product-image img {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-info h3 {
+            color: #1a237e;
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem 0;
+        }
+        .product-info h3 a {
+            color: #1a237e;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .product-info h3 a:hover {
+            color: #ff6f00;
+        }
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+        .product-prices {
+            margin: 1rem 0;
+        }
+        .price-normal {
+            font-size: 0.85rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 0.3rem;
+        }
+        .price-special {
+            font-size: 1.4rem;
+            color: #ff6f00;
+            font-weight: 700;
+        }
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.3s;
+            margin-left: 0.5rem;
+        }
+        .favorite-btn.favorited {
+            color: #ff6f00;
+        }
+        .no-favorites {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+        footer {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 3px solid #ff6f00;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+    </style>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+    <style>
+        /* Floating menu elementos */
+        .floating-menu {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 999;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #1a237e 0%, #2d3daa 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(26,35,126,0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(26,35,126,0.4);
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <section class="section">
+        <h2>Mis Productos Favoritos</h2>
+        <div class="products" id="favorites-list">
+            <!-- Los productos favoritos se cargarán aquí -->
+        </div>
+        <div class="no-favorites" id="no-favorites" style="display: none;">
+            No tienes productos en favoritos. ¡Agrega algunos desde la tienda!
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tienda Nexus. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, name: 'Refrigerador Moderno', price: 500, normalPrice: 600, desc: 'Capacidad de 400L, eficiente en energía.', image: 'https://via.placeholder.com/300x220?text=Refrigerador', link: 'product1.html' },
+            { id: 2, name: 'Lavadora Automática', price: 300, normalPrice: 350, desc: '8kg de capacidad, múltiples programas.', image: 'images/lavadora.jpg', link: 'productolavadora.html' },
+            { id: 3, name: 'Microondas Digital', price: 100, normalPrice: 130, desc: 'Potencia de 1000W, fácil de usar.', image: 'https://via.placeholder.com/300x220?text=Microondas', link: 'product3.html' },
+            { id: 4, name: 'Set de Cocina 13 Piezas', price: 1485, normalPrice: 1700, desc: 'Con tapas y utensilios, compatible con todas las estufas.', image: 'https://via.placeholder.com/300x220?text=Set+Cocina', link: 'product4.html' },
+            { id: 5, name: 'Set de Cuchillos 15 Piezas', price: 1650, normalPrice: 1900, desc: 'Con mango de madera y bloque afilador.', image: 'https://via.placeholder.com/300x220?text=Set+Cuchillos', link: 'product5.html' },
+            { id: 6, name: 'Cámaras Seguridad Wi-Fi 6', price: 1775, normalPrice: 2000, desc: '8 Canales y 5MP con NVR 4K y Disco Duro de 1TB.', image: 'https://via.placeholder.com/300x220?text=Camaras+Seguridad', link: 'product6.html' },
+            { id: 7, name: 'Sistema Sonido HiFi', price: 2350, normalPrice: 2700, desc: 'Con tubos de vacío y reproductor 7 en 1.', image: 'https://via.placeholder.com/300x220?text=Sistema+Sonido', link: 'product7.html' },
+            { id: 8, name: 'Selladora al Vacío 2 en 1', price: 430, normalPrice: 490, desc: 'Con 40 bolsas reutilizables y base magnética.', image: 'https://via.placeholder.com/300x220?text=Selladora+Vacuo', link: 'product8.html' },
+            { id: 9, name: 'Grifo de Cocina', price: 255, normalPrice: 300, desc: 'Rociador extraíble con acero inoxidable.', image: 'https://via.placeholder.com/300x220?text=Grifo+Cocina', link: 'product9.html' }
+        ];
+
+        function loadFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const favoritesList = document.getElementById('favorites-list');
+            const noFavorites = document.getElementById('no-favorites');
+
+            if (favorites.length === 0) {
+                noFavorites.style.display = 'block';
+                return;
+            }
+
+            noFavorites.style.display = 'none';
+
+            favorites.forEach(id => {
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'product';
+                    productDiv.innerHTML = `
+                        <div class="product-image">
+                            <a href="${product.link}"><img src="${product.image}" alt="${product.name}"></a>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="${product.link}">${product.name}</a></h3>
+                            <p class="product-desc">${product.desc}</p>
+                            <div class="product-prices">
+                                <div class="price-normal">Q${product.normalPrice.toLocaleString()}</div>
+                                <div class="price-special">Q${product.price.toLocaleString()}</div>
+                            </div>
+                            <button class="favorite-btn favorited" id="fav-btn-${id}" onclick="toggleFavorite(${id})">♥</button>
+                        </div>
+                    `;
+                    favoritesList.appendChild(productDiv);
+                }
+            });
+        }
+
+        function toggleFavorite(id) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const index = favorites.indexOf(id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            location.reload(); // Recargar para actualizar la lista
+        }
+
+        document.addEventListener('DOMContentLoaded', loadFavorites);
+    </script>
+    <script src="chat.js"></script>
+    <script src="header.js" defer></script>
+
+    <!-- Floating Menu -->
+    <div class="floating-menu">
+        <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
+        <a href="index.html" class="back-link" title="Volver a la tienda">←</a>
+    </div>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel hidden" id="chatPanel">
+        <div class="chat-header">
+            <h3>Tienda Nexus</h3>
+            <button class="chat-close" onclick="closeChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <strong>Hola, buenos tardes. 👋</strong><br>
+                Gracias por su comunicación a Tienda Nexus, mi nombre es Byron. 😊<br><br>
+                ¿Con quién tenemos el gusto?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+</body>
+</html>

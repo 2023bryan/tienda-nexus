@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set de Cuchillos de Cocina 15 Piezas - Tienda Nexus</title>
+    <style>
+        .product-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .product-gallery {
+            position: relative;
+        }
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .product-info {
+            padding: 1rem 0;
+        }
+        .product-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+        }
+        .product-prices {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .price-original {
+            font-size: 1.2rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        .price-offer {
+            font-size: 2rem;
+            color: #ff6f00;
+            font-weight: 700;
+        }
+        .product-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(40,167,69,0.3);
+        }
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+        }
+        .favorite-btn {
+            background: white;
+            border: 1px solid #e5e7eb;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            color: #6b7280;
+            transition: all 0.25s ease;
+            margin: 1rem auto 0;
+            box-shadow: 0 18px 35px rgba(15,23,42,0.08);
+        }
+        .favorite-btn.favorited {
+            color: #ef4444;
+            border-color: #fecaca;
+            background: #fff1f2;
+        }
+        .product-details {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        .detail-value {
+            color: #6c757d;
+        }
+        .product-tabs {
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .tabs-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.98);
+            border-radius: 999px;
+            box-shadow: 0 16px 45px rgba(15,23,42,0.14);
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1200px, calc(100% - 2rem));
+            padding: 0.5rem;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 0.9rem 1rem;
+            background: transparent;
+            border: none;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        
+        .tab-btn.active {
+            background: #ff6f00;
+            color: white;
+            border: 2px solid #fff;
+            box-shadow: 0 15px 35px rgba(255,111,0,0.3);
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+        .tab-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 4px 18px rgba(15,23,42,0.08);
+            min-height: 220px;
+            margin-bottom: 120px; /* espacio para el menú fijo */
+        }
+        .tab-panel {
+            scroll-margin-top: 120px;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        .qty-btn {
+            background: #f8f9fa;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #495057;
+        }
+        .qty-display {
+            padding: 0.5rem 1rem;
+            min-width: 60px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .go-to-cart-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .go-to-cart-btn:hover {
+            background: #0056b3;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid #007bff;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            background: #007bff;
+            color: white;
+        }
+        .hidden {
+            display: none !important;
+        }
+        @media (max-width: 768px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .product-title {
+                font-size: 1.5rem;
+            }
+            .price-offer {
+                font-size: 1.5rem;
+            }
+        }
+        /* Floating menu elementos */
+        .floating-menu {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 999;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #1a237e 0%, #2d3daa 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(26,35,126,0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(26,35,126,0.4);
+        }
+
+            </style>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <div class="product-container">
+        <div class="product-layout">
+            <div class="product-gallery">
+                <img src="https://via.placeholder.com/400x300?text=Set+Cuchillos" alt="Set de Cuchillos de Cocina 15 Piezas" class="main-image">
+    <button class="favorite-btn" id="fav-btn-5" onclick="toggleFavorite(5)">♡</button>
+            </div>
+        <div class="product-info">
+                <h1 class="product-title">Set de Cuchillos de Cocina 15 Piezas</h1>
+
+                <div class="product-prices">
+                    <span class="price-original">Q1,850.00</span>
+                    <span class="price-offer">Q1,650.00</span>
+                </div>
+
+                <p class="product-description">
+                    Con mango de madera y bloque afilador. Este set completo incluye cuchillos de diferentes tamaños y un bloque afilador para mantenerlos en perfecto estado.
+                </p>
+
+                <div class="product-actions">
+                    <button class="add-to-cart-btn" id="add-btn-5" onclick="toggleAddToCart(5)">
+                        🛒 Agregar al carrito
+                    </button>
+                </div>
+
+                <div class="quantity-controls hidden" id="qty-controls-5">
+                    <div class="quantity-container">
+                        <button class="qty-btn" onclick="decreaseQuantity(5)">−</button>
+                        <div class="qty-display" id="qty-display-5">1 en carrito</div>
+                        <button class="qty-btn" onclick="increaseQuantity(5)">+</button>
+                    </div>
+                    <button class="go-to-cart-btn" onclick="openCart()">
+                        🛒 Ir al carrito
+                    </button>
+                </div>
+
+                <div class="product-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Piezas:</span>
+                        <span class="detail-value">15 piezas</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Mango:</span>
+                        <span class="detail-value">Madera</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Bloque afilador:</span>
+                        <span class="detail-value">Incluido</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Garantía:</span>
+                        <span class="detail-value">1 año</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tabs">
+            <div class="tabs-nav">
+                <a class="tab-btn" href="#description">Descripción</a>
+                <a class="tab-btn" href="#specifications">Especificaciones</a>
+                <a class="tab-btn" href="#reviews">Reseñas</a>
+                <a class="tab-btn" href="#shipping">Envío</a>
+            </div>
+            <div class="tab-content">
+                <div id="description" class="tab-panel">
+                    <h3>Descripción del Producto</h3>
+                    <p>Este set completo incluye cuchillos de diferentes tamaños y un bloque afilador para mantenerlos en perfecto estado.</p>
+                    <ul>
+                        <li>Mango ergonómico de madera</li>
+                        <li>Acero inoxidable de alta calidad</li>
+                        <li>Bloque afilador incluido</li>
+                        <li>Ideal para chefs profesionales y aficionados</li>
+                    </ul>
+                </div>
+                <div id="specifications" class="tab-panel" >
+                    <h3>Especificaciones Técnicas</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Piezas incluidas</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">15 piezas (cuchillos de diferentes tamaños + bloque afilador)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Material de la hoja</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">Acero inoxidable 420J2</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Mango</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">Madera de haya tratada</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Peso total</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">3.2kg</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Origen</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">Fabricado en Alemania</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="reviews" class="tab-panel" >
+                    <h3>Reseñas de Clientes</h3>
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong>Juan Rodríguez</strong>
+                            <span style="color: #ff6f00;">★★★★★</span>
+                        </div>
+                        <p style="margin: 0.5rem 0; color: #555;">Excelente producto, llegó rápido y bien empacado.</p>
+                    </div>
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong>María González</strong>
+                            <span style="color: #ff6f00;">★★★★☆</span>
+                        </div>
+                        <p style="margin: 0.5rem 0; color: #555;">Buen producto, calidad excelente.</p>
+                    </div>
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong>Carlos López</strong>
+                            <span style="color: #ff6f00;">★★★★★</span>
+                        </div>
+                        <p style="margin: 0.5rem 0; color: #555;">Perfecto, exactamente lo que esperaba.</p>
+                    </div>
+                </div>
+                <div id="shipping" class="tab-panel" >
+                    <h3>Información de Envío</h3>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <h4 style="margin-top: 0; color: #28a745;">🚚 Envío Gratis</h4>
+                        <p>Disfruta de envío gratuito en compras mayores a Q500. Tu pedido llegará entre 3-5 días hábiles.</p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+                        <h4 style="margin-top: 0; color: #856404;">⏰ Entrega Express</h4>
+                        <p>¿Lo necesitas urgente? Opta por entrega express y recibe tu producto en 24-48 horas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const productId = 5;
+        const productName = 'Set de Cuchillos de Cocina 15 Piezas';
+        const productPrice = 1650;
+
+        function updateDisplay() {
+            const item = cart.find(i => i.id === productId);
+            const addBtn = document.getElementById('add-btn-' + productId);
+            const qtyControls = document.getElementById('qty-controls-' + productId);
+            const display = document.getElementById('qty-display-' + productId);
+
+            if (item && item.quantity > 0) {
+                addBtn.classList.add('hidden');
+                qtyControls.classList.remove('hidden');
+                display.textContent = item.quantity + ' en carrito';
+            } else {
+                addBtn.classList.remove('hidden');
+                qtyControls.classList.add('hidden');
+            }
+        }
+
+        function toggleAddToCart(id) {
+            const existing = cart.find(item => item.id === id);
+            if (!existing) {
+                cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+            updateDisplay();
+            updateCartCount();
+        }
+
+        function increaseQuantity(id) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity++;
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateDisplay();
+            updateCartCount();
+        }
+
+        function decreaseQuantity(id) {
+            const existing = cart.find(item => item.id === id);
+            if (existing && existing.quantity > 0) {
+                existing.quantity--;
+                if (existing.quantity === 0) {
+                    cart = cart.filter(item => item.id !== id);
+                }
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateDisplay();
+            updateCartCount();
+        }
+
+        function toggleFavorite(id) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const index = favorites.indexOf(id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoriteButton(id);
+
+
+
+
+        // Actualizar tab activo al hacer scroll
+        function updateActiveTab() {
+            const sections = ['description', 'specifications', 'reviews', 'shipping'];
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            let current = 'description';
+            let currentTop = -Infinity;
+            let nextSectionTop = Infinity;
+
+            sections.forEach(section => {
+                const elem = document.getElementById(section);
+                if (!elem) return;
+
+                const rect = elem.getBoundingClientRect();
+                if (rect.top <= 120 && rect.bottom > 0 && rect.top > currentTop) {
+                    currentTop = rect.top;
+                    current = section;
+                } else if (currentTop === -Infinity && rect.top >= 0 && rect.top < nextSectionTop) {
+                    nextSectionTop = rect.top;
+                    current = section;
+                }
+            });
+
+            const activeBtn = document.querySelector('.tab-btn[href="#' + current + '"]');
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        window.addEventListener('scroll', updateActiveTab, { passive: true });
+        window.addEventListener('resize', updateActiveTab);
+        document.addEventListener('DOMContentLoaded', updateActiveTab);
+        updateActiveTab();
+
+    </script>
+    <script src="chat.js"></script>
+    <script src="header.js" defer></script>
+
+    <!-- Floating Menu -->
+    <div class="floating-menu">
+        <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
+        <a href="index.html" class="back-link" title="Volver a la tienda">←</a>
+    </div>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel hidden" id="chatPanel">
+        <div class="chat-header">
+            <h3>Tienda Nexus</h3>
+            <button class="chat-close" onclick="closeChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <strong>Hola, buenos tardes. 👋</strong><br>
+                Gracias por su comunicación a Tienda Nexus, mi nombre es Byron. 😊<br><br>
+                ¿Con quién tenemos el gusto?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-actions">
+                <button onclick="attachImage()" title="Enviar imagen">🖼️</button>
+                <button onclick="recordAudio()" title="Enviar audio">🎙️</button>
+            </div>
+            <textarea class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." rows="1" oninput="resizeChatTextarea()"></textarea>
+            <button class="chat-send" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+</body>
+</html>
