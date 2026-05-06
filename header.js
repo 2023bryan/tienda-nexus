@@ -1,3 +1,14 @@
+const AUTH_KEY = 'auth_user';
+
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem(AUTH_KEY));
+}
+
+function logout() {
+    localStorage.removeItem(AUTH_KEY);
+    window.location.href = 'index.html';
+}
+
 const headerHTML = `
     <header>
         <div class="header-top">
@@ -23,11 +34,8 @@ const headerHTML = `
                 </div>
             </div>
             <div class="header-right">
-                <div class="header-account header-user">
-                    <a href="login.html" title="Acceder a mi cuenta">
-                        <span class="icon">👤</span>
-                        <span class="text">Mi Cuenta</span>
-                    </a>
+                <div class="header-account header-user" id="accountSection">
+                    <!-- Se actualiza dinámicamente según el estado de sesión -->
                 </div>
                 <div class="header-account header-favorites">
                     <a href="favoritos.html" title="Ver productos favoritos">
@@ -62,6 +70,35 @@ function insertSiteHeader() {
     updateCartCount();
     applyTheme();
     updateAllFavoriteButtons();
+    updateAccountSection();
+}
+
+function updateAccountSection() {
+    const accountSection = document.getElementById('accountSection');
+    if (!accountSection) return;
+    
+    const user = getCurrentUser();
+    if (user) {
+        accountSection.innerHTML = `
+            <a href="#" onclick="handleLogout()" title="Cerrar sesión">
+                <span class="icon">👤</span>
+                <span class="text">${user.name}</span>
+            </a>
+        `;
+    } else {
+        accountSection.innerHTML = `
+            <a href="login.html" title="Acceder a mi cuenta">
+                <span class="icon">👤</span>
+                <span class="text">Mi Cuenta</span>
+            </a>
+        `;
+    }
+}
+
+function handleLogout() {
+    if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+        logout();
+    }
 }
 
 function toggleCategories() {

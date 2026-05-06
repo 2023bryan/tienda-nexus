@@ -196,8 +196,8 @@
                 <label class="form-label" for="password">Contraseña</label>
                 <input class="form-control" id="password" type="password" placeholder="Escribe tu contraseña">
             </div>
-            <button class="action-button" type="button">Ingresar</button>
-            <button class="secondary-button" type="button">Registrarme</button>
+            <button class="action-button" type="button" id="loginBtn">Ingresar</button>
+            <button class="secondary-button" type="button" id="registerBtn">Registrarme</button>
             <a class="text-link" href="#">¿Olvidaste la contraseña?</a>
             <div class="divider">O</div>
             <button class="social-button google" type="button">
@@ -211,5 +211,89 @@
         </section>
     </main>
     <script src="header.js" defer></script>
+    <script>
+        // Sistema de autenticación
+        const AUTH_KEY = 'auth_user';
+        
+        function getStoredUsers() {
+            return JSON.parse(localStorage.getItem('users')) || [];
+        }
+        
+        function saveUser(email, password, name) {
+            const users = getStoredUsers();
+            if (users.find(u => u.email === email)) {
+                return { success: false, message: 'El correo ya está registrado' };
+            }
+            users.push({ email, password, name, createdAt: new Date().toISOString() });
+            localStorage.setItem('users', JSON.stringify(users));
+            return { success: true, message: 'Usuario registrado correctamente' };
+        }
+        
+        function authenticateUser(email, password) {
+            const users = getStoredUsers();
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                localStorage.setItem(AUTH_KEY, JSON.stringify(user));
+                return { success: true, user };
+            }
+            return { success: false, message: 'Correo o contraseña incorrectos' };
+        }
+        
+        function getCurrentUser() {
+            return JSON.parse(localStorage.getItem(AUTH_KEY));
+        }
+        
+        function logout() {
+            localStorage.removeItem(AUTH_KEY);
+            window.location.href = 'index.html';
+        }
+        
+        // Event listeners
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            const result = authenticateUser(email, password);
+            if (result.success) {
+                alert('¡Bienvenido, ' + result.user.name + '!');
+                window.location.href = 'index.html';
+            } else {
+                alert(result.message);
+            }
+        });
+        
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const name = prompt('¿Cuál es tu nombre?');
+            
+            if (!email || !password) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            if (!name) {
+                alert('Por favor ingresa tu nombre');
+                return;
+            }
+            
+            const result = saveUser(email, password, name);
+            if (result.success) {
+                alert(result.message + '. Ahora puedes iniciar sesión.');
+            } else {
+                alert(result.message);
+            }
+        });
+        
+        // Verificar si ya hay sesión activa
+        if (getCurrentUser()) {
+            window.location.href = 'index.html';
+        }
+    </script>
 </body>
 </html>
