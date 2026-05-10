@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Favoritos - Tienda Nexus</title>
+    <title>Mis Favoritos - SONIC BOX</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -118,40 +118,59 @@
             margin: 0;
             font-size: 0.95rem;
         }
+        @media (max-width: 768px) {
+            .section {
+                padding: 2rem 1rem;
+            }
+            .section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            .products {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            .product {
+                border-radius: 18px;
+            }
+            .product-image {
+                height: 200px;
+            }
+            .product-info {
+                padding: 1rem;
+            }
+            .product-info h3 {
+                font-size: 1.05rem;
+            }
+            .product-prices {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+            .favorite-btn {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                width: 2.4rem;
+                height: 2.4rem;
+                border-radius: 50%;
+                font-size: 1.2rem;
+            }
+            .product {
+                position: relative;
+            }
+            .product-desc {
+                font-size: 0.95rem;
+            }
+            footer {
+                padding: 1.5rem;
+            }
+        }
     </style>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
     <style>
-        /* Floating menu elementos */
-        .floating-menu {
-            position: fixed;
-            right: 1.5rem;
-            bottom: 120px;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 999;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #1a237e 0%, #2d3daa 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 25px rgba(26,35,126,0.3);
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        .back-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(26,35,126,0.4);
-        }
-    </style>
+        </style>
 </head>
 <body>
     <div id="site-header"></div>
@@ -167,7 +186,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Tienda Nexus. Todos los derechos reservados.</p>
+        <p>&copy; 2024 SONIC BOX. Todos los derechos reservados.</p>
     </footer>
 
     <script>
@@ -179,6 +198,7 @@
             { id: 5, name: 'Set de Cuchillos 15 Piezas', price: 1650, normalPrice: 1900, desc: 'Con mango de madera y bloque afilador.', image: 'https://via.placeholder.com/300x220?text=Set+Cuchillos', link: 'product5.html' },
             { id: 6, name: 'Cámaras Seguridad Wi-Fi 6', price: 1775, normalPrice: 2000, desc: '8 Canales y 5MP con NVR 4K y Disco Duro de 1TB.', image: 'https://via.placeholder.com/300x220?text=Camaras+Seguridad', link: 'product6.html' },
             { id: 7, name: 'Sistema Sonido HiFi', price: 2350, normalPrice: 2700, desc: 'Con tubos de vacío y reproductor 7 en 1.', image: 'https://via.placeholder.com/300x220?text=Sistema+Sonido', link: 'product7.html' },
+            { id: 10, name: 'JBL PartyBox 520', price: 5200, normalPrice: 6200, desc: 'Altavoz portátil con AI Sound Boost, luces y conectividad múltiple.', image: 'images/JBL%20PartyBox%20520%2001.jpeg', link: 'productJBLPartyBox520.html' },
             { id: 8, name: 'Selladora al Vacío 2 en 1', price: 430, normalPrice: 490, desc: 'Con 40 bolsas reutilizables y base magnética.', image: 'https://via.placeholder.com/300x220?text=Selladora+Vacuo', link: 'product8.html' },
             { id: 9, name: 'Grifo de Cocina', price: 255, normalPrice: 300, desc: 'Rociador extraíble con acero inoxidable.', image: 'https://via.placeholder.com/300x220?text=Grifo+Cocina', link: 'product9.html' }
         ];
@@ -195,21 +215,33 @@
 
             noFavorites.style.display = 'none';
 
-            favorites.forEach(id => {
-                const product = products.find(p => p.id === id);
-                if (product) {
+            favorites.forEach(favoriteItem => {
+                const isObject = typeof favoriteItem === 'object' && favoriteItem !== null;
+                const id = isObject ? favoriteItem.id : favoriteItem;
+                const product = products.find(p => p.id === id) || {};
+                const favorite = {
+                    id,
+                    name: isObject ? favoriteItem.name || product.name : product.name,
+                    desc: isObject ? favoriteItem.desc || product.desc : product.desc,
+                    price: Number(isObject ? favoriteItem.price : product.price) || product.price || 0,
+                    normalPrice: Number(isObject ? favoriteItem.normalPrice : product.normalPrice) || product.normalPrice || 0,
+                    image: isObject ? favoriteItem.image || product.image : product.image,
+                    link: isObject ? favoriteItem.link || product.link : product.link,
+                };
+
+                if (favorite.name) {
                     const productDiv = document.createElement('div');
                     productDiv.className = 'product';
                     productDiv.innerHTML = `
                         <div class="product-image">
-                            <a href="${product.link}"><img src="${product.image}" alt="${product.name}"></a>
+                            <a href="${favorite.link}"><img src="${favorite.image}" alt="${favorite.name}"></a>
                         </div>
                         <div class="product-info">
-                            <h3><a href="${product.link}">${product.name}</a></h3>
-                            <p class="product-desc">${product.desc}</p>
+                            <h3><a href="${favorite.link}">${favorite.name}</a></h3>
+                            <p class="product-desc">${favorite.desc}</p>
                             <div class="product-prices">
-                                <div class="price-normal">Q${product.normalPrice.toLocaleString()}</div>
-                                <div class="price-special">Q${product.price.toLocaleString()}</div>
+                                <div class="price-normal">Q${favorite.normalPrice.toLocaleString()}</div>
+                                <div class="price-special">Q${favorite.price.toLocaleString()}</div>
                             </div>
                             <button class="favorite-btn favorited" id="fav-btn-${id}" onclick="toggleFavorite(${id})">♥</button>
                         </div>
@@ -235,30 +267,5 @@
     </script>
     <script src="chat.js"></script>
     <script src="header.js" defer></script>
-
-    <!-- Floating Menu -->
-    <div class="floating-menu">
-        <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
-        <a href="index.html" class="back-link" title="Volver a la tienda">←</a>
-    </div>
-
-    <!-- Chat Panel -->
-    <div class="chat-panel hidden" id="chatPanel">
-        <div class="chat-header">
-            <h3>Tienda Nexus</h3>
-            <button class="chat-close" onclick="closeChat()">✕</button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="chat-message bot">
-                <strong>Hola, buenos tardes. 👋</strong><br>
-                Gracias por su comunicación a Tienda Nexus, mi nombre es Byron. 😊<br><br>
-                ¿Con quién tenemos el gusto?
-            </div>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
-            <button onclick="sendMessage()">Enviar</button>
-        </div>
-    </div>
 </body>
 </html>

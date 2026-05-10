@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras - Tienda Nexus</title>
+    <title>Carrito de Compras - SONIC BOX</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
             color: #2c3e50;
         }
 
         .cart-container {
+            width: min(100%, 1200px);
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
@@ -25,9 +36,11 @@
         }
 
         .cart-header h1 {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             color: #1a237e;
             margin-bottom: 0.5rem;
+            line-height: 1.1;
+            word-break: break-word;
         }
 
         .cart-main {
@@ -45,27 +58,50 @@
             padding-bottom: 1rem;
         }
 
+        .cart-items-header {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #1a237e;
+        }
+
+        .cart-items-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
         .cart-item {
             display: flex;
             align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 1rem;
+            border-radius: 14px;
+            background: white;
+            border: 1px solid #e9ecef;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            width: 100%;
+            max-width: 100%;
         }
 
         .cart-item:last-child {
-            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .cart-item img {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             object-fit: cover;
-            border-radius: 6px;
-            margin-right: 1rem;
+            border-radius: 12px;
+            flex-shrink: 0;
         }
 
         .cart-item-details {
             flex: 1;
+            min-width: 0;
         }
 
         .cart-item-details h3 {
@@ -77,19 +113,23 @@
         .cart-item-details p {
             margin: 0;
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
         }
 
         .cart-item-price {
             font-weight: bold;
             color: #28a745;
             margin-right: 1rem;
+            white-space: nowrap;
         }
 
         .cart-item-quantity {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
             margin-right: 1rem;
+            flex-wrap: wrap;
         }
 
         .quantity-btn {
@@ -135,32 +175,49 @@
         .cart-layout {
             display: flex;
             gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 100%;
         }
 
         .cart-items {
-            flex: 1;
+            flex: 1 1 0;
+            min-width: 0;
         }
 
         .cart-summary {
-            width: 300px;
+            flex: 0 0 320px;
+            width: 100%;
+            max-width: 100%;
             padding: 1.5rem;
             background: #f8f9fa;
-            border-radius: 8px;
+            border-radius: 12px;
             border: 1px solid #e9ecef;
+            min-width: 0;
         }
 
         .cart-summary h2 {
             margin-top: 0;
             color: #1a237e;
             border-bottom: 2px solid #eee;
-            padding-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            font-size: 1.4rem;
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
             margin-bottom: 1rem;
             font-size: 0.95rem;
+            gap: 0.4rem;
+        }
+
+        .summary-row span {
+            flex: 1 1 auto;
+            min-width: 0;
         }
 
         .summary-total {
@@ -189,7 +246,7 @@
             cursor: pointer;
             transition: all 0.3s;
             box-sizing: border-box;
-            min-height: 48px;
+            min-height: 44px;
             line-height: 1.2;
         }
 
@@ -260,23 +317,172 @@
         }
 
         @media (max-width: 768px) {
+            .cart-container {
+                margin: 0.75rem auto;
+                padding: 0 0.75rem;
+            }
+
+            .cart-header {
+                margin-bottom: 1rem;
+            }
+
+            .cart-header h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.35rem;
+            }
+
             .cart-layout {
                 flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cart-items-section {
+                width: 100%;
+            }
+
+            .cart-items-header {
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
+                font-weight: 700;
+                color: #1a237e;
             }
 
             .cart-summary {
                 width: 100%;
                 order: -1;
+                margin-bottom: 1rem;
+                padding: 1rem;
+                background: #ffffff;
+                border-radius: 12px;
+                border: 1px solid #e9ecef;
+                min-width: unset;
+            }
+
+            .cart-summary h2 {
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.75rem;
             }
 
             .cart-item {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+                align-items: stretch;
+                gap: 0.75rem;
+                padding: 0.9rem;
+                border-bottom: none;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+                margin-bottom: 0.75rem;
             }
 
             .cart-item img {
                 margin-right: 0;
+                width: 100%;
+                max-width: 180px;
+                height: auto;
+                align-self: center;
+                border-radius: 10px;
+            }
+
+            .cart-item-details {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .cart-item-details h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .cart-item-details p {
+                font-size: 0.85rem;
+            }
+
+            .cart-item-price {
+                margin: 0;
+                font-size: 0.95rem;
+            }
+
+            .cart-item-quantity {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.4rem;
+                width: 100%;
+                flex-wrap: wrap;
+                margin-right: 0;
+            }
+
+            .quantity-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .quantity-display {
+                min-width: 50px;
+                padding: 0.3rem 0.6rem;
+                border-radius: 10px;
+                background: #f1f3f5;
+                font-size: 0.9rem;
+            }
+
+            .cart-item-remove {
+                width: 100%;
+                margin: 0;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .summary-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+                font-size: 0.9rem;
+            }
+
+            .summary-total {
+                font-size: 1.05rem;
+                margin-top: 0.5rem;
+            }
+
+            .cart-actions {
+                display: grid;
+                gap: 0.6rem;
+            }
+
+            .cart-actions button,
+            .cart-actions a {
+                min-height: 44px;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-container {
+                margin: 0.5rem auto;
+                padding: 0 0.6rem;
+            }
+
+            .cart-header h1 {
+                font-size: 1.4rem;
+                line-height: 1.2;
+            }
+
+            .cart-summary {
+                padding: 0.8rem;
+            }
+
+            .cart-item {
+                padding: 0.8rem;
+                gap: 0.6rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .cart-item img {
+                max-width: 150px;
             }
         }
 
@@ -319,36 +525,7 @@
             background: #3a3a3a;
             border-color: #28a745;
         }
-        /* Floating menu elementos */
-        .floating-menu {
-            position: fixed;
-            right: 1.5rem;
-            bottom: 120px;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 999;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #1a237e 0%, #2d3daa 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 25px rgba(26,35,126,0.3);
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        .back-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(26,35,126,0.4);
-        }
-    </style>
+        </style>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
 </head>
@@ -364,38 +541,8 @@
             <!-- Cart content will be loaded here -->
         </div>
     </div>
-
-    <!-- Floating Menu -->
-    <div class="floating-menu">
-        <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
-        <a href="index.html" class="back-link" title="Volver a la tienda">←</a>
-    </div>
-
-    <!-- Chat Panel -->
-    <div class="chat-panel hidden" id="chatPanel">
-        <div class="chat-header">
-            <h3>Tienda Nexus</h3>
-            <button class="chat-close" onclick="closeChat()">✕</button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="chat-message bot">
-                <strong>Hola, buenos tardes. 👋</strong><br>
-                Gracias por su comunicación a Tienda Nexus, mi nombre es Byron. 😊<br><br>
-                ¿Con quién tenemos el gusto?
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <div class="chat-actions">
-                <button onclick="attachImage()" title="Enviar imagen">🖼️</button>
-                <button onclick="recordAudio()" title="Enviar audio">🎙️</button>
-            </div>
-            <textarea class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." rows="1"></textarea>
-            <button class="chat-send" onclick="sendMessage()">➤</button>
-        </div>
-    </div>
-
-    <footer style="display: none;">
-        <p>&copy; 2026 Tienda Nexus. Todos los derechos reservados.</p>
+<footer style="display: none;">
+        <p>&copy; 2026 SONIC BOX. Todos los derechos reservados.</p>
     </footer>
 
     <script src="chat.js"></script>
@@ -411,7 +558,8 @@
             { id: 6, name: 'Televisor LED 55"', price: 2800, image: 'https://via.placeholder.com/400x300?text=Televisor', category: 'Entretenimiento' },
             { id: 7, name: 'Sistema de Sonido HiFi con Tubos de Vacío', price: 2350, image: 'https://via.placeholder.com/400x300?text=Sistema+Sonido', category: 'Entretenimiento' },
             { id: 8, name: 'Selladora al Vacío Automática 2 en 1', price: 430, image: 'https://via.placeholder.com/400x300?text=Selladora+Vacuo', category: 'Cocina' },
-            { id: 9, name: 'Grifo de Cocina con Mango Único', price: 255, image: 'https://via.placeholder.com/400x300?text=Grifo+Cocina', category: 'Cocina' }
+            { id: 9, name: 'Grifo de Cocina con Mango Único', price: 255, image: 'https://via.placeholder.com/400x300?text=Grifo+Cocina', category: 'Cocina' },
+            { id: 10, name: 'JBL PartyBox 520', price: 5200, image: 'images/JBL%20PartyBox%20520%2001.jpeg', category: 'Audio' }
         ];
 
         function loadCart() {
@@ -443,27 +591,29 @@
 
             cart.forEach(item => {
                 const product = products.find(p => p.id === item.id);
-                if (product) {
-                    const itemTotal = product.price * item.quantity;
-                    total += itemTotal;
+                const itemPrice = Number(item.price) || (product ? product.price : 0);
+                const itemTotal = itemPrice * item.quantity;
+                total += itemTotal;
 
-                    cartHTML += `
-                        <div class="cart-item">
-                            <img src="${product.image}" alt="${product.name}">
-                            <div class="cart-item-details">
-                                <h3>${product.name}</h3>
-                                <p>Categoría: ${product.category}</p>
-                            </div>
-                            <div class="cart-item-price">Q${product.price.toLocaleString()}</div>
-                            <div class="cart-item-quantity">
-                                <button class="quantity-btn" onclick="decreaseQuantity(${item.id})">−</button>
-                                <span class="quantity-display">${item.quantity}</span>
-                                <button class="quantity-btn" onclick="increaseQuantity(${item.id})">+</button>
-                            </div>
-                            <button class="cart-item-remove" onclick="removeItem(${item.id})">Eliminar</button>
+                const itemImage = item.image || (product ? product.image : 'https://via.placeholder.com/400x300?text=Producto');
+                const itemCategory = item.category || (product ? product.category : 'Sin categoría');
+
+                cartHTML += `
+                    <div class="cart-item">
+                        <img src="${itemImage}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p>Categoría: ${itemCategory}</p>
                         </div>
-                    `;
-                }
+                        <div class="cart-item-price">Q${itemPrice.toLocaleString()}</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="decreaseQuantity(${item.id})">−</button>
+                            <span class="quantity-display">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="increaseQuantity(${item.id})">+</button>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeItem(${item.id})">Eliminar</button>
+                    </div>
+                `;
             });
 
             cartHTML += `

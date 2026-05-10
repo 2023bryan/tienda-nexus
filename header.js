@@ -12,20 +12,21 @@ function logout() {
 const headerHTML = `
     <header>
         <div class="header-top">
-            <a href="index.html" class="header-logo">Tienda Nexus</a>
+            <a href="index.html" class="header-logo">
+                <img src="images/logo.png" alt="SONIC BOX logo" class="header-logo-img">
+            </a>
             <div class="search-group">
                 <div class="categories-dropdown">
-                    <button class="categories-btn" onclick="toggleCategories()" title="Abrir menú de categorías">
+                    <button class="categories-btn" onclick="toggleCategories()" title="Filtrar por categoría">
                         <span class="icon">📂</span>
                         <span class="text">Categorías</span>
                     </button>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="#" onclick="filterByCategory('Cocina')">Cocina</a>
-                        <a href="#" onclick="filterByCategory('Refrigeración')">Refrigeración</a>
-                        <a href="#" onclick="filterByCategory('Lavado')">Lavado</a>
-                        <a href="#" onclick="filterByCategory('Entretenimiento')">Entretenimiento</a>
-                        <a href="#" onclick="filterByCategory('Seguridad')">Seguridad</a>
-                        <a href="#" onclick="filterByCategory('Todos')">Ver Todos</a>
+                        <a href="#" onclick="filterByCategory('Todos')">Todos</a>
+                        <a href="#" onclick="filterByCategory('Refrigeradores')">Refrigeradores</a>
+                        <a href="#" onclick="filterByCategory('Lavadoras')">Lavadoras</a>
+                        <a href="#" onclick="filterByCategory('Microondas')">Microondas</a>
+                        <a href="#" onclick="filterByCategory('Aire acondicionado')">Aires acondicionados</a>
                     </div>
                 </div>
                 <div class="search-container">
@@ -57,6 +58,31 @@ const headerHTML = `
     </header>
 `;
 
+const chatHTML = `
+    <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
+    <div class="chat-panel hidden" id="chatPanel">
+        <div class="chat-header">
+            <h3>SONIC BOX</h3>
+            <button class="chat-close" onclick="closeChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <strong>Hola, buenos tardes. 👋</strong><br>
+                Gracias por su comunicación a SONIC BOX, mi nombre es Byron. 😊<br><br>
+                ¿Con quién tenemos el gusto?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <div class="chat-actions">
+                <button onclick="attachImage()" title="Enviar imagen">🖼️</button>
+                <button onclick="recordAudio()" title="Enviar audio">🎙️</button>
+            </div>
+            <textarea class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." rows="1"></textarea>
+            <button class="chat-send" onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+`;
+
 let categoryMenu = null;
 
 function insertSiteHeader() {
@@ -66,11 +92,23 @@ function insertSiteHeader() {
     } else {
         document.body.insertAdjacentHTML('afterbegin', headerHTML);
     }
+    insertChatWidget();
     categoryMenu = document.getElementById('dropdownMenu');
     updateCartCount();
     applyTheme();
+    insertProductFavoriteButton();
     updateAllFavoriteButtons();
     updateAccountSection();
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keydown', event => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                performSearch();
+            }
+        });
+    }
 }
 
 function updateAccountSection() {
@@ -182,9 +220,68 @@ function updateFavoriteButton(id) {
 }
 
 function updateAllFavoriteButtons() {
-    for (let i = 1; i <= 9; i++) {
-        updateFavoriteButton(i);
+    document.querySelectorAll('[id^="fav-btn-"]').forEach(btn => {
+        const id = parseInt(btn.id.replace('fav-btn-', ''), 10);
+        if (!Number.isNaN(id)) {
+            updateFavoriteButton(id);
+        }
+    });
+}
+
+function getProductIdFromPage() {
+    const productInfo = document.querySelector('.product-info');
+    if (productInfo?.dataset?.productId) {
+        const id = Number(productInfo.dataset.productId);
+        return Number.isNaN(id) ? null : id;
     }
+    if (typeof productId !== 'undefined') {
+        const id = Number(productId);
+        return Number.isNaN(id) ? null : id;
+    }
+    const searchButton = document.querySelector('[id^="fav-btn-"]');
+    if (searchButton) {
+        const id = Number(searchButton.id.replace('fav-btn-', ''));
+        return Number.isNaN(id) ? null : id;
+    }
+    return null;
+}
+
+function insertProductFavoriteButton() {
+    const productInfo = document.querySelector('.product-info');
+    if (!productInfo) return;
+
+    const id = getProductIdFromPage();
+    if (!id) return;
+    if (document.getElementById('fav-btn-' + id)) return;
+
+    const title = productInfo.querySelector('.product-title');
+    if (!title) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.style.display = 'flex';
+    wrapper.style.alignItems = 'center';
+    wrapper.style.gap = '0.75rem';
+    wrapper.style.flexWrap = 'wrap';
+    wrapper.style.marginBottom = '1rem';
+
+    const button = document.createElement('button');
+    button.className = 'favorite-btn';
+    button.type = 'button';
+    button.id = 'fav-btn-' + id;
+    button.textContent = '♡';
+    button.addEventListener('click', () => toggleFavorite(id));
+
+    wrapper.appendChild(button);
+    productInfo.insertBefore(wrapper, title);
+    wrapper.appendChild(title);
+    updateFavoriteButton(id);
+}
+
+function insertChatWidget() {
+    if (document.getElementById('chatBubble') || document.getElementById('chatPanel')) {
+        return;
+    }
+    document.body.insertAdjacentHTML('beforeend', chatHTML);
 }
 
 function applyTheme() {

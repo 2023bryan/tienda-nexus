@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavadora Automática - Tienda Nexus</title>
+    <title>Lavadora Automática - SONIC BOX</title>
     <style>
         .product-container {
             max-width: 1200px;
@@ -61,7 +61,9 @@
             display: flex;
             gap: 1rem;
             align-items: center;
+            flex-wrap: wrap;
             margin-bottom: 2rem;
+            min-height: 72px;
         }
         .add-to-cart-btn {
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
@@ -183,7 +185,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 0;
         }
         .quantity-container {
             display: flex;
@@ -244,38 +246,40 @@
             .price-offer {
                 font-size: 1.5rem;
             }
+            .tabs-nav {
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                width: calc(100% - 1.5rem);
+                padding: 0.3rem;
+            }
+            .tab-btn {
+                flex: 1 1 45%;
+                min-width: 0;
+                padding: 0.65rem 0.75rem;
+                font-size: 0.9rem;
+                line-height: 1.2;
+            }
+            .tab-btn.active {
+                transform: none;
+            }
+            .product-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .add-to-cart-btn,
+            .go-to-cart-btn {
+                width: 100%;
+            }
+            .quantity-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .quantity-container {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
-        /* Floating menu elementos */
-        .floating-menu {
-            position: fixed;
-            right: 1.5rem;
-            bottom: 120px;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 999;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #1a237e 0%, #2d3daa 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            box-shadow: 0 10px 25px rgba(26,35,126,0.3);
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        .back-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(26,35,126,0.4);
-        }
-
-            </style>
+        </style>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
 </head>
@@ -286,9 +290,8 @@
         <div class="product-layout">
             <div class="product-gallery">
                 <img src="images/lavadora.jpg" alt="Lavadora Automática" class="main-image">
-    <button class="favorite-btn" id="fav-btn-2" onclick="toggleFavorite(2)">♡</button>
             </div>
-        <div class="product-info">
+        <div class="product-info" data-product-id="2">
                 <h1 class="product-title">Lavadora Automática</h1>
 
                 <div class="product-prices">
@@ -304,10 +307,7 @@
                 <div class="product-actions">
                     <button class="add-to-cart-btn" id="add-btn-2" onclick="toggleAddToCart(2)">
                         🛒 Agregar al carrito
-                    </button>
-                </div>
-
-                <div class="quantity-controls hidden" id="qty-controls-2">
+                    </button>                <div class="quantity-controls hidden" id="qty-controls-2">
                     <div class="quantity-container">
                         <button class="qty-btn" onclick="decreaseQuantity(2)">−</button>
                         <div class="qty-display" id="qty-display-2">1 en carrito</div>
@@ -316,6 +316,7 @@
                     <button class="go-to-cart-btn" onclick="openCart()">
                         🛒 Ir al carrito
                     </button>
+                </div>
                 </div>
 
                 <div class="product-details">
@@ -557,42 +558,31 @@
         }
         
         window.addEventListener('scroll', updateActiveTab, { passive: true });
+
+        function setupTabButtons() {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', event => {
+                    event.preventDefault();
+                    const href = btn.getAttribute('href') || '';
+                    const sectionId = href.replace('#', '');
+                    const target = document.getElementById(sectionId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        }
         window.addEventListener('resize', updateActiveTab);
-        document.addEventListener('DOMContentLoaded', updateActiveTab);
+        document.addEventListener('DOMContentLoaded', () => {
+            setupTabButtons();
+            updateActiveTab();
+        });
         updateActiveTab();
 
     </script><script src="chat.js"></script>
     <script src="header.js" defer></script>
-    
-
-    <!-- Floating Menu -->
-    <div class="floating-menu">
-        <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
-        <a href="index.html" class="back-link" title="Volver a la tienda">←</a>
-    </div>
-
-    <!-- Chat Panel -->
-    <div class="chat-panel hidden" id="chatPanel">
-        <div class="chat-header">
-            <h3>Tienda Nexus</h3>
-            <button class="chat-close" onclick="closeChat()">✕</button>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="chat-message bot">
-                <strong>Hola, buenos tardes. 👋</strong><br>
-                Gracias por su comunicación a Tienda Nexus, mi nombre es Byron. 😊<br><br>
-                ¿Con quién tenemos el gusto?
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <div class="chat-actions">
-                <button onclick="attachImage()" title="Enviar imagen">🖼️</button>
-                <button onclick="recordAudio()" title="Enviar audio">🎙️</button>
-            </div>
-            <textarea class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." rows="1" oninput="resizeChatTextarea()"></textarea>
-            <button class="chat-send" onclick="sendMessage()">➤</button>
-        </div>
-    </div>
-
 </body>
 </html>

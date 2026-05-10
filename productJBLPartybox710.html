@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBL PartyBox 710 - SONIC BOX</title>
+    <style>
+        .product-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .product-gallery {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+        .gallery-thumbnails {
+            display: grid;
+            gap: 0.75rem;
+            max-height: 430px;
+            overflow-y: auto;
+            padding-right: 0.25rem;
+        }
+        .main-image {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .thumbnail-image {
+            width: 100%;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+        .thumbnail-image.active,
+        .thumbnail-image:hover {
+            border-color: #ff6f00;
+        }
+        .product-info {
+            padding: 1rem 0;
+        }
+        .product-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin: 0 0 1rem 0;
+            font-weight: 600;
+        }
+        .product-prices {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .price-original {
+            font-size: 1.2rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        .price-offer {
+            font-size: 2rem;
+            color: #ff6f00;
+            font-weight: 700;
+        }
+        .product-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            min-height: 72px;
+        }
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(40,167,69,0.3);
+        }
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+        }
+        .favorite-btn {
+            background: white;
+            border: 1px solid #e5e7eb;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            color: #6b7280;
+            transition: all 0.25s ease;
+            margin: 1rem auto 0;
+            box-shadow: 0 18px 35px rgba(15,23,42,0.08);
+        }
+        .favorite-btn.favorited {
+            color: #ef4444;
+            border-color: #fecaca;
+            background: #fff1f2;
+        }
+        .product-details {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        .detail-value {
+            color: #6c757d;
+            text-align: right;
+            max-width: 65%;
+        }
+        .product-tabs {
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .tabs-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.98);
+            border-radius: 999px;
+            box-shadow: 0 16px 45px rgba(15,23,42,0.14);
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1200px, calc(100% - 2rem));
+            padding: 0.5rem;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 0.9rem 1rem;
+            background: transparent;
+            border: none;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        .tab-btn.active {
+            background: #ff6f00;
+            color: white;
+            border: 2px solid #fff;
+            box-shadow: 0 15px 35px rgba(255,111,0,0.3);
+            transform: scale(1.05);
+        }
+        .tab-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 4px 18px rgba(15,23,42,0.08);
+            min-height: 220px;
+            margin-bottom: 120px;
+        }
+        .tab-panel {
+            scroll-margin-top: 120px;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0;
+        }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        .qty-btn {
+            background: #f8f9fa;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #495057;
+        }
+        .qty-display {
+            padding: 0.5rem 1rem;
+            min-width: 60px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .go-to-cart-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .go-to-cart-btn:hover {
+            background: #0056b3;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid #007bff;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            background: #007bff;
+            color: white;
+        }
+        .hidden {
+            display: none !important;
+        }
+        @media (max-width: 768px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .product-gallery {
+                grid-template-columns: 1fr;
+            }
+            .gallery-thumbnails {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                max-height: none;
+                overflow: visible;
+            }
+            .product-title {
+                font-size: 1.75rem;
+            }
+            .price-offer {
+                font-size: 1.75rem;
+            }
+            .tabs-nav {
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                width: calc(100% - 1.5rem);
+                padding: 0.3rem;
+            }
+            .tab-btn {
+                flex: 1 1 45%;
+                min-width: 0;
+                padding: 0.65rem 0.75rem;
+                font-size: 0.9rem;
+                line-height: 1.2;
+            }
+            .tab-btn.active {
+                transform: none;
+            }
+            .product-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .add-to-cart-btn,
+            .go-to-cart-btn {
+                width: 100%;
+            }
+            .quantity-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .quantity-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .thumbnail-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <div class="product-container">
+        <div class="product-layout">
+            <div class="product-gallery">
+                <div class="gallery-thumbnails">
+                    <img class="thumbnail-image active" src="images/JBL%20Partybox%20710%2001.jpeg" alt="JBL PartyBox 710" data-src="images/JBL%20Partybox%20710%2001.jpeg">
+                    <img class="thumbnail-image" src="images/JBL%20Partybox%20710%2002.jpeg" alt="JBL PartyBox 710" data-src="images/JBL%20Partybox%20710%2002.jpeg">
+                    <img class="thumbnail-image" src="images/JBL%20Partybox%20710%2003.jpeg" alt="JBL PartyBox 710" data-src="images/JBL%20Partybox%20710%2003.jpeg">
+                    <img class="thumbnail-image" src="images/JBL%20Partybox%20710%2004.jpeg" alt="JBL PartyBox 710" data-src="images/JBL%20Partybox%20710%2004.jpeg">
+                    <img class="thumbnail-image" src="images/JBL%20Partybox%20710%2005.jpeg" alt="JBL PartyBox 710" data-src="images/JBL%20Partybox%20710%2005.jpeg">
+                    <img class="thumbnail-image" src="images/JBL%20Partybox%20710%2006.jpeg" alt="JBL PartyBox 710" data-src="images/JBL%20Partybox%20710%2006.jpeg">
+                </div>
+                <div>
+                    <img id="mainProductImage" src="images/JBL%20Partybox%20710%2001.jpeg" alt="JBL PartyBox 710" class="main-image">
+            </div>
+            </div>
+            <div class="product-info" data-product-id="11">
+                <h1 class="product-title">JBL PartyBox 710</h1>
+
+                <div class="product-prices">
+                    <span class="price-original">Q9,200.00</span>
+                    <span class="price-offer">Q7,999.00</span>
+                </div>
+                <p class="product-description">
+                    El PartyBox 710 a prueba de salpicaduras transformará tu próximo evento en una fiesta, un concierto o una auténtica discoteca. Con un exclusivo y colorido espectáculo de luces sincronizado con el sonido JBL Original Pro.
+                </p>
+                <div class="product-actions">
+                    <button class="add-to-cart-btn" id="add-btn-11" onclick="toggleAddToCart(11)">🛒 Agregar al carrito</button>
+                    <div class="quantity-controls hidden" id="qty-controls-11">
+                        <div class="quantity-container">
+                            <button class="qty-btn" onclick="decreaseQuantity(11)">−</button>
+                            <div class="qty-display" id="qty-display-11">1 en carrito</div>
+                            <button class="qty-btn" onclick="increaseQuantity(11)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">🛒 Ir al carrito</button>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Potencia de salida</span>
+                        <span class="detail-value">800 W</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Respuesta de frecuencia</span>
+                        <span class="detail-value">35Hz – 20kHz (-6dB)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Dimensiones (cm)</span>
+                        <span class="detail-value">39.9 x 90.5 x 43.6</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Peso</span>
+                        <span class="detail-value">27.8 kg</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Bluetooth</span>
+                        <span class="detail-value">5.1, A2DP V1.3, AVRCP V1.6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tabs">
+            <div class="tabs-nav">
+                <a class="tab-btn active" href="#description">Descripción</a>
+                <a class="tab-btn" href="#specifications">Especificaciones</a>
+                <a class="tab-btn" href="#reviews">Reseñas</a>
+                <a class="tab-btn" href="#shipping">Envío</a>
+            </div>
+            <div class="tab-content">
+                <div id="description" class="tab-panel">
+                    <h3>Descripción del Producto</h3>
+                    <p>El PartyBox 710 a prueba de salpicaduras transformará tu próximo evento en una fiesta, un concierto o una auténtica discoteca. Con un exclusivo y colorido espectáculo de luces sincronizado con el sonido JBL Original Pro. Los controles minimalistas e intuitivos del panel superior y la aplicación PartyBox te permiten crear experiencias musicales y visuales de alto nivel.</p>
+                    <p>Personaliza las luces estroboscópicas e intermitentes, así como del increíble sonido del conjunto doble de altavoces de agudos y de graves. El sonido True Wireless de un solo botón empareja al instante dos PartyBox 710 para montar una fiesta aún más grande. Y con una cómoda asa y unas ruedas robustas, podrás disfrutar de los buenos momentos en cualquier lugar.</p>
+                    <ul>
+                        <li>Potencia de salida de 800W para un sonido potente</li>
+                        <li>Espectáculo de luces sincronizado con el sonido</li>
+                        <li>Controles minimalistas e intuitivos</li>
+                        <li>Aplicación PartyBox para personalización</li>
+                        <li>True Wireless para emparejar múltiples dispositivos</li>
+                        <li>A prueba de salpicaduras con certificación IPX4</li>
+                        <li>Asa cómoda y ruedas robustas</li>
+                    </ul>
+                </div>
+                <div id="specifications" class="tab-panel">
+                    <h3>Especificaciones Técnicas</h3>
+                    <h4>Características generales</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Potencia de salida</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">800 W</td>
+                        </tr>
+                    </table>
+                    <h4>Características Audio</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Respuesta de frecuencia dinámica</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">35Hz – 20kHz (-6dB)</td>
+                        </tr>
+                    </table>
+                    <h4>Medidas</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Dimensiones (Ancho x Alto x Profundidad) (cm)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">39.9 x 90.5 x 43.6</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Dimensiones (Ancho x Alto x Profundidad) (in)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">15.70 x 35.60 x 17.20</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Peso (kg)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">27.8</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Peso (lbs)</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">61.3</td>
+                        </tr>
+                    </table>
+                    <h4>Características de control y conexión</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Rango de frecuencia de transmisión Bluetooth</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">2400 MHz – 2483.5 MHz</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Perfiles Bluetooth</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">A2DP V1.3, AVRCP V1.6</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Transmisión de modulación GFSK vía Bluetooth</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">GFSK, π/4 DQPSK, 8DPSK</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Potencia de transmisión Bluetooth</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">≤ 11dBm</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Versión Bluetooth</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">5.1</td>
+                        </tr>
+                    </table>
+                    <h4>Características</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Certificación IPX</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">IPX4</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Show de luces</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">Sí</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">A prueba de salpicaduras</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">Sí</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Bluetooth</td>
+                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">Sí</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="reviews" class="tab-panel">
+                    <h3>Reseñas de Clientes</h3>
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
+                        <strong>Ana García</strong>
+                        <p>Increíble potencia de sonido y las luces sincronizadas hacen que sea el centro de atención en cualquier fiesta. Totalmente recomendado.</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
+                        <strong>Roberto López</strong>
+                        <p>El doble conjunto de altavoces realmente marca la diferencia. Los bajos y agudos son espectaculares incluso a volumen máximo.</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
+                        <strong>María Rodríguez</strong>
+                        <p>Muy versátil y fácil de transportar gracias a las ruedas. Es la mejor compra que he hecho para mis eventos.</p>
+                    </div>
+                </div>
+                <div id="shipping" class="tab-panel">
+                    <h3>Envío</h3>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <h4 style="margin-top: 0; color: #28a745;">Envío gratis</h4>
+                        <p>Envío gratuito en compras mayores a Q500. Entrega estimada en 3-5 días hábiles.</p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #ffc107;">
+                        <h4 style="margin-top: 0; color: #856404;">Entrega express</h4>
+                        <p>Disponible con entrega express en 24-48 horas con costo adicional.</p>
+                    </div>
+                    <div style="background: #e7f3ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #0099ff;">
+                        <h4 style="margin-top: 0; color: #003d73;">Nota de envío</h4>
+                        <p>Por el tamaño y peso del producto, se recomienda coordinar la entrega con anticipación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const productId = 11;
+        const productName = 'JBL PartyBox 710';
+        const productPrice = 7999;
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateDisplay() {
+            const item = cart.find(i => i.id === productId);
+            const addBtn = document.getElementById('add-btn-' + productId);
+            const qtyControls = document.getElementById('qty-controls-' + productId);
+            const display = document.getElementById('qty-display-' + productId);
+
+            if (item && item.quantity > 0) {
+                addBtn.classList.add('hidden');
+                qtyControls.classList.remove('hidden');
+                display.textContent = item.quantity + ' en carrito';
+            } else {
+                addBtn.classList.remove('hidden');
+                qtyControls.classList.add('hidden');
+            }
+        }
+
+        function toggleAddToCart(id) {
+            const existing = cart.find(item => item.id === id);
+            if (!existing) {
+                cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+            updateDisplay();
+            if (window.updateCartCount) updateCartCount();
+        }
+
+        function increaseQuantity(id) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity++;
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateDisplay();
+            if (window.updateCartCount) updateCartCount();
+        }
+
+        function decreaseQuantity(id) {
+            const existing = cart.find(item => item.id === id);
+            if (existing && existing.quantity > 0) {
+                existing.quantity--;
+                if (existing.quantity === 0) {
+                    cart = cart.filter(item => item.id !== id);
+                }
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateDisplay();
+            if (window.updateCartCount) updateCartCount();
+        }
+
+        function toggleFavorite(id) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const index = favorites.indexOf(id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoriteButton(id);
+        }
+
+        function updateFavoriteButton(id) {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            const btn = document.getElementById('fav-btn-' + id);
+            if (btn) {
+                if (favorites.includes(id)) {
+                    btn.classList.add('favorited');
+                    btn.textContent = '♥';
+                } else {
+                    btn.classList.remove('favorited');
+                    btn.textContent = '♡';
+                }
+            }
+        }
+
+        function changeThumbnail(event) {
+            const target = event.target;
+            const mainImage = document.getElementById('mainProductImage');
+            if (target.classList.contains('thumbnail-image')) {
+                document.querySelectorAll('.thumbnail-image').forEach(img => img.classList.remove('active'));
+                target.classList.add('active');
+                mainImage.src = target.dataset.src;
+            }
+        }
+
+        function initTabs() {
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+        }
+
+        document.querySelectorAll('.thumbnail-image').forEach(img => img.addEventListener('click', changeThumbnail));
+        initTabs();
+        updateDisplay();
+        updateFavoriteButton(productId);
+    </script>
+    <script src="chat.js"></script>
+    <script src="header.js" defer></script>
+</body>
+</html>

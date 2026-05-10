@@ -1,8 +1,8 @@
 /* Chat bubble and panel shared styles */
 .chat-bubble {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 24px;
+  right: 24px;
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
@@ -12,18 +12,82 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(255,111,0,0.4);
-  z-index: 999;
+  z-index: 1001;
   font-size: 1.8rem;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: white;
   border: none;
+  transform-origin: center center;
+  will-change: transform;
+  touch-action: manipulation;
 }
 .chat-bubble:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(255,111,0,0.5);
 }
 .chat-bubble.hidden {
-  display: none;
+  display: none !important;
+}
+.chat-panel.hidden {
+  display: none !important;
+}
+.bubble-actions-menu {
+  position: fixed;
+  right: 24px;
+  bottom: calc(24px + 60px + 12px);
+  display: grid;
+  gap: 0.75rem;
+  z-index: 1000;
+  pointer-events: auto;
+}
+.bubble-actions-menu.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+.bubble-actions-menu:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.bubble-action {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f2937;
+  cursor: pointer;
+  position: relative;
+  font-size: 1.2rem;
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.bubble-action:hover {
+  transform: translateX(-3px) scale(1.05);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
+}
+.bubble-action .bubble-label {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.94);
+  color: white;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.bubble-action:hover .bubble-label {
+  opacity: 1;
 }
 .chat-panel {
   position: fixed;
@@ -162,15 +226,85 @@
   transform: scale(1.1);
   box-shadow: 0 2px 8px rgba(255,111,0,0.3);
 }
+.chat-menu-container {
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e6e8f0;
+}
+.chat-menu-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.6rem;
+}
+.chat-tab-menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.chat-tab-menu .tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.85rem;
+  background: #f8fafc;
+  color: #1f2937;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.chat-tab-menu .tab-btn.active {
+  background: #ff6f00;
+  color: white;
+  border-color: transparent;
+  box-shadow: none;
+}
+.tabs-nav {
+  display: none !important;
+}
+.product-tabs .tab-content {
+  margin-bottom: 1rem !important;
+}
+@media (max-width: 768px) {
+  .chat-bubble {
+    width: 52px;
+    height: 52px;
+    bottom: 16px;
+    right: 16px;
+    font-size: 1.4rem;
+  }
+
+  .bubble-actions-menu {
+    right: 16px;
+    bottom: calc(16px + 52px + 8px);
+  }
+
+  .chat-panel {
+    width: min(calc(100vw - 2rem), 340px);
+    height: 70vh;
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
 @media (max-width: 480px) {
   .chat-panel {
-    width: calc(100% - 2rem);
-    height: 80vh;
-    bottom: 1rem;
-    right: 1rem;
+    width: calc(100vw - 1rem);
+    height: 82vh;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    border-radius: 14px;
   }
   .chat-bubble {
-    bottom: 1rem;
-    right: 1rem;
+    width: 50px;
+    height: 50px;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.25rem;
+  }
+  .bubble-actions-menu {
+    right: 0.5rem;
+    bottom: calc(0.5rem + 50px + 6px);
   }
 }
