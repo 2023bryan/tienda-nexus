@@ -57,6 +57,9 @@
             color: #1a237e;
             margin: 0 0 1rem 0;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         .product-prices {
             display: flex;
@@ -107,17 +110,22 @@
         .favorite-btn {
             background: white;
             border: 1px solid #e5e7eb;
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: #6b7280;
             transition: all 0.25s ease;
-            margin: 1rem auto 0;
-            box-shadow: 0 18px 35px rgba(15,23,42,0.08);
+            box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .favorite-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(15,23,42,0.12);
         }
         .favorite-btn.favorited {
             color: #ef4444;
@@ -338,8 +346,10 @@
                     <img id="mainProductImage" src="images/JBL%20Partybox%20710%2001.jpeg" alt="JBL PartyBox 710" class="main-image">
             </div>
             </div>
-            <div class="product-info" data-product-id="11">
-                <h1 class="product-title">JBL PartyBox 710</h1>
+            <div class="product-info" data-product-id="13">
+                <h1 class="product-title">JBL PartyBox 710
+                    <button class="favorite-btn" id="fav-btn-13" onclick="toggleFavorite(13)">♡</button>
+                </h1>
 
                 <div class="product-prices">
                     <span class="price-original">Q9,200.00</span>
@@ -349,8 +359,8 @@
                     El PartyBox 710 a prueba de salpicaduras transformará tu próximo evento en una fiesta, un concierto o una auténtica discoteca. Con un exclusivo y colorido espectáculo de luces sincronizado con el sonido JBL Original Pro.
                 </p>
                 <div class="product-actions">
-                    <button class="add-to-cart-btn" id="add-btn-11" onclick="toggleAddToCart(11)">🛒 Agregar al carrito</button>
-                    <div class="quantity-controls hidden" id="qty-controls-11">
+                    <button class="add-to-cart-btn" id="add-btn-13" onclick="toggleAddToCart(13)">🛒 Agregar al carrito</button>
+                    <div class="quantity-controls hidden" id="qty-controls-13">
                         <div class="quantity-container">
                             <button class="qty-btn" onclick="decreaseQuantity(11)">−</button>
                             <div class="qty-display" id="qty-display-11">1 en carrito</div>
@@ -519,7 +529,7 @@
     </div>
 
     <script>
-        const productId = 11;
+        const productId = 13;
         const productName = 'JBL PartyBox 710';
         const productPrice = 7999;
         let cart = JSON.parse(localStorage.getItem('cart')) || [];

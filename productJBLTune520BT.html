@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JBL PartyBox 520 - SONIC BOX</title>
+    <title>JBL Tune 520BT - SONIC BOX</title>
     <style>
         .product-container {
             max-width: 1200px;
@@ -251,23 +251,52 @@
         .go-to-cart-btn:hover {
             background: #0056b3;
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border: 1px solid #007bff;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-        .back-link:hover {
-            background: #007bff;
-            color: white;
-        }
         .hidden {
             display: none !important;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .specs-table tr {
+            border-bottom: 1px solid #dee2e6;
+        }
+        .specs-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .specs-table td {
+            padding: 0.75rem;
+            border: 1px solid #dee2e6;
+        }
+        .specs-table td:first-child {
+            font-weight: 600;
+            background: #f8f9fa;
+            width: 40%;
+        }
+        .specs-category {
+            margin: 2rem 0 1.5rem 0;
+            font-weight: 600;
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        .feature-item:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
         }
         @media (max-width: 768px) {
             .product-layout {
@@ -320,8 +349,8 @@
                 width: 100%;
                 justify-content: space-between;
             }
-            .thumbnail-row {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -335,61 +364,60 @@
         <div class="product-layout">
             <div class="product-gallery">
                 <div class="gallery-thumbnails">
-                    <img class="thumbnail-image active" src="images/JBL%20PartyBox%20520%2001.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2001.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2002.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2002.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2003.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2003.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2004.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2004.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2005.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2005.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2006.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2006.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2007.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2007.jpeg">
+                    <img class="thumbnail-image active" src="images/JBL%20Tune%20520BT%2001.png" alt="JBL Tune 520BT" data-src="images/JBL%20Tune%20520BT%2001.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20520BT%2002.png" alt="JBL Tune 520BT" data-src="images/JBL%20Tune%20520BT%2002.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20520BT%2003.png" alt="JBL Tune 520BT" data-src="images/JBL%20Tune%20520BT%2003.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20520BT%2004.png" alt="JBL Tune 520BT" data-src="images/JBL%20Tune%20520BT%2004.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20520BT%2005.png" alt="JBL Tune 520BT" data-src="images/JBL%20Tune%20520BT%2005.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20520BT%2006.png" alt="JBL Tune 520BT" data-src="images/JBL%20Tune%20520BT%2006.png">
                 </div>
                 <div>
-                    <img id="mainProductImage" src="images/JBL%20PartyBox%20520%2001.jpeg" alt="JBL PartyBox 520" class="main-image">
+                    <img id="mainProductImage" src="images/JBL%20Tune%20520BT%2001.png" alt="JBL Tune 520BT" class="main-image">
+                </div>
             </div>
-            </div>
-            <div class="product-info" data-product-id="10">
-                <h1 class="product-title">JBL PartyBox 520
-                    <button class="favorite-btn" id="fav-btn-10" onclick="toggleFavorite(10)">♡</button>
+            <div class="product-info" data-product-id="14">
+                <h1 class="product-title">JBL Tune 520BT
+                    <button class="favorite-btn" id="fav-btn-14" onclick="toggleFavorite(14)">♡</button>
                 </h1>
 
                 <div class="product-prices">
-                    <span class="price-original">Q6,200.00</span>
-                    <span class="price-offer">Q5,200.00</span>
+                    <span class="price-original">Q599.00</span>
+                    <span class="price-offer">Q499.00</span>
                 </div>
                 <p class="product-description">
-                    Sonido electrizante con AI Sound Boost para que tu lista de reproducción brille con luz propia. Sube el volumen cuanto quieras y disfruta de cada canción casi como en vivo.
+                    Los auriculares JBL Tune 520BT transmiten el potente sonido JBL Pure Bass gracias a la última tecnología 5.3 BT. Estos auriculares, muy fáciles de usar, ofrecen hasta 57 horas de puro placer auditivo.
                 </p>
                 <div class="product-actions">
-                    <button class="add-to-cart-btn" id="add-btn-10" onclick="toggleAddToCart(10)">🛒 Agregar al carrito</button>
-                    <div class="quantity-controls hidden" id="qty-controls-10">
+                    <button class="add-to-cart-btn" id="add-btn-14" onclick="toggleAddToCart(14)">🛒 Agregar al carrito</button>
+                    <div class="quantity-controls hidden" id="qty-controls-14">
                         <div class="quantity-container">
-                            <button class="qty-btn" onclick="decreaseQuantity(10)">−</button>
-                            <div class="qty-display" id="qty-display-10">1 en carrito</div>
-                            <button class="qty-btn" onclick="increaseQuantity(10)">+</button>
+                            <button class="qty-btn" onclick="decreaseQuantity(14)">−</button>
+                            <div class="qty-display" id="qty-display-14">1 en carrito</div>
+                            <button class="qty-btn" onclick="increaseQuantity(14)">+</button>
                         </div>
                         <button class="go-to-cart-btn" onclick="openCart()">🛒 Ir al carrito</button>
                     </div>
                 </div>
                 <div class="product-details">
                     <div class="detail-item">
-                        <span class="detail-label">Entrada de energía</span>
-                        <span class="detail-value">100 – 240 V ~ 50-60 Hz</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Relación señal-ruido</span>
-                        <span class="detail-value">> 80 dB</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Potencia de salida</span>
-                        <span class="detail-value">400 W</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Dimensiones (cm)</span>
-                        <span class="detail-value">42 x 77 x 37</span>
+                        <span class="detail-label">Driver</span>
+                        <span class="detail-value">33 mm</span>
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">Peso</span>
-                        <span class="detail-value">26 kg</span>
+                        <span class="detail-value">157 g (5.54 oz)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Batería</span>
+                        <span class="detail-value">57 horas</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Bluetooth</span>
+                        <span class="detail-value">5.3</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tipo</span>
+                        <span class="detail-value">On-ear inalámbrico</span>
                     </div>
                 </div>
             </div>
@@ -399,69 +427,164 @@
             <div class="tabs-nav">
                 <a class="tab-btn active" href="#description">Descripción</a>
                 <a class="tab-btn" href="#specifications">Especificaciones</a>
-                <a class="tab-btn" href="#reviews">Reseñas</a>
+                <a class="tab-btn" href="#features">Características</a>
                 <a class="tab-btn" href="#shipping">Envío</a>
             </div>
             <div class="tab-content">
                 <div id="description" class="tab-panel">
                     <h3>Descripción del Producto</h3>
-                    <p>El JBL PartyBox 520 entrega un sonido potente y dinámico con AI Sound Boost. Está diseñado para mantener tus fiestas vivas con audio claro, bajos profundos y un show de luces integrado.</p>
-                    <ul>
-                        <li>AI Sound Boost optimiza el audio en tiempo real</li>
-                        <li>Luces dinámicas para ambiente de fiesta</li>
-                        <li>Conectividad Bluetooth 5.4 y Auracast</li>
-                        <li>Entrada de guitarra, micrófono y aux-in</li>
-                        <li>Resistente a salpicaduras con certificación IPX4</li>
-                    </ul>
+                    <p>Los auriculares JBL Tune 520BT transmiten el potente sonido JBL Pure Bass gracias a la última tecnología 5.3 BT. Estos auriculares, muy fáciles de usar, ofrecen hasta 57 horas de puro placer auditivo y 3 horas adicionales de batería con solo 5 minutos de carga.</p>
+                    <p>Descarga la aplicación gratuita JBL Headphones y personaliza tu sonido a través del ecualizador. Las indicaciones de voz te ayudarán a conocer las prestaciones de los auriculares. Gestiona las llamadas, el sonido y el volumen desde el auricular, todo ello con el cómodo control de botones.</p>
+                    <p>Si recibes una llamada mientras estás viendo un vídeo en otro dispositivo, los auriculares JBL Tune 520BT se conectan fácilmente a tu móvil para que nunca pierdas una llamada. Los auriculares JBL Tune 520BT son ligeros y cómodos incluso después de horas de escucha, y puedes plegarlos para llevártelos en tu mochila a todas partes.</p>
                 </div>
                 <div id="specifications" class="tab-panel">
                     <h3>Especificaciones Técnicas</h3>
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Transductor</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">2 x 7.5 inch woofers, 2 x 1 inch dome tweeters</td>
+                    
+                    <div class="specs-category">Características Generales</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Driver (mm)</td>
+                            <td>33</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Respuesta de frecuencia</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">40 Hz – 20 kHz</td>
+                            <td>Número de Micrófonos</td>
+                            <td>1</td>
                         </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Formatos compatibles</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">MP3, WAV, WMA, FLAC</td>
+                    </table>
+
+                    <div class="specs-category">Características Audio</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Sensibilidad del driver a 1kHz1mW (dB)</td>
+                            <td>102</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Bluetooth</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">5.4, A2DP V1.4, AVRCP V1.6</td>
-                        </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">USB-C carga</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">PDO / PPS, FAT16, FAT32</td>
+                            <td>Respuesta de frecuencia dinámica</td>
+                            <td>20 Hz - 20 kHz</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Mic-In</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">20 mV RMS</td>
+                            <td>Impedancia de entrada (ohms)</td>
+                            <td>30</td>
                         </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Guitar-In</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">100 mV RMS</td>
+                    </table>
+
+                    <div class="specs-category">Medidas</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Audio Cable Length (ft)</td>
+                            <td>0.7</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Tiempo de reproducción</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">15 horas</td>
+                            <td>Audio Cable Length (m)</td>
+                            <td>0.2</td>
+                        </tr>
+                        <tr>
+                            <td>Peso (g)</td>
+                            <td>157</td>
+                        </tr>
+                        <tr>
+                            <td>Peso (oz)</td>
+                            <td>5.54</td>
+                        </tr>
+                        <tr>
+                            <td>Altura (in)</td>
+                            <td>1.3</td>
+                        </tr>
+                        <tr>
+                            <td>Ancho (in)</td>
+                            <td>2.9</td>
+                        </tr>
+                        <tr>
+                            <td>Ancho Interno (in)</td>
+                            <td>1.3</td>
+                        </tr>
+                        <tr>
+                            <td>Alto Interno (in)</td>
+                            <td>1.3</td>
+                        </tr>
+                        <tr>
+                            <td>Profundidad (in)</td>
+                            <td>0.7</td>
+                        </tr>
+                        <tr>
+                            <td>Altura (cm)</td>
+                            <td>3.2</td>
+                        </tr>
+                        <tr>
+                            <td>Ancho (cm)</td>
+                            <td>7.3</td>
+                        </tr>
+                        <tr>
+                            <td>Ancho Interno (cm)</td>
+                            <td>3.2</td>
+                        </tr>
+                        <tr>
+                            <td>Alto Interno (cm)</td>
+                            <td>3.2</td>
+                        </tr>
+                        <tr>
+                            <td>Profundidad (cm)</td>
+                            <td>1.7</td>
+                        </tr>
+                    </table>
+
+                    <div class="specs-category">Características de Control y Conexión</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Versión Bluetooth</td>
+                            <td>5.3</td>
+                        </tr>
+                        <tr>
+                            <td>Rango de frecuencia de transmisión Bluetooth</td>
+                            <td>2.4 GHz – 2.4835 GHz</td>
+                        </tr>
+                        <tr>
+                            <td>Perfiles Bluetooth</td>
+                            <td>HFP 1.7.2, AVRCP 1.6.2, A2DP 1.3.2</td>
+                        </tr>
+                        <tr>
+                            <td>Transmisión de modulación GFSK vía Bluetooth</td>
+                            <td>GFSK, π/4-DQPSK, 8-DPSK</td>
+                        </tr>
+                        <tr>
+                            <td>Potencia de transmisión Bluetooth</td>
+                            <td>6 dBm (E.I.R.P)</td>
+                        </tr>
+                    </table>
+
+                    <div class="specs-category">Batería</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Tiempo de carga (horas)</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Tiempo de juego máximo (horas)</td>
+                            <td>57</td>
                         </tr>
                     </table>
                 </div>
-                <div id="reviews" class="tab-panel">
-                    <h3>Reseñas de Clientes</h3>
-                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
-                        <strong>María Pérez</strong>
-                        <p>El sonido es impresionante y las luces hacen que la fiesta sea espectacular.</p>
-                    </div>
-                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
-                        <strong>Carlos Méndez</strong>
-                        <p>AI Sound Boost hace una gran diferencia. No satura incluso a volumen alto.</p>
+
+                <div id="features" class="tab-panel">
+                    <h3>Características del Producto</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">Voice Aware</div>
+                        <div class="feature-item">On-ear</div>
+                        <div class="feature-item">Plegable</div>
+                        <div class="feature-item">Carga rápida</div>
+                        <div class="feature-item">Micrófono integrado</div>
+                        <div class="feature-item">Llamadas con manos libres</div>
+                        <div class="feature-item">Sonido JBL Pure Bass</div>
+                        <div class="feature-item">Conexión Multipunto</div>
+                        <div class="feature-item">Inalámbrico</div>
+                        <div class="feature-item">Cable de carga</div>
+                        <div class="feature-item">Batería recargable</div>
+                        <div class="feature-item">Bluetooth 5.3</div>
+                        <div class="feature-item">JBL Headphone App</div>
+                        <div class="feature-item">57 horas de batería</div>
                     </div>
                 </div>
+
                 <div id="shipping" class="tab-panel">
                     <h3>Envío</h3>
                     <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
@@ -478,9 +601,9 @@
     </div>
 
     <script>
-        const productId = 10;
-        const productName = 'JBL PartyBox 520';
-        const productPrice = 5200;
+        const productId = 14;
+        const productName = 'JBL Tune 520BT';
+        const productPrice = 499;
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function updateDisplay() {

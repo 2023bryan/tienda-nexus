@@ -34,6 +34,9 @@
             color: #1a237e;
             margin: 0 0 1rem 0;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         .product-prices {
             display: flex;
@@ -84,17 +87,22 @@
         .favorite-btn {
             background: white;
             border: 1px solid #e5e7eb;
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: #6b7280;
             transition: all 0.25s ease;
-            margin: 1rem auto 0;
-            box-shadow: 0 18px 35px rgba(15,23,42,0.08);
+            box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .favorite-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(15,23,42,0.12);
         }
         .favorite-btn.favorited {
             color: #ef4444;
@@ -292,7 +300,9 @@
                 <img src="images/lavadora.jpg" alt="Lavadora Automática" class="main-image">
             </div>
         <div class="product-info" data-product-id="2">
-                <h1 class="product-title">Lavadora Automática</h1>
+                <h1 class="product-title">Lavadora Automática
+                    <button class="favorite-btn" id="fav-btn-2" onclick="toggleFavorite(2)">♡</button>
+                </h1>
 
                 <div class="product-prices">
                     <span class="price-original">Q350.00</span>
@@ -307,7 +317,8 @@
                 <div class="product-actions">
                     <button class="add-to-cart-btn" id="add-btn-2" onclick="toggleAddToCart(2)">
                         🛒 Agregar al carrito
-                    </button>                <div class="quantity-controls hidden" id="qty-controls-2">
+                    </button>
+                <div class="quantity-controls hidden" id="qty-controls-2">
                     <div class="quantity-container">
                         <button class="qty-btn" onclick="decreaseQuantity(2)">−</button>
                         <div class="qty-display" id="qty-display-2">1 en carrito</div>

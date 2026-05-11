@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JBL PartyBox 520 - SONIC BOX</title>
+    <title>JBL Tune 310C USB - SONIC BOX</title>
     <style>
         .product-container {
             max-width: 1200px;
@@ -269,6 +269,50 @@
         .hidden {
             display: none !important;
         }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .specs-table tr {
+            border-bottom: 1px solid #dee2e6;
+        }
+        .specs-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .specs-table td {
+            padding: 0.75rem;
+            border: 1px solid #dee2e6;
+        }
+        .specs-table td:first-child {
+            font-weight: 600;
+            background: #f8f9fa;
+            width: 40%;
+        }
+        .specs-category {
+            margin: 2rem 0 1.5rem 0;
+            font-weight: 600;
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        .feature-item:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
         @media (max-width: 768px) {
             .product-layout {
                 grid-template-columns: 1fr;
@@ -320,8 +364,8 @@
                 width: 100%;
                 justify-content: space-between;
             }
-            .thumbnail-row {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -335,61 +379,60 @@
         <div class="product-layout">
             <div class="product-gallery">
                 <div class="gallery-thumbnails">
-                    <img class="thumbnail-image active" src="images/JBL%20PartyBox%20520%2001.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2001.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2002.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2002.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2003.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2003.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2004.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2004.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2005.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2005.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2006.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2006.jpeg">
-                    <img class="thumbnail-image" src="images/JBL%20PartyBox%20520%2007.jpeg" alt="JBL PartyBox 520" data-src="images/JBL%20PartyBox%20520%2007.jpeg">
+                    <img class="thumbnail-image active" src="images/JBL%20Tune%20310C%20USB%2001.png" alt="JBL Tune 310C USB" data-src="images/JBL%20Tune%20310C%20USB%2001.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20310C%20USB%2002.png" alt="JBL Tune 310C USB" data-src="images/JBL%20Tune%20310C%20USB%2002.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20310C%20USB%2003.png" alt="JBL Tune 310C USB" data-src="images/JBL%20Tune%20310C%20USB%2003.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20310C%20USB%2004.png" alt="JBL Tune 310C USB" data-src="images/JBL%20Tune%20310C%20USB%2004.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20310C%20USB%2005.png" alt="JBL Tune 310C USB" data-src="images/JBL%20Tune%20310C%20USB%2005.png">
+                    <img class="thumbnail-image" src="images/JBL%20Tune%20310C%20USB%2006.png" alt="JBL Tune 310C USB" data-src="images/JBL%20Tune%20310C%20USB%2006.png">
                 </div>
                 <div>
-                    <img id="mainProductImage" src="images/JBL%20PartyBox%20520%2001.jpeg" alt="JBL PartyBox 520" class="main-image">
+                    <img id="mainProductImage" src="images/JBL%20Tune%20310C%20USB%2001.png" alt="JBL Tune 310C USB" class="main-image">
+                </div>
             </div>
-            </div>
-            <div class="product-info" data-product-id="10">
-                <h1 class="product-title">JBL PartyBox 520
-                    <button class="favorite-btn" id="fav-btn-10" onclick="toggleFavorite(10)">♡</button>
+            <div class="product-info" data-product-id="12">
+                <h1 class="product-title">JBL Tune 310C USB
+                    <button class="favorite-btn" id="fav-btn-12" onclick="toggleFavorite(12)">♡</button>
                 </h1>
 
                 <div class="product-prices">
-                    <span class="price-original">Q6,200.00</span>
-                    <span class="price-offer">Q5,200.00</span>
+                    <span class="price-original">Q399.00</span>
+                    <span class="price-offer">Q299.00</span>
                 </div>
                 <p class="product-description">
-                    Sonido electrizante con AI Sound Boost para que tu lista de reproducción brille con luz propia. Sube el volumen cuanto quieras y disfruta de cada canción casi como en vivo.
+                    Presentamos los auriculares intraaurales JBL Tune 310C USB-C. Son ligeros, cómodos y compactos. Un par de drivers dinámicos de 9 mm ofrecen el potente sonido JBL Pure Bass, mientras que la compatibilidad con audio de alta resolución garantiza una gran calidad de sonido.
                 </p>
                 <div class="product-actions">
-                    <button class="add-to-cart-btn" id="add-btn-10" onclick="toggleAddToCart(10)">🛒 Agregar al carrito</button>
-                    <div class="quantity-controls hidden" id="qty-controls-10">
+                    <button class="add-to-cart-btn" id="add-btn-12" onclick="toggleAddToCart(12)">🛒 Agregar al carrito</button>
+                    <div class="quantity-controls hidden" id="qty-controls-12">
                         <div class="quantity-container">
-                            <button class="qty-btn" onclick="decreaseQuantity(10)">−</button>
-                            <div class="qty-display" id="qty-display-10">1 en carrito</div>
-                            <button class="qty-btn" onclick="increaseQuantity(10)">+</button>
+                            <button class="qty-btn" onclick="decreaseQuantity(12)">−</button>
+                            <div class="qty-display" id="qty-display-12">1 en carrito</div>
+                            <button class="qty-btn" onclick="increaseQuantity(12)">+</button>
                         </div>
                         <button class="go-to-cart-btn" onclick="openCart()">🛒 Ir al carrito</button>
                     </div>
                 </div>
                 <div class="product-details">
                     <div class="detail-item">
-                        <span class="detail-label">Entrada de energía</span>
-                        <span class="detail-value">100 – 240 V ~ 50-60 Hz</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Relación señal-ruido</span>
-                        <span class="detail-value">> 80 dB</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Potencia de salida</span>
-                        <span class="detail-value">400 W</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Dimensiones (cm)</span>
-                        <span class="detail-value">42 x 77 x 37</span>
+                        <span class="detail-label">Driver</span>
+                        <span class="detail-value">9 mm</span>
                     </div>
                     <div class="detail-item">
                         <span class="detail-label">Peso</span>
-                        <span class="detail-value">26 kg</span>
+                        <span class="detail-value">14.3 g</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Conexión</span>
+                        <span class="detail-value">USB-C</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tipo</span>
+                        <span class="detail-value">In-ear</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Micrófono</span>
+                        <span class="detail-value">Integrado</span>
                     </div>
                 </div>
             </div>
@@ -399,69 +442,78 @@
             <div class="tabs-nav">
                 <a class="tab-btn active" href="#description">Descripción</a>
                 <a class="tab-btn" href="#specifications">Especificaciones</a>
-                <a class="tab-btn" href="#reviews">Reseñas</a>
+                <a class="tab-btn" href="#features">Características</a>
                 <a class="tab-btn" href="#shipping">Envío</a>
             </div>
             <div class="tab-content">
                 <div id="description" class="tab-panel">
                     <h3>Descripción del Producto</h3>
-                    <p>El JBL PartyBox 520 entrega un sonido potente y dinámico con AI Sound Boost. Está diseñado para mantener tus fiestas vivas con audio claro, bajos profundos y un show de luces integrado.</p>
-                    <ul>
-                        <li>AI Sound Boost optimiza el audio en tiempo real</li>
-                        <li>Luces dinámicas para ambiente de fiesta</li>
-                        <li>Conectividad Bluetooth 5.4 y Auracast</li>
-                        <li>Entrada de guitarra, micrófono y aux-in</li>
-                        <li>Resistente a salpicaduras con certificación IPX4</li>
-                    </ul>
+                    <p>Presentamos los auriculares intraaurales JBL Tune 310C USB-C. Son ligeros, cómodos y compactos. Un par de drivers dinámicos de 9 mm ofrecen el potente sonido JBL Pure Bass, mientras que la compatibilidad con audio de alta resolución garantiza una gran calidad de sonido.</p>
+                    <p>La conexión USB-C los hace compatibles con una gran variedad de dispositivos como PC, móviles y dispositivos de juego. Además, los tres botones en el cable plano antienredos te permiten controlar la reproducción de música, el ajuste de volumen y los preajustes EQ, así como responder llamadas donde quieras con el micrófono integrado.</p>
+                    <p>Por todo esto, los JBL Tune 310C USB-C serán tus mejores compañeros, en el trabajo, en casa y donde sea.</p>
                 </div>
                 <div id="specifications" class="tab-panel">
                     <h3>Especificaciones Técnicas</h3>
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Transductor</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">2 x 7.5 inch woofers, 2 x 1 inch dome tweeters</td>
+                    
+                    <div class="specs-category">Características Generales</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Driver (mm)</td>
+                            <td>9</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Respuesta de frecuencia</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">40 Hz – 20 kHz</td>
+                            <td>Número de Micrófonos</td>
+                            <td>1</td>
                         </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Formatos compatibles</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">MP3, WAV, WMA, FLAC</td>
+                    </table>
+
+                    <div class="specs-category">Características Audio</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Respuesta de frecuencia dinámica</td>
+                            <td>20 Hz - 40 kHz</td>
+                        </tr>
+                    </table>
+
+                    <div class="specs-category">Medidas</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Tamaño amplificador dinámico</td>
+                            <td>9 mm</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Bluetooth</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">5.4, A2DP V1.4, AVRCP V1.6</td>
+                            <td>Peso</td>
+                            <td>14.3 g</td>
                         </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">USB-C carga</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">PDO / PPS, FAT16, FAT32</td>
+                    </table>
+
+                    <div class="specs-category">Características de Control y Conexión</div>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Connection</td>
+                            <td>Wired (USB-C)</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Mic-In</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">20 mV RMS</td>
-                        </tr>
-                        <tr style="background: #f8f9fa;">
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Guitar-In</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">100 mV RMS</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6; font-weight: 600;">Tiempo de reproducción</td>
-                            <td style="padding: 0.75rem; border: 1px solid #dee2e6;">15 horas</td>
+                            <td>Connectivity Technology</td>
+                            <td>USB</td>
                         </tr>
                     </table>
                 </div>
-                <div id="reviews" class="tab-panel">
-                    <h3>Reseñas de Clientes</h3>
-                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
-                        <strong>María Pérez</strong>
-                        <p>El sonido es impresionante y las luces hacen que la fiesta sea espectacular.</p>
-                    </div>
-                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ff6f00;">
-                        <strong>Carlos Méndez</strong>
-                        <p>AI Sound Boost hace una gran diferencia. No satura incluso a volumen alto.</p>
+
+                <div id="features" class="tab-panel">
+                    <h3>Características del Producto</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">Micrófono integrado</div>
+                        <div class="feature-item">Sonido JBL Pure Bass</div>
+                        <div class="feature-item">In-ear</div>
+                        <div class="feature-item">Audio de alta resolución</div>
+                        <div class="feature-item">Cable plano antienredos</div>
+                        <div class="feature-item">Control de música y volumen</div>
+                        <div class="feature-item">Preajustes EQ</div>
+                        <div class="feature-item">Compatible con múltiples dispositivos</div>
                     </div>
                 </div>
+
                 <div id="shipping" class="tab-panel">
                     <h3>Envío</h3>
                     <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
@@ -478,9 +530,9 @@
     </div>
 
     <script>
-        const productId = 10;
-        const productName = 'JBL PartyBox 520';
-        const productPrice = 5200;
+        const productId = 12;
+        const productName = 'JBL Tune 310C USB';
+        const productPrice = 299;
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function updateDisplay() {

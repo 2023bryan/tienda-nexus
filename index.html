@@ -1,17 +1,90 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SONIC BOX - Electrodomésticos de Calidad</title>
     <style>
+        /* Estilos base responsivos */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f8f9fa;
             color: #2c3e50;
+            line-height: 1.6;
         }
+
+        /* Contenedores responsivos */
+        .showcase-section {
+            padding: 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Grid responsivo para showcase */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 960px 420px;
+            gap: 1rem;
+            align-items: stretch;
+            justify-content: center;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .showcase-large,
+        .showcase-small {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+            position: relative;
+            min-width: 0;
+        }
+
+        .showcase-large {
+            height: 520px;
+        }
+
+        .showcase-small {
+            height: 240px;
+        }
+
+        .showcase-small-grid {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .showcase-large img,
+        .showcase-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .showcase-large img {
+            border-radius: 24px;
+        }
+
+        .showcase-small img {
+            border-radius: 16px;
+        }
+
+        /* Botones responsivos */
         .add-btn {
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
@@ -23,107 +96,21 @@
             font-weight: 600;
             transition: all 0.3s;
             box-shadow: 0 2px 6px rgba(40,167,69,0.3);
+            font-size: 1rem;
         }
+
         .add-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(40,167,69,0.4);
         }
-        .hero {
-            background: linear-gradient(135deg, rgba(26,35,126,0.8) 0%, rgba(40,53,147,0.8) 100%), url('https://via.placeholder.com/1200x400?text=Electrodomesticos+Nexus');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.8rem;
-            margin: 0;
-            font-weight: 700;
-        }
-        .hero p {
-            font-size: 1.3rem;
-            margin: 0.5rem 0;
-        }
-        .hero a {
-            display: inline-block;
-            background: #ff5722;
-            color: white;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .showcase-section {
-            padding: 2rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: 960px 420px;
-            gap: 1rem;
-            align-items: stretch;
-            justify-content: center;
-            width: fit-content;
-            margin: 0 auto;
-        }
-        .showcase-large,
-        .showcase-small {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-            position: relative;
-            min-width: 0;
-        }
-        .showcase-large {
-            height: 520px;
-        }
-        .showcase-small {
-            height: 240px;
-        }
-        .showcase-small-grid {
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            gap: 1rem;
-        }
-        .showcase-large img,
-        .showcase-small img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .showcase-label {
-            position: absolute;
-            left: 1rem;
-            bottom: 1rem;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            padding: 0.6rem 1rem;
-            border-radius: 999px;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-        .section {
-            padding: 3rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .section h2 {
-            color: #1a237e;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+
+        /* Productos responsivos */
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.75rem;
         }
+
         .product {
             position: relative;
             background: white;
@@ -134,16 +121,12 @@
             display: flex;
             flex-direction: column;
         }
+
         .product:hover {
             transform: translateY(-6px);
             box-shadow: 0 18px 48px rgba(0,0,0,0.14);
         }
-        .product-image {
-            height: 240px;
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(180deg, #f4f6ff 0%, #ffffff 100%);
-        }
+
         .product-image {
             height: 240px;
             overflow: hidden;
@@ -151,6 +134,7 @@
             background: linear-gradient(180deg, #f4f6ff 0%, #ffffff 100%);
             cursor: pointer;
         }
+
         .product-image img {
             width: 100%;
             height: 100%;
@@ -158,9 +142,11 @@
             transition: transform 0.4s ease;
             transform-origin: center center;
         }
+
         .product-image:hover img {
             transform: scale(1.08);
         }
+
         .product-info {
             padding: 1.5rem;
             display: flex;
@@ -168,19 +154,23 @@
             gap: 0.9rem;
             flex: 1;
         }
+
         .product-info h3 {
             color: #1b2753;
             font-size: 1.2rem;
             margin: 0;
         }
+
         .product-info h3 a {
             color: inherit;
             text-decoration: none;
             transition: color 0.3s;
         }
+
         .product-info h3 a:hover {
             color: #ff6f00;
         }
+
         .product-desc {
             font-size: 0.95rem;
             color: #5f6774;
@@ -188,6 +178,7 @@
             line-height: 1.6;
             min-height: 3.2rem;
         }
+
         .product-prices {
             display: flex;
             flex-wrap: wrap;
@@ -196,16 +187,20 @@
             gap: 0.75rem;
             margin: 0;
         }
+
         .price-normal {
             font-size: 0.9rem;
             color: #a6afc7;
             text-decoration: line-through;
         }
+
         .price-special {
             font-size: 1.45rem;
             color: #ff6f00;
             font-weight: 700;
         }
+
+        /* Botones de favoritos responsivos */
         .favorite-btn {
             position: absolute;
             top: 16px;
@@ -226,29 +221,23 @@
             opacity: 0;
             transform: translateY(-5px);
         }
+
         .product:hover .favorite-btn {
             opacity: 1;
             transform: translateY(0);
         }
+
         .favorite-btn:hover {
             transform: translateY(-1px) scale(1.05);
             color: #ff6f00;
         }
+
         .favorite-btn.favorited {
             color: #ff6f00;
             background: #fff0f1;
         }
-        .price-normal {
-            font-size: 0.85rem;
-            color: #999;
-            text-decoration: line-through;
-            margin-bottom: 0.3rem;
-        }
-        .price-special {
-            font-size: 1.4rem;
-            color: #ff6f00;
-            font-weight: 700;
-        }
+
+        /* Modal del carrito responsivo */
         .cart-modal {
             display: none;
             position: fixed;
@@ -261,6 +250,7 @@
             align-items: center;
             z-index: 1000;
         }
+
         .cart-content {
             background: white;
             padding: 2.5rem;
@@ -269,6 +259,7 @@
             width: 90%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
+
         .cart-content h2 {
             color: #1a237e;
             margin-top: 0;
@@ -276,6 +267,7 @@
             border-bottom: 2px solid #ff6f00;
             padding-bottom: 1rem;
         }
+
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -283,10 +275,12 @@
             padding: 1rem 0;
             border-bottom: 1px solid #e0e0e0;
         }
+
         .cart-item span {
             flex: 1;
             color: #2c3e50;
         }
+
         .cart-item button {
             background: #e74c3c;
             color: white;
@@ -296,15 +290,18 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+
         .cart-item button:hover {
             background: #c0392b;
             transform: translateY(-2px);
         }
+
         #cart-total {
             color: #ff6f00;
             font-weight: 700;
             font-size: 1.3rem;
         }
+
         .cart-content > p {
             text-align: right;
             font-size: 1.1rem;
@@ -312,11 +309,13 @@
             padding-top: 1rem;
             border-top: 2px solid #f0f0f0;
         }
+
         .cart-buttons {
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
         }
+
         .cart-buttons button {
             flex: 1;
             padding: 0.75rem 1.5rem;
@@ -326,32 +325,26 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+
         .cart-buttons button:first-child {
             background: #e0e0e0;
             color: #333;
         }
+
         .cart-buttons button:first-child:hover {
             background: #d0d0d0;
         }
+
         .cart-buttons button:last-child {
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             color: white;
         }
+
         .cart-buttons button:last-child:hover {
             transform: translateY(-2px);
         }
-        .favorite-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #ccc;
-            transition: color 0.3s;
-            margin-left: 0.5rem;
-        }
-        .favorite-btn.favorited {
-            color: #ff6f00;
-        }
+
+        /* Footer responsivo */
         footer {
             background-color: #1a237e;
             color: white;
@@ -360,6 +353,7 @@
             margin-top: 3rem;
             border-top: 3px solid #ff6f00;
         }
+
         footer p {
             margin: 0;
             font-size: 0.95rem;
@@ -370,28 +364,264 @@
                 padding: 1rem;
             }
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             .hero p {
                 font-size: 1rem;
             }
             .showcase-section {
-                padding: 1.5rem 1rem;
+                padding: 1rem;
             }
             .showcase-grid {
                 grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
             .showcase-large {
-                min-height: 300px;
+                height: 250px;
+            }
+            .showcase-small {
+                height: 120px;
             }
             .showcase-small-grid {
-                grid-template-rows: 1fr 1fr;
+                display: none;
             }
             .section {
-                padding: 2rem 1rem;
+                padding: 1.5rem 1rem;
             }
             .section h2 {
                 font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .products {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .product-image {
+                height: 200px;
+            }
+            .product-info {
+                padding: 1rem;
+            }
+            .product-info h3 {
+                font-size: 1.1rem;
+            }
+            .product-desc {
+                font-size: 0.9rem;
+            }
+            .price-special {
+                font-size: 1.2rem;
+            }
+            .cart-content {
+                padding: 1.5rem;
+                width: 95%;
+                max-width: none;
+            }
+            .cart-content h2 {
+                font-size: 1.5rem;
+            }
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .cart-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .cart-buttons button {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            footer {
+                padding: 1.5rem 1rem;
+            }
+            footer p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Media queries para tablets */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero {
+                height: 300px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .showcase-section {
+                padding: 1.5rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+            }
+            .showcase-large {
+                height: 350px;
+            }
+            .showcase-small-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            .showcase-small {
+                height: 170px;
+            }
+            .section {
+                padding: 2rem 1.5rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            .product-image {
+                height: 220px;
+            }
+            .cart-content {
+                max-width: 600px;
+                width: 90%;
+            }
+        }
+
+        /* Mejoras de accesibilidad y usabilidad */
+        .product-image a,
+        .product-info h3 a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .product-image a:focus,
+        .product-info h3 a:focus {
+            outline: 2px solid #ff6f00;
+            outline-offset: 2px;
+        }
+
+        /* Estilos para dispositivos táctiles */
+        @media (hover: none) and (pointer: coarse) {
+            .product:hover {
+                transform: none;
+            }
+            .product-image:hover img {
+                transform: none;
+            }
+            .favorite-btn {
+                opacity: 1;
+                transform: none;
+            }
+            .add-btn:hover {
+                transform: none;
+            }
+            .cart-item button:hover {
+                transform: none;
+            }
+            .cart-buttons button:last-child:hover {
+                transform: none;
+            }
+        }
+
+        /* Animaciones suaves para mejor UX */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        /* Estilos para impresión */
+        @media print {
+            .cart-modal,
+            .favorite-btn,
+            .add-btn {
+                display: none !important;
+            }
+            .product {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Media queries para tablets */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero {
+                height: 300px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .showcase-section {
+                padding: 1.5rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+            }
+            .showcase-large {
+                height: 350px;
+            }
+            .showcase-small-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            .showcase-small {
+                height: 170px;
+            }
+            .section {
+                padding: 2rem 1.5rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            .product-image {
+                height: 220px;
+            }
+            .cart-content {
+                max-width: 600px;
+                width: 90%;
+            }
+        }
+
+        /* Media queries para móviles */
+        @media (max-width: 768px) {
+            .hero {
+                height: 250px;
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .showcase-section {
+                padding: 1rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .showcase-large {
+                height: 250px;
+            }
+            .showcase-small {
+                height: 120px;
+            }
+            .showcase-small-grid {
+                display: none;
+            }
+            .section {
+                padding: 1.5rem 1rem;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
             }
             .products {
                 grid-template-columns: repeat(2, 1fr);
@@ -415,6 +645,7 @@
             .cart-content {
                 padding: 1.5rem;
                 width: 95%;
+                max-width: none;
             }
             .cart-content h2 {
                 font-size: 1.5rem;
@@ -426,9 +657,94 @@
             }
             .cart-buttons {
                 flex-direction: column;
+                gap: 0.5rem;
+            }
+            .cart-buttons button {
+                padding: 1rem;
+                font-size: 1rem;
             }
             footer {
+                padding: 1.5rem 1rem;
+            }
+            footer p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Media queries para pantallas pequeñas */
+        @media (max-width: 480px) {
+            .hero {
+                height: 200px;
+                padding: 0.5rem;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .showcase-section {
+                padding: 0.5rem;
+            }
+            .showcase-large {
+                height: 180px;
+                border-radius: 16px;
+            }
+            .section {
+                padding: 1rem 0.5rem;
+            }
+            .section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            .product {
+                border-radius: 16px;
+            }
+            .product-image {
+                height: 160px;
+            }
+            .product-info {
+                padding: 0.75rem;
+            }
+            .product-info h3 {
+                font-size: 1rem;
+            }
+            .product-desc {
+                font-size: 0.85rem;
+                min-height: 2.5rem;
+            }
+            .price-special {
+                font-size: 1.1rem;
+            }
+            .price-normal {
+                font-size: 0.8rem;
+            }
+            .cart-content {
                 padding: 1rem;
+                width: 98%;
+            }
+            .cart-content h2 {
+                font-size: 1.3rem;
+            }
+            .cart-item {
+                padding: 0.75rem 0;
+            }
+            .cart-item span {
+                font-size: 0.9rem;
+            }
+            .cart-buttons button {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+            footer {
+                padding: 1rem 0.5rem;
+            }
+            footer p {
+                font-size: 0.85rem;
             }
         }
         </style>
@@ -455,20 +771,6 @@
     <section id="productos" class="section">
         <h2>Productos Destacados</h2>
         <div class="products">
-            <div class="product" data-id="1" data-name="Refrigerador Moderno" data-price="500" data-category="Refrigeración">
-                <div class="product-image">
-                    <a href="product1.html"><img src="https://via.placeholder.com/300x220?text=Refrigerador" alt="Refrigerador"></a>
-                </div>
-                <div class="product-info">
-                    <h3><a href="product1.html">Refrigerador Moderno</a></h3>
-                    <p class="product-desc">Capacidad de 400L, eficiente en energía.</p>
-                    <div class="product-prices">
-                        <div class="price-normal">Q600.00</div>
-                        <div class="price-special">Q500.00</div>
-                    </div>
-                    <button class="favorite-btn" id="fav-btn-1" onclick="toggleFavorite(1)">♡</button>
-                </div>
-            </div>
             <div class="product" data-id="2" data-name="Lavadora Automática" data-price="300" data-category="Lavado">
                 <div class="product-image">
                     <a href="productolavadora.html"><img src="images/lavadora.jpg" alt="Lavadora"></a>
@@ -481,76 +783,6 @@
                         <div class="price-special">Q300.00</div>
                     </div>
                     <button class="favorite-btn" id="fav-btn-2" onclick="toggleFavorite(2)">♡</button>
-                </div>
-            </div>
-            <div class="product" data-id="3" data-name="Microondas Digital" data-price="100" data-category="Cocina">
-                <div class="product-image">
-                    <a href="product3.html"><img src="https://via.placeholder.com/300x220?text=Microondas" alt="Microondas"></a>
-                </div>
-                <div class="product-info">
-                    <h3><a href="product3.html">Microondas Digital</a></h3>
-                    <p class="product-desc">Potencia de 1000W, fácil de usar.</p>
-                    <div class="product-prices">
-                        <div class="price-normal">Q130.00</div>
-                        <div class="price-special">Q100.00</div>
-                    </div>
-                    <button class="favorite-btn" id="fav-btn-3" onclick="toggleFavorite(3)">♡</button>
-                </div>
-            </div>
-            <div class="product" data-id="4" data-name="Set de Cocina Antiadherente 13 Piezas" data-price="1485" data-category="Cocina">
-                <div class="product-image">
-                    <a href="product4.html"><img src="https://via.placeholder.com/300x220?text=Set+Cocina" alt="Set de Cocina"></a>
-                </div>
-                <div class="product-info">
-                    <h3><a href="product4.html">Set de Cocina 13 Piezas</a></h3>
-                    <p class="product-desc">Con tapas y utensilios, compatible con todas las estufas.</p>
-                    <div class="product-prices">
-                        <div class="price-normal">Q1,700.00</div>
-                        <div class="price-special">Q1,485.00</div>
-                    </div>
-                    <button class="favorite-btn" id="fav-btn-4" onclick="toggleFavorite(4)">♡</button>
-                </div>
-            </div>
-            <div class="product" data-id="5" data-name="Set de Cuchillos de Cocina 15 Piezas" data-price="1650" data-category="Cocina">
-                <div class="product-image">
-                    <a href="product5.html"><img src="https://via.placeholder.com/300x220?text=Set+Cuchillos" alt="Set de Cuchillos"></a>
-                </div>
-                <div class="product-info">
-                    <h3><a href="product5.html">Set de Cuchillos 15 Piezas</a></h3>
-                    <p class="product-desc">Con mango de madera y bloque afilador.</p>
-                    <div class="product-prices">
-                        <div class="price-normal">Q1,900.00</div>
-                        <div class="price-special">Q1,650.00</div>
-                    </div>
-                    <button class="favorite-btn" id="fav-btn-5" onclick="toggleFavorite(5)">♡</button>
-                </div>
-            </div>
-            <div class="product" data-id="6" data-name="Sistema de Cámaras de Seguridad Wi-Fi 6" data-price="1775" data-category="Seguridad">
-                <div class="product-image">
-                    <a href="product6.html"><img src="https://via.placeholder.com/300x220?text=Camaras+Seguridad" alt="Cámaras de Seguridad"></a>
-                </div>
-                <div class="product-info">
-                    <h3><a href="product6.html">Cámaras Seguridad Wi-Fi 6</a></h3>
-                    <p class="product-desc">8 Canales y 5MP con NVR 4K y Disco Duro de 1TB.</p>
-                    <div class="product-prices">
-                        <div class="price-normal">Q2,000.00</div>
-                        <div class="price-special">Q1,775.00</div>
-                    </div>
-                    <button class="favorite-btn" id="fav-btn-6" onclick="toggleFavorite(6)">♡</button>
-                </div>
-            </div>
-            <div class="product" data-id="7" data-name="Sistema de Sonido HiFi con Tubos de Vacío" data-price="2350" data-category="Entretenimiento">
-                <div class="product-image">
-                    <a href="product7.html"><img src="https://via.placeholder.com/300x220?text=Sistema+Sonido" alt="Sistema de Sonido"></a>
-                </div>
-                <div class="product-info">
-                    <h3><a href="product7.html">Sistema Sonido HiFi</a></h3>
-                    <p class="product-desc">Con tubos de vacío y reproductor 7 en 1.</p>
-                    <div class="product-prices">
-                        <div class="price-normal">Q2,700.00</div>
-                        <div class="price-special">Q2,350.00</div>
-                    </div>
-                    <button class="favorite-btn" id="fav-btn-7" onclick="toggleFavorite(7)">♡</button>
                 </div>
             </div>
             <div class="product" data-id="10" data-name="JBL PartyBox 520" data-price="5200" data-category="Audio">
@@ -567,7 +799,7 @@
                     <button class="favorite-btn" id="fav-btn-10" onclick="toggleFavorite(10)">♡</button>
                 </div>
             </div>
-                        <div class="product" data-id="11" data-name="JBL PartyBox 710" data-price="7200" data-category="Audio">
+                        <div class="product" data-id="13" data-name="JBL PartyBox 710" data-price="7200" data-category="Audio">
                 <div class="product-image">
                     <a href="productJBLPartybox710.html"><img src="images/JBL%20Partybox%20710%2001.jpeg" alt="JBL PartyBox 710"></a>
                 </div>
@@ -578,37 +810,80 @@
                         <div class="price-normal">Q8,500.00</div>
                         <div class="price-special">Q7,200.00</div>
                     </div>
+                    <button class="favorite-btn" id="fav-btn-13" onclick="toggleFavorite(13)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="11" data-name="JBL Tune 770NC" data-price="1499" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLTune770NC.html"><img src="images/JBL%20Tune%20770NC%2001.png" alt="JBL Tune 770NC"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLTune770NC.html">JBL Tune 770NC</a></h3>
+                    <p class="product-desc">Auriculares inalámbricos con cancelación de ruido adaptativa y 70 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q1,800.00</div>
+                        <div class="price-special">Q1,499.00</div>
+                    </div>
                     <button class="favorite-btn" id="fav-btn-11" onclick="toggleFavorite(11)">♡</button>
                 </div>
             </div>
-<div class="product" data-id="8" data-name="Selladora al Vacío Automática 2 en 1" data-price="430" data-category="Cocina">
+            <div class="product" data-id="12" data-name="JBL Tune 310C USB" data-price="299" data-category="Audio">
                 <div class="product-image">
-                    <a href="product8.html"><img src="https://via.placeholder.com/300x220?text=Selladora+Vacuo" alt="Selladora al Vacío"></a>
+                    <a href="productJBLTune310CUSB.html"><img src="images/JBL%20Tune%20310C%20USB%2001.png" alt="JBL Tune 310C USB"></a>
                 </div>
                 <div class="product-info">
-                    <h3><a href="product8.html">Selladora al Vacío 2 en 1</a></h3>
-                    <p class="product-desc">Con 40 bolsas reutilizables y base magnética.</p>
+                    <h3><a href="productJBLTune310CUSB.html">JBL Tune 310C USB</a></h3>
+                    <p class="product-desc">Auriculares intraaurales con conexión USB-C y sonido JBL Pure Bass.</p>
                     <div class="product-prices">
-                        <div class="price-normal">Q490.00</div>
-                        <div class="price-special">Q430.00</div>
+                        <div class="price-normal">Q399.00</div>
+                        <div class="price-special">Q299.00</div>
                     </div>
-                    <button class="favorite-btn" id="fav-btn-8" onclick="toggleFavorite(8)">♡</button>
+                    <button class="favorite-btn" id="fav-btn-12" onclick="toggleFavorite(12)">♡</button>
                 </div>
             </div>
-            <div class="product" data-id="9" data-name="Grifo de Cocina con Mango Único" data-price="255" data-category="Cocina">
+            <div class="product" data-id="14" data-name="JBL Tune 520BT" data-price="499" data-category="Audio">
                 <div class="product-image">
-                    <a href="product9.html"><img src="https://via.placeholder.com/300x220?text=Grifo+Cocina" alt="Grifo de Cocina"></a>
+                    <a href="productJBLTune520BT.html"><img src="images/JBL%20Tune%20520BT%2001.png" alt="JBL Tune 520BT"></a>
                 </div>
                 <div class="product-info">
-                    <h3><a href="product9.html">Grifo de Cocina</a></h3>
-                    <p class="product-desc">Rociador extraíble con acero inoxidable.</p>
+                    <h3><a href="productJBLTune520BT.html">JBL Tune 520BT</a></h3>
+                    <p class="product-desc">Auriculares on-ear inalámbricos con 57 horas de batería y sonido JBL Pure Bass.</p>
                     <div class="product-prices">
-                        <div class="price-normal">Q300.00</div>
-                        <div class="price-special">Q255.00</div>
+                        <div class="price-normal">Q599.00</div>
+                        <div class="price-special">Q499.00</div>
                     </div>
-                    <button class="favorite-btn" id="fav-btn-9" onclick="toggleFavorite(9)">♡</button>
+                    <button class="favorite-btn" id="fav-btn-14" onclick="toggleFavorite(14)">♡</button>
                 </div>
             </div>
+            <div class="product" data-id="15" data-name="JBL Vibe Beam 2" data-price="649" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLVibeBeam2.html"><img src="images/JBL%20Vibe%20Beam%202%2001.png" alt="JBL Vibe Beam 2"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLVibeBeam2.html">JBL Vibe Beam 2</a></h3>
+                    <p class="product-desc">Auriculares true wireless con cancelación activa de ruido y 40 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q799.00</div>
+                        <div class="price-special">Q649.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-15" onclick="toggleFavorite(15)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="16" data-name="JBL Quantum 100M2" data-price="329" data-category="Gaming">
+                <div class="product-image">
+                    <a href="productJBLQuantum100M2.html"><img src="images/JBL%20Quantum%20100M2%2001.png" alt="JBL Quantum 100M2"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLQuantum100M2.html">JBL Quantum 100M2</a></h3>
+                    <p class="product-desc">Auriculares gaming con sonido inmersivo QuantumSOUND y micrófono vocal desmontable.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q399.00</div>
+                        <div class="price-special">Q329.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-16" onclick="toggleFavorite(16)">♡</button>
+                </div>
+            </div>
+
         </div>
     </section>
     <section id="acerca" class="section">
@@ -670,19 +945,35 @@
         }
 
         const principalShowcaseImages = [
-            'images/principal%2001.jpeg',
             'images/principal%2002.webp',
             'images/principal%2003.jpg',
-            'images/principal%2004.webp',
-            'images/principal%2005.jpg'
+            'images/principal%2005.jpg',
+            'images/principal%2006.jpeg',
+            'images/principal%2007.jpeg',
+            'images/principal%2008.jpg',
+            'images/principal%2009.jpeg',
+            'images/principal%2011.jpeg'
         ];
         let principalShowcaseIndex = 0;
 
         function rotatePrincipalShowcase() {
             const showcaseImage = document.getElementById('hero-carousel-image');
+            const smallImages = document.querySelectorAll('.showcase-small img');
+
             if (!showcaseImage) return;
+
             principalShowcaseIndex = (principalShowcaseIndex + 1) % principalShowcaseImages.length;
+
+            // Rotar imagen principal
             showcaseImage.src = principalShowcaseImages[principalShowcaseIndex];
+
+            // Rotar imágenes pequeñas con un offset
+            if (smallImages.length >= 2) {
+                const nextIndex1 = (principalShowcaseIndex + 1) % principalShowcaseImages.length;
+                const nextIndex2 = (principalShowcaseIndex + 2) % principalShowcaseImages.length;
+                smallImages[0].src = principalShowcaseImages[nextIndex1];
+                smallImages[1].src = principalShowcaseImages[nextIndex2];
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -696,6 +987,14 @@
             }
             const showcaseImage = document.getElementById('hero-carousel-image');
             if (showcaseImage) {
+                // Cargar la primera imagen del carrusel inmediatamente
+                showcaseImage.src = principalShowcaseImages[0];
+                const smallImages = document.querySelectorAll('.showcase-small img');
+                if (smallImages.length >= 2) {
+                    smallImages[0].src = principalShowcaseImages[1];
+                    smallImages[1].src = principalShowcaseImages[2];
+                }
+                // Luego iniciar la rotación
                 setInterval(rotatePrincipalShowcase, 3000);
             }
         });
