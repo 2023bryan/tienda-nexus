@@ -30,7 +30,7 @@ const headerHTML = `
                     </div>
                 </div>
                 <div class="search-container">
-                    <input type="text" placeholder="Buscar electrodomésticos..." id="searchInput">
+                    <input type="text" placeholder="Buscar en SONIC BOX" id="searchInput">
                     <button onclick="performSearch()" title="Buscar productos">🔍</button>
                 </div>
             </div>
