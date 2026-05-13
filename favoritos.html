@@ -191,21 +191,18 @@
 
     <script>
         const products = [
-            { id: 1, name: 'Refrigerador Doble Puerta', price: 4500, normalPrice: 5000, desc: 'Capacidad de 400L, eficiente en energía.', image: 'https://via.placeholder.com/400x300?text=Refrigerador', link: 'product1.html' },
-            { id: 3, name: 'Microondas Digital', price: 850, normalPrice: 1000, desc: 'Potencia de 1000W, fácil de usar.', image: 'https://via.placeholder.com/400x300?text=Microondas', link: 'product3.html' },
-            { id: 4, name: 'Aspiradora Robot', price: 1800, normalPrice: 2000, desc: 'Limpieza automática inteligente.', image: 'https://via.placeholder.com/400x300?text=Aspiradora+Robot', link: 'product4.html' },
-            { id: 5, name: 'Cafetera Espresso', price: 650, normalPrice: 750, desc: 'Cafetera automática de calidad.', image: 'https://via.placeholder.com/400x300?text=Cafetera', link: 'product5.html' },
-            { id: 6, name: 'Televisor LED 55"', price: 2800, normalPrice: 3200, desc: 'Televisor 4K de alta definición.', image: 'https://via.placeholder.com/400x300?text=Televisor', link: 'product6.html' },
-            { id: 7, name: 'Sistema de Sonido HiFi con Tubos de Vacío', price: 2350, normalPrice: 2700, desc: 'Sistema de sonido premium.', image: 'https://via.placeholder.com/400x300?text=Sistema+Sonido', link: 'product7.html' },
-            { id: 8, name: 'Selladora al Vacío Automática 2 en 1', price: 430, normalPrice: 490, desc: 'Selladora con bolsas reutilizables.', image: 'https://via.placeholder.com/400x300?text=Selladora+Vacuo', link: 'product8.html' },
-            { id: 9, name: 'Grifo de Cocina con Mango Único', price: 255, normalPrice: 285, desc: 'Grifo con rociador extraíble.', image: 'https://via.placeholder.com/400x300?text=Grifo+Cocina', link: 'product9.html' },
             { id: 10, name: 'JBL PartyBox 520', price: 5200, normalPrice: 6200, desc: 'Altavoz potente con AI Sound Boost y luces dinámicas para tus fiestas.', image: 'images/JBL%20PartyBox%20520%2001.jpeg', link: 'productJBLPartyBox520.html' },
             { id: 11, name: 'JBL Tune 770NC', price: 1499, normalPrice: 1800, desc: 'Auriculares inalámbricos con cancelación de ruido adaptativa y 70 horas de batería.', image: 'images/JBL%20Tune%20770NC%2001.png', link: 'productJBLTune770NC.html' },
             { id: 12, name: 'JBL Tune 310C USB', price: 299, normalPrice: 399, desc: 'Auriculares intraaurales con conexión USB-C y sonido JBL Pure Bass.', image: 'images/JBL%20Tune%20310C%20USB%2001.png', link: 'productJBLTune310CUSB.html' },
             { id: 13, name: 'JBL PartyBox 710', price: 7200, normalPrice: 8500, desc: 'Experiencia de audio profesional con graves potentes y luces de fiesta envolventes.', image: 'images/JBL%20Partybox%20710%2001.jpeg', link: 'productJBLPartybox710.html' },
             { id: 14, name: 'JBL Tune 520BT', price: 499, normalPrice: 599, desc: 'Auriculares on-ear inalámbricos con 57 horas de batería y sonido JBL Pure Bass.', image: 'images/JBL%20Tune%20520BT%2001.png', link: 'productJBLTune520BT.html' },
             { id: 15, name: 'JBL Vibe Beam 2', price: 649, normalPrice: 799, desc: 'Auriculares true wireless con cancelación activa de ruido y 40 horas de batería.', image: 'images/JBL%20Vibe%20Beam%202%2001.png', link: 'productJBLVibeBeam2.html' },
-            { id: 16, name: 'JBL Quantum 100M2', price: 329, normalPrice: 399, desc: 'Auriculares gaming con sonido inmersivo QuantumSOUND y micrófono vocal desmontable.', image: 'images/JBL%20Quantum%20100M2%2001.png', link: 'productJBLQuantum100M2.html' }
+            { id: 16, name: 'JBL Quantum 100M2', price: 329, normalPrice: 399, desc: 'Auriculares gaming con sonido inmersivo QuantumSOUND y micrófono vocal desmontable.', image: 'images/JBL%20Quantum%20100M2%2001.png', link: 'productJBLQuantum100M2.html' },
+            { id: 17, name: 'JBL Clip 4', price: 610, normalPrice: 750, desc: 'Altavoz portátil impermeable con sonido nítido y 10 horas de batería.', image: 'images/JBL%20Clip%204%2001.jpeg', link: 'productJBLClip4.html' },
+            { id: 18, name: 'JBL Xtreme 3', price: 2049, normalPrice: 2499, desc: 'Altavoz portátil con sonido envolvente, resistente al agua y 15 horas de batería.', image: 'images/JBL%20XTREME%203%20CON%20CORREA%2001.jpeg', link: 'productJBLXTREME3.html' },
+            { id: 19, name: 'JBL Xtreme Ultra', price: 3549, normalPrice: 4299, desc: 'Altavoz premium con sonido JBL Pro, radiadores de graves y 24 horas de batería.', image: 'images/JBL%20XTREME%20ULTRA%2001.jpeg', link: 'productJBLXTREMEULTRA.html' },
+            { id: 20, name: 'JBL GO 3', price: 262, normalPrice: 350, desc: 'Altavoz ultraportátil con sonido JBL Pro, resistente al agua y 7 horas de batería.', image: 'images/JBL%20GO%203%2001.jpeg', link: 'productJBLGO3.html' },
+            { id: 21, name: 'JBL Clip 3', price: 649, normalPrice: 799, desc: 'Altavoz ultraportátil con mosquetón integrado, resistente al agua y 10 horas de batería.', image: 'images/JBL%20CLIP%203%2001.jpeg', link: 'productJBLClip3.html' }
         ];
 
         function loadFavorites() {
@@ -248,7 +245,7 @@
                                 <div class="price-normal">Q${favorite.normalPrice.toLocaleString()}</div>
                                 <div class="price-special">Q${favorite.price.toLocaleString()}</div>
                             </div>
-                            <button class="favorite-btn favorited" id="fav-btn-${id}" onclick="toggleFavorite(${id})">♥</button>
+                            <button class="favorite-btn favorited" id="fav-btn-${id}" onclick="toggleFavorite(${id}); location.reload();">♥</button>
                         </div>
                     `;
                     favoritesList.appendChild(productDiv);
@@ -257,20 +254,12 @@
         }
 
         function toggleFavorite(id) {
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            const index = favorites.indexOf(id);
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(id);
-            }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            location.reload(); // Recargar para actualizar la lista
+            // Use global function from header.js
         }
 
         document.addEventListener('DOMContentLoaded', loadFavorites);
     </script>
     <script src="chat.js"></script>
-    <script src="header.js" defer></script>
+    <script src="header.js"></script>
 </body>
 </html>

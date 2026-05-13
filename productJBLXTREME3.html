@@ -546,6 +546,7 @@
         const productId = 18;
         const productName = 'JBL Xtreme 3';
         const productPrice = 2049;
+        const productImage = 'images/JBL%20XTREME%203%20CON%20CORREA%2001.jpeg';
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function updateDisplay() {
@@ -567,7 +568,7 @@
         function toggleAddToCart(id) {
             const existing = cart.find(item => item.id === id);
             if (!existing) {
-                cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+                cart.push({ id: productId, name: productName, price: productPrice, image: productImage, quantity: 1 });
                 localStorage.setItem('cart', JSON.stringify(cart));
             }
             updateDisplay();
@@ -597,32 +598,6 @@
             if (window.updateCartCount) updateCartCount();
         }
 
-        function toggleFavorite(id) {
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            const index = favorites.indexOf(id);
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(id);
-            }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            updateFavoriteButton(id);
-        }
-
-        function updateFavoriteButton(id) {
-            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            const btn = document.getElementById('fav-btn-' + id);
-            if (btn) {
-                if (favorites.includes(id)) {
-                    btn.classList.add('favorited');
-                    btn.textContent = '♥';
-                } else {
-                    btn.classList.remove('favorited');
-                    btn.textContent = '♡';
-                }
-            }
-        }
-
         function changeThumbnail(event) {
             const target = event.target;
             const mainImage = document.getElementById('mainProductImage');
@@ -646,8 +621,17 @@
         initTabs();
         updateDisplay();
         updateFavoriteButton(productId);
+        
+        // Esperar a que header.js esté listo y reinicializar favoritos
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (typeof updateFavoriteButton === 'function') {
+                    updateFavoriteButton(productId);
+                }
+            }, 100);
+        });
     </script>
     <script src="chat.js"></script>
-    <script src="header.js" defer></script>
+    <script src="header.js"></script>
 </body>
 </html>

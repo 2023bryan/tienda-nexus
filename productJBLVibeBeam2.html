@@ -578,6 +578,7 @@
         const productId = 15;
         const productName = 'JBL Vibe Beam 2';
         const productPrice = 649;
+        const productImage = 'images/JBL%20Vibe%20Beam%202%2001.png';
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function updateDisplay() {
@@ -599,7 +600,7 @@
         function toggleAddToCart(id) {
             const existing = cart.find(item => item.id === id);
             if (!existing) {
-                cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+                cart.push({ id: productId, name: productName, price: productPrice, image: productImage, quantity: 1 });
                 localStorage.setItem('cart', JSON.stringify(cart));
             }
             updateDisplay();
@@ -629,32 +630,6 @@
             if (window.updateCartCount) updateCartCount();
         }
 
-        function toggleFavorite(id) {
-            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            const index = favorites.indexOf(id);
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(id);
-            }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            updateFavoriteButton(id);
-        }
-
-        function updateFavoriteButton(id) {
-            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            const btn = document.getElementById('fav-btn-' + id);
-            if (btn) {
-                if (favorites.includes(id)) {
-                    btn.classList.add('favorited');
-                    btn.textContent = '♥';
-                } else {
-                    btn.classList.remove('favorited');
-                    btn.textContent = '♡';
-                }
-            }
-        }
-
         function changeThumbnail(event) {
             const target = event.target;
             const mainImage = document.getElementById('mainProductImage');
@@ -680,6 +655,6 @@
         updateFavoriteButton(productId);
     </script>
     <script src="chat.js"></script>
-    <script src="header.js" defer></script>
+    <script src="header.js"></script>
 </body>
 </html>

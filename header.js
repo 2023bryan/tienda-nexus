@@ -18,20 +18,20 @@ const headerHTML = `
             <div class="search-group">
                 <div class="categories-dropdown">
                     <button class="categories-btn" onclick="toggleCategories()" title="Filtrar por categoría">
-                        <span class="icon">📂</span>
+                        <span class="icon"><img src="images/Categorias.png" alt="Categorías"></span>
                         <span class="text">Categorías</span>
                     </button>
                     <div class="dropdown-menu" id="dropdownMenu">
                         <a href="#" onclick="filterByCategory('Todos')">Todos</a>
-                        <a href="#" onclick="filterByCategory('Refrigeradores')">Refrigeradores</a>
-                        <a href="#" onclick="filterByCategory('Lavadoras')">Lavadoras</a>
-                        <a href="#" onclick="filterByCategory('Microondas')">Microondas</a>
-                        <a href="#" onclick="filterByCategory('Aire acondicionado')">Aires acondicionados</a>
+                        <a href="#" onclick="filterByCategory('Audio')">Audio</a>
+                        <a href="#" onclick="filterByCategory('Gaming')">Gaming</a>
                     </div>
                 </div>
                 <div class="search-container">
                     <input type="text" placeholder="Buscar en SONIC BOX" id="searchInput">
-                    <button onclick="performSearch()" title="Buscar productos">🔍</button>
+                    <button onclick="performSearch()" title="Buscar productos">
+                        <img src="images/Buscador.png" alt="Buscar">
+                    </button>
                 </div>
             </div>
             <div class="header-right">
@@ -40,18 +40,14 @@ const headerHTML = `
                 </div>
                 <div class="header-account header-favorites">
                     <a href="favoritos.html" title="Ver productos favoritos">
-                        <span class="icon">❤️</span>
+                        <span class="icon"><img src="images/Favoritos.png" alt="Favoritos"></span>
                         <span class="text">Mis Favoritos</span>
                     </a>
                 </div>
                 <button class="cart-btn" onclick="openCart()" title="Ver carrito de compras">
-                    <span class="icon">🛒</span>
+                    <span class="icon"><img src="images/Carrito.png" alt="Carrito"></span>
                     <span class="text">Carrito</span>
                     <span class="cart-count">(<span id="cart-count">0</span>)</span>
-                </button>
-                <button class="theme-toggle" onclick="toggleTheme()" title="Modo oscuro">
-                    <span class="icon">🌙</span>
-                    <span class="text sr-only">Modo oscuro</span>
                 </button>
             </div>
         </div>
@@ -59,7 +55,9 @@ const headerHTML = `
 `;
 
 const chatHTML = `
-    <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">💬</button>
+    <button class="chat-bubble" id="chatBubble" onclick="openChat()" title="Abrir chat">
+        <img src="images/Chat.png" alt="Chat">
+    </button>
     <div class="chat-panel hidden" id="chatPanel">
         <div class="chat-header">
             <h3>SONIC BOX</h3>
@@ -74,8 +72,9 @@ const chatHTML = `
         </div>
         <div class="chat-input-area">
             <div class="chat-actions">
-                <button onclick="attachImage()" title="Enviar imagen">🖼️</button>
-                <button onclick="recordAudio()" title="Enviar audio">🎙️</button>
+                <button onclick="attachImage()" title="Enviar imagen">
+                    <img src="images/Enviar imagen.png" alt="Enviar imagen">
+                </button>
             </div>
             <textarea class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." rows="1"></textarea>
             <button class="chat-send" onclick="sendMessage()">➤</button>
@@ -119,14 +118,14 @@ function updateAccountSection() {
     if (user) {
         accountSection.innerHTML = `
             <a href="#" onclick="handleLogout()" title="Cerrar sesión">
-                <span class="icon">👤</span>
+                <span class="icon"><img src="images/Usuario.png" alt="Usuario"></span>
                 <span class="text">${user.name}</span>
             </a>
         `;
     } else {
         accountSection.innerHTML = `
             <a href="login.html" title="Acceder a mi cuenta">
-                <span class="icon">👤</span>
+                <span class="icon"><img src="images/Usuario.png" alt="Usuario"></span>
                 <span class="text">Mi Cuenta</span>
             </a>
         `;
@@ -288,22 +287,6 @@ function applyTheme() {
     const storedTheme = localStorage.getItem('theme') || 'light';
     const darkMode = storedTheme === 'dark';
     document.body.classList.toggle('dark-mode', darkMode);
-    updateThemeButton(darkMode);
-}
-
-function toggleTheme() {
-    const darkMode = !document.body.classList.contains('dark-mode');
-    document.body.classList.toggle('dark-mode', darkMode);
-    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-    updateThemeButton(darkMode);
-}
-
-function updateThemeButton(isDark) {
-    const button = document.querySelector('.theme-toggle');
-    if (button) {
-        button.textContent = isDark ? '☀️' : '🌙';
-        button.title = isDark ? 'Modo claro' : 'Modo oscuro';
-    }
 }
 
 document.addEventListener('click', (event) => {

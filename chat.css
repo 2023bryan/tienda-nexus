@@ -1,8 +1,8 @@
 /* Chat bubble and panel shared styles */
 .chat-bubble {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
@@ -13,13 +13,19 @@
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(255,111,0,0.4);
   z-index: 1001;
-  font-size: 1.8rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: white;
   border: none;
   transform-origin: center center;
   will-change: transform;
   touch-action: manipulation;
+}
+.chat-bubble img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  object-fit: contain;
+  margin: auto;
 }
 .chat-bubble:hover {
   transform: scale(1.05);
@@ -174,11 +180,13 @@
   border-top: 1px solid #e0e0e0;
   display: flex;
   gap: 0.5rem;
-  align-items: flex-end;
+  align-items: center;
 }
 .chat-actions {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 }
 .chat-actions button {
   background: none;
@@ -188,11 +196,32 @@
   cursor: pointer;
   transition: transform 0.2s;
   padding: 0;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.chat-actions button img {
+  width: 28px;
+  height: 28px;
+  display: block;
 }
 .chat-actions button:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 .chat-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: none;
+  max-height: 52px;
+  min-height: 36px;
+}
   flex: 1;
   padding: 0.75rem;
   border: 1px solid #ddd;
