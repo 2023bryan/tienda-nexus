@@ -23,14 +23,28 @@
 }
 .footer-section ul li {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 .footer-section ul li a {
   color: #fff;
   text-decoration: none;
   transition: text-decoration 0.2s;
+  display: flex;
+  align-items: center;
 }
 .footer-section ul li a:hover {
   text-decoration: underline;
+}
+.footer-list-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  filter: brightness(0) invert(1);
+}
+.footer-list-text {
+  text-align: left;
+  display: inline-block;
 }
 .footer-brand {
   display: flex;
