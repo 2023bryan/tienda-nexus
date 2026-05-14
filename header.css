@@ -1,3 +1,13 @@
+/* Icono de carrito en botones */
+.cart-icon {
+    width: 1.1em;
+    height: 1.1em;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: -0.2em;
+    margin-right: 0.5em;
+    margin-bottom: 0.1em;
+}
 header {
     position: fixed;
     top: 0;
