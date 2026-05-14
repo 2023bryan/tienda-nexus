@@ -169,10 +169,10 @@
     </style>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
-    <style>
-        </style>
+    <link rel="stylesheet" href="footer.css">
 </head>
 <body>
+    <!-- Header -->
     <div id="site-header"></div>
 
     <section class="section">
@@ -184,6 +184,14 @@
             No tienes productos en favoritos. ¡Agrega algunos desde la tienda!
         </div>
     </section>
+
+    <!-- Footer -->
+    <div id="site-footer"></div>
+    <script>
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(html => { document.getElementById('site-footer').innerHTML = html; });
+    </script>
 
     <footer>
         <p>&copy; 2024 SONIC BOX. Todos los derechos reservados.</p>

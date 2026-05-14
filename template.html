@@ -6,6 +6,7 @@
     <title>Título de la página - SONIC BOX</title>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
     <!-- Agregar aquí estilos específicos de la página si es necesario -->
     <style>
         /* Estilos específicos de la página */
@@ -15,6 +16,14 @@
     <div id="site-header"></div>
 
     <!-- Contenido principal de la página -->
+
+    <!-- Footer -->
+    <div id="site-footer"></div>
+    <script>
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(html => { document.getElementById('site-footer').innerHTML = html; });
+    </script>
 
     <script src="chat.js"></script>
     <script src="header.js"></script>

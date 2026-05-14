@@ -327,6 +327,7 @@
     </style>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
 </head>
 <body>
     <div id="site-header"></div>
@@ -476,6 +477,14 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <div id="site-footer"></div>
+    <script>
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(html => { document.getElementById('site-footer').innerHTML = html; });
+    </script>
 
     <script>
         const productId = 10;

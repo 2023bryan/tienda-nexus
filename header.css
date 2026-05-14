@@ -51,16 +51,19 @@ header {
     display: flex;
     gap: 0.5rem;
     min-width: 0;
+    width: 100%;
 }
 .search-container input {
     flex: 1;
-    min-width: 260px;
+    min-width: 0;
     width: 100%;
+    max-width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid #ddd;
     border-radius: 6px 0 0 6px;
     font-size: 0.95rem;
     font-family: inherit;
+    box-sizing: border-box;
 }
 .search-container input::placeholder {
     color: #999;
@@ -487,8 +490,17 @@ body.dark-mode footer {
         flex-direction: column;
         align-items: stretch;
     }
+    .search-group {
+        min-width: 0;
+        width: 100%;
+    }
     .search-container {
         width: 100%;
+        min-width: 0;
+    }
+    .search-container input {
+        min-width: 0;
+        max-width: 100%;
     }
     nav ul {
         flex-wrap: wrap;
@@ -543,10 +555,13 @@ body.dark-mode footer {
         flex: 1;
         display: flex;
         gap: 0;
+        width: 100%;
     }
     .search-container input {
         flex: 1;
         min-width: 60px;
+        width: 100%;
+        max-width: 100%;
         font-size: 0.95rem;
         padding: 0.5rem 0.4rem;
         min-height: 44px;
@@ -942,12 +957,15 @@ body.dark-mode .add-to-cart-btn:hover {
     .search-container {
         flex: 1;
         min-width: 0;
+        width: 100%;
         display: flex;
     }
 
     .search-container input {
         flex: 1;
         min-width: 0;
+        width: 100%;
+        max-width: 100%;
         padding: 0.6rem 0.8rem;
         font-size: 0.9rem;
     }

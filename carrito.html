@@ -528,6 +528,7 @@
         </style>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
 </head>
 <body>
     <div id="site-header"></div>
@@ -541,9 +542,14 @@
             <!-- Cart content will be loaded here -->
         </div>
     </div>
-<footer style="display: none;">
-        <p>&copy; 2026 SONIC BOX. Todos los derechos reservados.</p>
-    </footer>
+
+    <!-- Footer -->
+    <div id="site-footer"></div>
+    <script>
+      fetch('footer.html')
+        .then(res => res.text())
+        .then(html => { document.getElementById('site-footer').innerHTML = html; });
+    </script>
 
     <script src="chat.js"></script>
     <script src="header.js"></script>

@@ -748,6 +748,7 @@ s<!DOCTYPE html>
         </style>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
 </head>
 <body>
     <div id="site-header"></div>
@@ -961,9 +962,15 @@ s<!DOCTYPE html>
             </div>
         </div>
     </div>
-<footer>
-        <p>&copy; 2026 SONIC BOX. Todos los derechos reservados.</p>
-    </footer>
+    <!-- Footer -->
+        <div id="site-footer"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('footer.html')
+                    .then(res => res.text())
+                    .then(html => { document.getElementById('site-footer').innerHTML = html; });
+            });
+        </script>
     
     <script>
         function getSearchQuery() {
