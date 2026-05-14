@@ -654,6 +654,7 @@
         const productId = 11;
         const productName = 'JBL Tune 770NC';
         const productPrice = 1499;
+        const productImage = 'images/JBL%20Tune%20770NC%2001.png';
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function updateDisplay() {
@@ -674,6 +675,7 @@
 
         function toggleAddToCart(id) {
             const existing = cart.find(item => item.id === id);
+            const productImage = 'images/JBL%20Tune%20770NC%2001.png';
             if (!existing) {
                 cart.push({ id: productId, name: productName, price: productPrice, image: productImage, quantity: 1 });
                 localStorage.setItem('cart', JSON.stringify(cart));
