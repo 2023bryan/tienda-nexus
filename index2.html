@@ -1,0 +1,1079 @@
+s<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        /* Contenedores responsivos */
+        .showcase-section {
+            padding: 2rem 0;
+            width: 100vw;
+            max-width: 100vw;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+        .section {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        /* Grid responsivo para showcase */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: minmax(900px, 70vw) 400px;
+            gap: 2rem;
+            align-items: stretch;
+            justify-content: center;
+            width: 100vw;
+            margin: 0 auto;
+        }
+        .showcase-large,
+           .showcase-small {
+              background: white;
+              border-radius: 24px;
+              overflow: hidden;
+              box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+              position: relative;
+              min-width: 0;
+              width: 240px;
+        }
+        .showcase-large {
+              height: 520px;
+              width: 100%;
+              max-width: 100%;
+        }
+        .showcase-small {
+              height: 200px;
+              width: 400px;
+        }
+        .showcase-small-grid {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+        }
+        /* ...existing code... */
+        .showcase-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .showcase-large img {
+            border-radius: 24px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .showcase-small img {
+            border-radius: 16px;
+        }
+
+        /* Botones responsivos */
+        .add-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-radius: 6px;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(40,167,69,0.3);
+            font-size: 1rem;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40,167,69,0.4);
+        }
+
+        /* Productos responsivos */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .product {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 48px rgba(0,0,0,0.14);
+        }
+
+        .product-image {
+            height: 240px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(180deg, #f4f6ff 0%, #ffffff 100%);
+            cursor: pointer;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+            transform-origin: center center;
+        }
+
+        .product-image a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            flex: 1;
+        }
+
+        .product-info h3 {
+            color: #1b2753;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .product-info h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .product-info h3 a:hover {
+            color: #ff6f00;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: #5f6774;
+            margin: 0;
+            line-height: 1.6;
+            min-height: 3.2rem;
+        }
+
+        .product-prices {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin: 0;
+        }
+
+        .price-normal {
+            font-size: 0.9rem;
+            color: #a6afc7;
+            text-decoration: line-through;
+        }
+
+        .price-special {
+            font-size: 1.45rem;
+            color: #ff6f00;
+            font-weight: 700;
+        }
+
+        /* Botones de favoritos responsivos */
+        .favorite-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.96);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #a9a9a9;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product:hover .favorite-btn {
+            transform: translateY(-1px) scale(1.05);
+        }
+
+        .favorite-btn:hover {
+            color: #ff6f00;
+        }
+
+        .favorite-btn.favorited {
+            color: #ff6f00;
+            background: #fff0f1;
+        }
+
+        /* Modal del carrito responsivo */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .cart-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .cart-content h2 {
+            color: #1a237e;
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #ff6f00;
+            padding-bottom: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .cart-item span {
+            flex: 1;
+            color: #2c3e50;
+        }
+
+        .cart-item button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cart-item button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        #cart-total {
+            color: #ff6f00;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .cart-content > p {
+            text-align: right;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .cart-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cart-buttons button {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cart-buttons button:first-child {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .cart-buttons button:first-child:hover {
+            background: #d0d0d0;
+        }
+
+        .cart-buttons button:last-child {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        .cart-buttons button:last-child:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer responsivo */
+        footer {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 3px solid #ff6f00;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                height: 250px;
+                padding: 1rem;
+                    width: 1700px;
+                    max-width: 1700px;
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .showcase-section {
+                padding: 1rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .showcase-large {
+                height: 250px;
+            }
+            .showcase-small {
+                height: 120px;
+            }
+            .showcase-small-grid {
+                display: none;
+            }
+            .section {
+                padding: 1.5rem 1rem;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .products {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .product-image {
+                height: 200px;
+            }
+            .product-info {
+                padding: 1rem;
+            }
+            .product-info h3 {
+                font-size: 1.1rem;
+            }
+            .product-desc {
+                font-size: 0.9rem;
+            }
+            .price-special {
+                font-size: 1.2rem;
+            }
+            .cart-content {
+                padding: 1.5rem;
+                width: 95%;
+                max-width: none;
+            }
+            .cart-content h2 {
+                font-size: 1.5rem;
+            }
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .cart-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .cart-buttons button {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            footer {
+                padding: 1.5rem 1rem;
+            }
+            footer p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Media queries para tablets */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero {
+                height: 300px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .showcase-section {
+                padding: 1.5rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+            }
+            .showcase-large {
+                height: 350px;
+            }
+            .showcase-small-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            .showcase-small {
+                height: 170px;
+            }
+            .section {
+                padding: 2rem 1.5rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            .product-image {
+                height: 220px;
+            }
+            .cart-content {
+                max-width: 600px;
+                width: 90%;
+            }
+        }
+
+        /* Mejoras de accesibilidad y usabilidad */
+        .product-image a,
+        .product-info h3 a {
+            display: block;
+            width: 100%;
+                grid-template-columns: 1300px 400px;
+                width: 1700px;
+        }
+
+        .product-image a:focus,
+        .product-info h3 a:focus {
+            outline: 2px solid #ff6f00;
+            outline-offset: 2px;
+        }
+
+        /* Estilos para dispositivos táctiles */
+        @media (hover: none) and (pointer: coarse) {
+            .product:hover {
+                transform: none;
+            }
+            .product-image:hover img {
+                transform: none;
+            }
+            .favorite-btn {
+                opacity: 1;
+                transform: none;
+            }
+            .add-btn:hover {
+                transform: none;
+            }
+            .cart-item button:hover {
+                transform: none;
+            }
+            .cart-buttons button:last-child:hover {
+                transform: none;
+            }
+        }
+
+        /* Animaciones suaves para mejor UX */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        /* Estilos para impresión */
+        @media print {
+            .cart-modal,
+            .favorite-btn,
+            .add-btn {
+                display: none !important;
+            }
+            .product {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Media queries para tablets */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .hero {
+                height: 300px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .showcase-section {
+                padding: 1.5rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+            }
+            .showcase-large {
+                height: 350px;
+            }
+            .showcase-small-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+            .showcase-small {
+                height: 170px;
+            }
+            .section {
+                padding: 2rem 1.5rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            .product-image {
+                height: 420px;
+                  width: 1600px;
+            .cart-content {
+                max-width: 600px;
+                width: 90%;
+            }
+        }
+
+        /* Media queries para móviles */
+        @media (max-width: 768px) {
+            .hero {
+                height: 250px;
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .showcase-section {
+                padding: 1rem;
+            }
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .showcase-large {
+                height: 250px;
+            }
+            .showcase-small {
+                height: 120px;
+            }
+            .showcase-small-grid {
+                display: none;
+            }
+            .section {
+                padding: 1.5rem 1rem;
+            }
+            .section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .product-image {
+                height: 200px;
+            }
+            .product-info {
+                padding: 1rem;
+            }
+            .product-info h3 {
+                font-size: 1.1rem;
+            }
+            .product-desc {
+                font-size: 0.9rem;
+            }
+            .price-special {
+                font-size: 1.2rem;
+            }
+            .cart-content {
+                padding: 1.5rem;
+                width: 95%;
+                max-width: none;
+            }
+            .cart-content h2 {
+                font-size: 1.5rem;
+            }
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .cart-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .cart-buttons button {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            footer {
+                padding: 1.5rem 1rem;
+            }
+            footer p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Media queries para pantallas pequeñas */
+        @media (max-width: 480px) {
+            .hero {
+                height: 200px;
+                padding: 0.5rem;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .showcase-section {
+                padding: 0.5rem;
+            }
+            .showcase-large {
+                height: 180px;
+                border-radius: 16px;
+            }
+            .section {
+                padding: 1rem 0.5rem;
+            }
+            .section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            .product {
+                border-radius: 16px;
+            }
+            .product-image {
+                height: 160px;
+            }
+            .product-info {
+                padding: 0.75rem;
+            }
+            .product-info h3 {
+                font-size: 1rem;
+            }
+            .product-desc {
+                font-size: 0.85rem;
+                min-height: 2.5rem;
+            }
+            .price-special {
+                font-size: 1.1rem;
+            }
+            .price-normal {
+                font-size: 0.8rem;
+            }
+            .cart-content {
+                padding: 1rem;
+                width: 98%;
+            }
+            .cart-content h2 {
+                font-size: 1.3rem;
+            }
+            .cart-item {
+                padding: 0.75rem 0;
+            }
+            .cart-item span {
+                font-size: 0.9rem;
+            }
+            .cart-buttons button {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+            footer {
+                padding: 1rem 0.5rem;
+            }
+            footer p {
+                font-size: 0.85rem;
+            }
+        }
+        </style>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    <div id="site-header"></div>
+    <section class="showcase-section">
+        <div class="showcase-grid">
+            <div class="showcase-large">
+                <img id="hero-carousel-image" src="images/principal%2001.jpeg" alt="Imagen principal">
+            </div>
+            <div class="showcase-small-grid">
+                <div class="showcase-small">
+                    <img src="images/principal%2002.webp" alt="Imagen principal secundaria 1">
+                </div>
+                <div class="showcase-small">
+                    <img src="images/principal%2003.jpg" alt="Imagen principal secundaria 2">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="productos" class="section">
+        <h2>Productos Destacados</h2>
+        <div class="products">
+            <div class="product" data-id="10" data-name="JBL PartyBox 520" data-price="5200" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLPartyBox520.html"><img src="images/JBL%20PartyBox%20520%2001.jpeg" alt="JBL PartyBox 520"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLPartyBox520.html">JBL PartyBox 520</a></h3>
+                    <p class="product-desc">Altavoz potente con AI Sound Boost y luces dinámicas para tus fiestas.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q6,200.00</div>
+                        <div class="price-special">Q5,200.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-10" onclick="toggleFavorite(10)">♡</button>
+                </div>
+            </div>
+                        <div class="product" data-id="13" data-name="JBL PartyBox 710" data-price="7200" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLPartybox710.html"><img src="images/JBL%20Partybox%20710%2001.jpeg" alt="JBL PartyBox 710"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLPartybox710.html">JBL PartyBox 710</a></h3>
+                    <p class="product-desc">Experiencia de audio profesional con graves potentes y luces de fiesta envolventes.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q8,500.00</div>
+                        <div class="price-special">Q7,200.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-13" onclick="toggleFavorite(13)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="11" data-name="JBL Tune 770NC" data-price="1499" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLTune770NC.html"><img src="images/JBL%20Tune%20770NC%2001.png" alt="JBL Tune 770NC"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLTune770NC.html">JBL Tune 770NC</a></h3>
+                    <p class="product-desc">Auriculares inalámbricos con cancelación de ruido adaptativa y 70 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q1,800.00</div>
+                        <div class="price-special">Q1,499.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-11" onclick="toggleFavorite(11)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="12" data-name="JBL Tune 310C USB" data-price="299" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLTune310CUSB.html"><img src="images/JBL%20Tune%20310C%20USB%2001.png" alt="JBL Tune 310C USB"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLTune310CUSB.html">JBL Tune 310C USB</a></h3>
+                    <p class="product-desc">Auriculares intraaurales con conexión USB-C y sonido JBL Pure Bass.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q399.00</div>
+                        <div class="price-special">Q299.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-12" onclick="toggleFavorite(12)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="14" data-name="JBL Tune 520BT" data-price="499" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLTune520BT.html"><img src="images/JBL%20Tune%20520BT%2001.png" alt="JBL Tune 520BT"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLTune520BT.html">JBL Tune 520BT</a></h3>
+                    <p class="product-desc">Auriculares on-ear inalámbricos con 57 horas de batería y sonido JBL Pure Bass.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q599.00</div>
+                        <div class="price-special">Q499.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-14" onclick="toggleFavorite(14)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="15" data-name="JBL Vibe Beam 2" data-price="649" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLVibeBeam2.html"><img src="images/JBL%20Vibe%20Beam%202%2001.png" alt="JBL Vibe Beam 2"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLVibeBeam2.html">JBL Vibe Beam 2</a></h3>
+                    <p class="product-desc">Auriculares true wireless con cancelación activa de ruido y 40 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q799.00</div>
+                        <div class="price-special">Q649.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-15" onclick="toggleFavorite(15)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="16" data-name="JBL Quantum 100M2" data-price="329" data-category="Gaming">
+                <div class="product-image">
+                    <a href="productJBLQuantum100M2.html"><img src="images/JBL%20Quantum%20100M2%2001.png" alt="JBL Quantum 100M2"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLQuantum100M2.html">JBL Quantum 100M2</a></h3>
+                    <p class="product-desc">Auriculares gaming con sonido inmersivo QuantumSOUND y micrófono vocal desmontable.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q399.00</div>
+                        <div class="price-special">Q329.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-16" onclick="toggleFavorite(16)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="17" data-name="JBL Clip 4" data-price="610" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLClip4.html"><img src="images/JBL%20Clip%204%2001.jpeg" alt="JBL Clip 4"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLClip4.html">JBL Clip 4</a></h3>
+                    <p class="product-desc">Altavoz portátil impermeable con sonido nítido y 10 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q750.00</div>
+                        <div class="price-special">Q610.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-17" onclick="toggleFavorite(17)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="18" data-name="JBL Xtreme 3" data-price="2049" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLXTREME3.html"><img src="images/JBL%20XTREME%203%20CON%20CORREA%2001.jpeg" alt="JBL Xtreme 3"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLXTREME3.html">JBL Xtreme 3</a></h3>
+                    <p class="product-desc">Altavoz portátil con sonido envolvente, resistente al agua y 15 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q2,499.00</div>
+                        <div class="price-special">Q2,049.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-18" onclick="toggleFavorite(18)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="19" data-name="JBL Xtreme Ultra" data-price="3549" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLXTREMEULTRA.html"><img src="images/JBL%20XTREME%20ULTRA%2001.jpeg" alt="JBL Xtreme Ultra"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLXTREMEULTRA.html">JBL Xtreme Ultra</a></h3>
+                    <p class="product-desc">Altavoz premium con sonido JBL Pro, radiadores de graves y 24 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q4,299.00</div>
+                        <div class="price-special">Q3,549.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-19" onclick="toggleFavorite(19)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="20" data-name="JBL GO 3" data-price="262" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLGO3.html"><img src="images/JBL%20GO%203%2001.jpeg" alt="JBL GO 3"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLGO3.html">JBL GO 3</a></h3>
+                    <p class="product-desc">Altavoz ultraportátil con sonido JBL Pro, resistente al agua y 7 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q350.00</div>
+                        <div class="price-special">Q262.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-20" onclick="toggleFavorite(20)">♡</button>
+                </div>
+            </div>
+            <div class="product" data-id="21" data-name="JBL Clip 3" data-price="649" data-category="Audio">
+                <div class="product-image">
+                    <a href="productJBLClip3.html"><img src="images/JBL%20CLIP%203%2001.jpeg" alt="JBL Clip 3"></a>
+                </div>
+                <div class="product-info">
+                    <h3><a href="productJBLClip3.html">JBL Clip 3</a></h3>
+                    <p class="product-desc">Altavoz ultraportátil con mosquetón integrado, resistente al agua y 10 horas de batería.</p>
+                    <div class="product-prices">
+                        <div class="price-normal">Q799.00</div>
+                        <div class="price-special">Q649.00</div>
+                    </div>
+                    <button class="favorite-btn" id="fav-btn-21" onclick="toggleFavorite(21)">♡</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <h2>Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <p>Total: Q<span id="cart-total">0</span></p>
+            <div class="cart-buttons">
+                <button onclick="closeCart()">Cerrar</button>
+                <button onclick="checkout()">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div id="site-footer"></div>
+
+    <script>
+        function getSearchQuery() {
+            return new URLSearchParams(window.location.search).get('search')?.trim();
+        }
+
+        function filterProductsBySearch(query) {
+            const normalizedQuery = query.toLowerCase();
+            const products = document.querySelectorAll('.products .product');
+            let matches = 0;
+
+            products.forEach(product => {
+                const name = product.dataset.name?.toLowerCase() || '';
+                const category = product.dataset.category?.toLowerCase() || '';
+                const description = product.querySelector('.product-desc')?.textContent.toLowerCase() || '';
+                const matchesProduct = name.includes(normalizedQuery) || category.includes(normalizedQuery) || description.includes(normalizedQuery);
+                product.style.display = matchesProduct ? 'block' : 'none';
+                if (matchesProduct) matches += 1;
+            });
+
+            let noResultsMessage = document.getElementById('search-no-results');
+            if (!noResultsMessage) {
+                noResultsMessage = document.createElement('div');
+                noResultsMessage.id = 'search-no-results';
+                noResultsMessage.style.marginTop = '2rem';
+                noResultsMessage.style.textAlign = 'center';
+                noResultsMessage.style.fontSize = '1.1rem';
+                noResultsMessage.style.color = '#555';
+                document.querySelector('#productos')?.appendChild(noResultsMessage);
+            }
+
+            noResultsMessage.textContent = matches === 0 ? `No se encontraron resultados para "${query}".` : '';
+        }
+
+        const principalShowcaseImages = [
+            'images/principal%2002.webp',
+            'images/principal%2003.jpg',
+            'images/principal%2005.jpg',
+            'images/principal%2006.jpeg',
+            'images/principal%2007.jpeg',
+            'images/principal%2008.jpg',
+            'images/principal%2009.jpeg',
+            'images/principal%2011.jpeg'
+        ];
+        let principalShowcaseIndex = 0;
+
+        function rotatePrincipalShowcase() {
+            const showcaseImage = document.getElementById('hero-carousel-image');
+            const smallImages = document.querySelectorAll('.showcase-small img');
+
+            if (!showcaseImage) return;
+
+            principalShowcaseIndex = (principalShowcaseIndex + 1) % principalShowcaseImages.length;
+
+            // Rotar imagen principal
+            showcaseImage.src = principalShowcaseImages[principalShowcaseIndex];
+
+            // Rotar imágenes pequeñas con un offset
+            if (smallImages.length >= 2) {
+                const nextIndex1 = (principalShowcaseIndex + 1) % principalShowcaseImages.length;
+                const nextIndex2 = (principalShowcaseIndex + 2) % principalShowcaseImages.length;
+                smallImages[0].src = principalShowcaseImages[nextIndex1];
+                smallImages[1].src = principalShowcaseImages[nextIndex2];
+            }
+        }
+
+        function initializeFavoriteButtons() {
+            const favoriteButtons = document.querySelectorAll('[id^="fav-btn-"]');
+            favoriteButtons.forEach(btn => {
+                const id = Number(btn.id.replace('fav-btn-', ''));
+                if (!isNaN(id)) {
+                    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                    if (favorites.includes(id)) {
+                        btn.classList.add('favorited');
+                        btn.textContent = '♥';
+                    } else {
+                        btn.classList.remove('favorited');
+                        btn.textContent = '♡';
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const query = getSearchQuery();
+            if (query) {
+                filterProductsBySearch(query);
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = query;
+                }
+            }
+            
+            // Inicializar botones de favoritos
+            initializeFavoriteButtons();
+            
+            const showcaseImage = document.getElementById('hero-carousel-image');
+            if (showcaseImage) {
+                // Cargar la primera imagen del carrusel inmediatamente
+                showcaseImage.src = principalShowcaseImages[0];
+                const smallImages = document.querySelectorAll('.showcase-small img');
+                if (smallImages.length >= 2) {
+                    smallImages[0].src = principalShowcaseImages[1];
+                    smallImages[1].src = principalShowcaseImages[2];
+                }
+                // Luego iniciar la rotación
+                setInterval(rotatePrincipalShowcase, 3000);
+            }
+        });
+    </script>
+    <script src="chat.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    </body>
+</html>
