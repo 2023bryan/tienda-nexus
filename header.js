@@ -25,6 +25,7 @@ const headerHTML = `
                         <a href="#" onclick="filterByCategory('Todos')">Todos</a>
                         <a href="#" onclick="filterByCategory('Audio')">Audio</a>
                         <a href="#" onclick="filterByCategory('Gaming')">Gaming</a>
+                        <a href="#" onclick="filterByCategory('Vinculación de dispositivos')">Vinculación de dispositivos</a>
                     </div>
                 </div>
                 <div class="search-container">
