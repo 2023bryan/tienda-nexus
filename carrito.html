@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             width: 100%;
+            max-width: 100%;
             overflow-x: hidden;
             min-height: 100%;
         }
@@ -545,14 +546,11 @@
 
     <!-- Footer -->
     <div id="site-footer"></div>
-    <script>
-      fetch('footer.html')
-        .then(res => res.text())
-        .then(html => { document.getElementById('site-footer').innerHTML = html; });
-    </script>
+
 
     <script src="chat.js"></script>
     <script src="header.js"></script>
+    <script src="footer.js"></script>
     <script>
         // Product data for images and categories
         const products = [

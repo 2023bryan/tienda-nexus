@@ -1,4 +1,4 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -14,70 +14,93 @@ s<!DOCTYPE html>
         }
         /* Contenedores responsivos */
         .showcase-section {
-            padding: 2rem 0;
-            width: 100vw;
-            max-width: 100vw;
-            box-sizing: border-box;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 3rem 2rem;
+            box-sizing: border-box;
+            width: 100%;
         }
         .section {
             padding: 3rem 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
-        /* Grid responsivo para showcase */
+        /* Grid responsivo para showcase (mismo ancho que .section / productos) */
         .showcase-grid {
             display: grid;
-            grid-template-columns: minmax(900px, 70vw) 400px;
-            gap: 2rem;
+            grid-template-columns: minmax(0, 1fr) minmax(200px, 26%);
+            gap: 1.75rem;
             align-items: stretch;
-            justify-content: center;
-            width: 100vw;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         .showcase-large,
            .showcase-small {
-              background: white;
-              border-radius: 24px;
+              background: #f0f0f0;
+              border-radius: 20px;
               overflow: hidden;
-              box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+              box-shadow: 0 14px 36px rgba(0,0,0,0.08);
               position: relative;
               min-width: 0;
-              width: 240px;
         }
         .showcase-large {
-              height: 520px;
               width: 100%;
               max-width: 100%;
+              aspect-ratio: 16 / 9;
+              height: auto;
+              min-height: 0;
+              contain: layout;
         }
         .showcase-small {
-              height: 200px;
-              width: 400px;
+              height: auto;
+              min-height: 0;
+              width: 100%;
         }
         .showcase-small-grid {
             display: grid;
             grid-template-rows: 1fr 1fr;
             gap: 1rem;
+            min-height: 0;
+            align-self: stretch;
         }
-        /* ...existing code... */
         .showcase-small img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             display: block;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out, transform 0.35s ease;
+            background: #f0f0f0;
+            transform: scale(1.06);
+            transform-origin: center center;
+            border-radius: 14px;
+        }
+
+        .showcase-small img.is-portrait {
+            transform: scale(1.16);
         }
 
         .showcase-large img {
-            border-radius: 24px;
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
+            border-radius: 0;
             object-fit: cover;
+            object-position: center;
             display: block;
+            background: #f0f0f0;
+            transform: scale(1.06);
+            transform-origin: center center;
+            transition: transform 0.35s ease;
         }
 
-        .showcase-small img {
-            border-radius: 16px;
+        .showcase-large img.is-portrait {
+            transform: scale(1.22);
         }
 
         /* Botones responsivos */
@@ -142,11 +165,12 @@ s<!DOCTYPE html>
             display: block;
             transition: transform 0.4s ease;
             transform-origin: center center;
-                .product-image a {
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                }
+        }
+
+        .product-image a {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
         .product-image:hover img {
@@ -366,25 +390,30 @@ s<!DOCTYPE html>
             .hero {
                 height: 250px;
                 padding: 1rem;
-                    width: 1700px;
-                    max-width: 1700px;
                 font-size: 1.8rem;
             }
             .hero p {
                 font-size: 1rem;
             }
             .showcase-section {
-                padding: 1rem;
+                padding: 1.5rem 1rem;
             }
             .showcase-grid {
                 grid-template-columns: 1fr;
-                gap: 0.5rem;
+                gap: 1rem;
             }
             .showcase-large {
-                height: 250px;
+                aspect-ratio: 16 / 9;
+                height: auto;
+            }
+            .showcase-large img {
+                transform: scale(1.04);
+            }
+            .showcase-large img.is-portrait {
+                transform: scale(1.14);
             }
             .showcase-small {
-                height: 120px;
+                height: 90px;
             }
             .showcase-small-grid {
                 display: none;
@@ -456,14 +485,15 @@ s<!DOCTYPE html>
                 font-size: 1.1rem;
             }
             .showcase-section {
-                padding: 1.5rem;
+                padding: 2rem 1.5rem;
             }
             .showcase-grid {
                 grid-template-columns: 1fr;
-                max-width: 800px;
+                gap: 1.5rem;
             }
             .showcase-large {
-                height: 350px;
+                aspect-ratio: 16 / 9;
+                height: auto;
             }
             .showcase-small-grid {
                 display: grid;
@@ -472,7 +502,15 @@ s<!DOCTYPE html>
                 margin-top: 1rem;
             }
             .showcase-small {
-                height: 170px;
+                aspect-ratio: 16 / 9;
+                height: auto;
+                width: 100%;
+            }
+            .showcase-small img {
+                transform: scale(1.05);
+            }
+            .showcase-small img.is-portrait {
+                transform: scale(1.14);
             }
             .section {
                 padding: 2rem 1.5rem;
@@ -495,8 +533,6 @@ s<!DOCTYPE html>
         .product-info h3 a {
             display: block;
             width: 100%;
-                grid-template-columns: 1300px 400px;
-                width: 1700px;
         }
 
         .product-image a:focus,
@@ -559,14 +595,15 @@ s<!DOCTYPE html>
                 font-size: 1.1rem;
             }
             .showcase-section {
-                padding: 1.5rem;
+                padding: 2rem 1.5rem;
             }
             .showcase-grid {
                 grid-template-columns: 1fr;
-                max-width: 800px;
+                gap: 1.5rem;
             }
             .showcase-large {
-                height: 350px;
+                aspect-ratio: 16 / 9;
+                height: auto;
             }
             .showcase-small-grid {
                 display: grid;
@@ -575,7 +612,15 @@ s<!DOCTYPE html>
                 margin-top: 1rem;
             }
             .showcase-small {
-                height: 170px;
+                aspect-ratio: 16 / 9;
+                height: auto;
+                width: 100%;
+            }
+            .showcase-small img {
+                transform: scale(1.05);
+            }
+            .showcase-small img.is-portrait {
+                transform: scale(1.14);
             }
             .section {
                 padding: 2rem 1.5rem;
@@ -585,8 +630,8 @@ s<!DOCTYPE html>
                 gap: 1.5rem;
             }
             .product-image {
-                height: 420px;
-                  width: 1600px;
+                height: 220px;
+            }
             .cart-content {
                 max-width: 600px;
                 width: 90%;
@@ -606,17 +651,24 @@ s<!DOCTYPE html>
                 font-size: 1rem;
             }
             .showcase-section {
-                padding: 1rem;
+                padding: 1.5rem 1rem;
             }
             .showcase-grid {
                 grid-template-columns: 1fr;
-                gap: 0.5rem;
+                gap: 1rem;
             }
             .showcase-large {
-                height: 250px;
+                aspect-ratio: 16 / 9;
+                height: auto;
+            }
+            .showcase-large img {
+                transform: scale(1.04);
+            }
+            .showcase-large img.is-portrait {
+                transform: scale(1.14);
             }
             .showcase-small {
-                height: 120px;
+                height: 90px;
             }
             .showcase-small-grid {
                 display: none;
@@ -689,11 +741,21 @@ s<!DOCTYPE html>
                 font-size: 0.9rem;
             }
             .showcase-section {
-                padding: 0.5rem;
+                padding: 1rem 0.5rem;
+            }
+            .showcase-grid {
+                gap: 0.75rem;
             }
             .showcase-large {
-                height: 180px;
+                aspect-ratio: 16 / 9;
+                height: auto;
                 border-radius: 16px;
+            }
+            .showcase-large img {
+                transform: scale(1.03);
+            }
+            .showcase-large img.is-portrait {
+                transform: scale(1.12);
             }
             .section {
                 padding: 1rem 0.5rem;
@@ -762,7 +824,7 @@ s<!DOCTYPE html>
     <section class="showcase-section">
         <div class="showcase-grid">
             <div class="showcase-large">
-                <img id="hero-carousel-image" src="images/principal%2001.jpeg" alt="Imagen principal">
+                <img id="hero-carousel-image" src="images/principal%2002.webp" alt="Imagen principal">
             </div>
             <div class="showcase-small-grid">
                 <div class="showcase-small">
@@ -960,15 +1022,8 @@ s<!DOCTYPE html>
         </div>
     </div>
     <!-- Footer -->
-        <div id="site-footer"></div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                fetch('footer.html')
-                    .then(res => res.text())
-                    .then(html => { document.getElementById('site-footer').innerHTML = html; });
-            });
-        </script>
-    
+    <div id="site-footer"></div>
+
     <script>
         function getSearchQuery() {
             return new URLSearchParams(window.location.search).get('search')?.trim();
@@ -1014,6 +1069,22 @@ s<!DOCTYPE html>
         ];
         let principalShowcaseIndex = 0;
 
+        function applyShowcaseOrientation(img) {
+            if (!img || !img.classList) return;
+            const sync = () => {
+                const w = img.naturalWidth;
+                const h = img.naturalHeight;
+                img.classList.toggle('is-portrait', w > 0 && h > 0 && h > w);
+            };
+            if (img.complete && img.naturalWidth > 0) {
+                sync();
+            } else {
+                img.classList.remove('is-portrait');
+                img.addEventListener('load', sync, { once: true });
+                img.addEventListener('error', () => img.classList.remove('is-portrait'), { once: true });
+            }
+        }
+
         function rotatePrincipalShowcase() {
             const showcaseImage = document.getElementById('hero-carousel-image');
             const smallImages = document.querySelectorAll('.showcase-small img');
@@ -1022,15 +1093,16 @@ s<!DOCTYPE html>
 
             principalShowcaseIndex = (principalShowcaseIndex + 1) % principalShowcaseImages.length;
 
-            // Rotar imagen principal
             showcaseImage.src = principalShowcaseImages[principalShowcaseIndex];
+            applyShowcaseOrientation(showcaseImage);
 
-            // Rotar imágenes pequeñas con un offset
             if (smallImages.length >= 2) {
                 const nextIndex1 = (principalShowcaseIndex + 1) % principalShowcaseImages.length;
                 const nextIndex2 = (principalShowcaseIndex + 2) % principalShowcaseImages.length;
                 smallImages[0].src = principalShowcaseImages[nextIndex1];
                 smallImages[1].src = principalShowcaseImages[nextIndex2];
+                applyShowcaseOrientation(smallImages[0]);
+                applyShowcaseOrientation(smallImages[1]);
             }
         }
 
@@ -1060,25 +1132,26 @@ s<!DOCTYPE html>
                     searchInput.value = query;
                 }
             }
-            
-            // Inicializar botones de favoritos
+
             initializeFavoriteButtons();
-            
+
             const showcaseImage = document.getElementById('hero-carousel-image');
             if (showcaseImage) {
-                // Cargar la primera imagen del carrusel inmediatamente
                 showcaseImage.src = principalShowcaseImages[0];
+                applyShowcaseOrientation(showcaseImage);
                 const smallImages = document.querySelectorAll('.showcase-small img');
                 if (smallImages.length >= 2) {
                     smallImages[0].src = principalShowcaseImages[1];
                     smallImages[1].src = principalShowcaseImages[2];
+                    applyShowcaseOrientation(smallImages[0]);
+                    applyShowcaseOrientation(smallImages[1]);
                 }
-                // Luego iniciar la rotación
                 setInterval(rotatePrincipalShowcase, 3000);
             }
         });
     </script>
     <script src="chat.js"></script>
     <script src="header.js"></script>
+    <script src="footer.js"></script>
     </body>
 </html>

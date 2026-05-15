@@ -1,3 +1,8 @@
+/**
+ * Pie de página incrustado (mismo contenido que footer.html).
+ * Evita depender de fetch(), que no funciona al abrir la web desde archivo local (file://).
+ */
+const footerHTML = `
 <footer class="footer">
   <div class="footer-section">
     <h3>Acerca de Sonic Box</h3>
@@ -29,3 +34,13 @@
     </div>
   </div>
 </footer>
+`.trim();
+
+function insertSiteFooter() {
+    const el = document.getElementById('site-footer');
+    if (el) {
+        el.innerHTML = footerHTML;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', insertSiteFooter);

@@ -88,6 +88,9 @@
   border-radius: 999px;
   font-size: 0.78rem;
   white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -306,6 +309,7 @@
 
   .chat-panel {
     width: min(calc(100vw - 2rem), 340px);
+    width: min(calc(100svw - 2rem), 340px);
     height: 70vh;
     right: 12px;
     bottom: 12px;
@@ -315,6 +319,7 @@
 @media (max-width: 480px) {
   .chat-panel {
     width: calc(100vw - 1rem);
+    width: calc(100svw - 1rem);
     height: 82vh;
     bottom: 0.5rem;
     right: 0.5rem;

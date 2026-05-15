@@ -47,7 +47,7 @@ const headerHTML = `
                 <button class="cart-btn" onclick="openCart()" title="Ver carrito de compras">
                     <span class="icon"><img src="images/Carrito.png" alt="Carrito"></span>
                     <span class="text">Carrito</span>
-                    <span class="cart-count">(<span id="cart-count">0</span>)</span>
+                    <span class="cart-count cart-count--empty" aria-live="polite"><span id="cart-count">0</span></span>
                 </button>
             </div>
         </div>
@@ -188,9 +188,14 @@ function updateCartCount() {
     const count = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
     const counter = document.getElementById('cart-count');
     if (counter) {
-        counter.textContent = count;
+        counter.textContent = String(count);
     }
+    document.querySelectorAll('.cart-count').forEach(el => {
+        el.classList.toggle('cart-count--empty', count === 0);
+    });
 }
+
+window.updateCartCount = updateCartCount;
 
 function toggleFavorite(id) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];

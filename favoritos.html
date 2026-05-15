@@ -11,6 +11,12 @@
             padding: 0;
             background-color: #f8f9fa;
             color: #2c3e50;
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
         }
         .section {
             padding: 3rem 2rem;
@@ -187,11 +193,7 @@
 
     <!-- Footer -->
     <div id="site-footer"></div>
-    <script>
-      fetch('footer.html')
-        .then(res => res.text())
-        .then(html => { document.getElementById('site-footer').innerHTML = html; });
-    </script>
+
 
 
     <script>
@@ -266,5 +268,6 @@
     </script>
     <script src="chat.js"></script>
     <script src="header.js"></script>
+    <script src="footer.js"></script>
 </body>
 </html>
