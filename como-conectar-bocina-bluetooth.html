@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cómo conectar una bocina Bluetooth a tu celular u otro dispositivo: emparejamiento, solución de problemas y cuidados. Guía SONIC BOX.">
+    <title>Cómo conectar una bocina Bluetooth - SONIC BOX</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        .guide-page {
+            padding-bottom: 2rem;
+        }
+
+        .guide-hero {
+            background: linear-gradient(180deg, #fff8f0 0%, #ffe0b2 40%, #fff5e6 100%);
+            border-bottom: 3px solid #ff6f00;
+            padding: 6.5rem 1.5rem 2.5rem;
+        }
+
+        .guide-hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .guide-hero h1 {
+            color: #1a237e;
+            font-size: clamp(1.45rem, 4vw, 2.1rem);
+            font-weight: 700;
+            margin: 0 0 0.6rem;
+            line-height: 1.25;
+        }
+
+        .guide-hero .lead {
+            color: #5c6b7a;
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin: 0;
+        }
+
+        .guide-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 0;
+            box-sizing: border-box;
+        }
+
+        .guide-note {
+            font-size: 0.88rem;
+            color: #78909c;
+            margin-bottom: 1.5rem;
+            padding: 0.85rem 1rem;
+            background: #eceff1;
+            border-radius: 12px;
+            border-left: 4px solid #ff6f00;
+        }
+
+        .guide-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .guide-section h2 {
+            color: #1a237e;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin: 0 0 1rem;
+            padding-bottom: 0.65rem;
+            border-bottom: 3px solid #ff6f00;
+        }
+
+        .guide-section h3 {
+            color: #283593;
+            font-size: 1.1rem;
+            margin: 1.35rem 0 0.65rem;
+        }
+
+        .guide-section p {
+            color: #555;
+            margin: 0 0 1rem;
+        }
+
+        .guide-section ul, .guide-section ol {
+            margin: 0 0 1rem;
+            padding-left: 1.35rem;
+            color: #555;
+        }
+
+        .guide-section li {
+            margin-bottom: 0.4rem;
+        }
+
+        .guide-steps {
+            counter-reset: paso;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .guide-steps > li {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.35rem;
+            min-height: 2rem;
+        }
+
+        .guide-steps > li::before {
+            counter-increment: paso;
+            content: counter(paso);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 111, 0, 0.35);
+        }
+
+        .guide-steps h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-cta {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .guide-cta a {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 0.9rem 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 24px rgba(255, 111, 0, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .guide-cta a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(255, 111, 0, 0.45);
+        }
+
+        @media (max-width: 768px) {
+            .guide-hero {
+                padding: 5.5rem 1rem 2rem;
+            }
+
+            .guide-section {
+                padding: 1.35rem 1.2rem;
+            }
+
+            .guide-steps > li {
+                padding-left: 2.75rem;
+            }
+        }
+
+        body.dark-mode .guide-note {
+            background: #1b2035;
+            color: #aeb4d0;
+            border-left-color: #ff8f00;
+        }
+
+        body.dark-mode .guide-section {
+            background: #14182e;
+            border-color: #2c3150;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        body.dark-mode .guide-section h2 {
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .guide-section h3 {
+            color: #d7daf0;
+        }
+
+        body.dark-mode .guide-section p,
+        body.dark-mode .guide-section li {
+            color: #c4cad9;
+        }
+
+        body.dark-mode .guide-hero h1 {
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .guide-hero .lead {
+            color: #aeb4d0;
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="guide-page">
+        <header class="guide-hero">
+            <div class="guide-hero-inner">
+                <h1>Cómo conectar una bocina Bluetooth a tu celular</h1>
+                <p class="lead">Guía paso a paso para emparejar tu altavoz inalámbrico con tu smartphone, evitar fallos comunes y cuidar tu equipo.</p>
+            </div>
+        </header>
+
+        <article class="guide-inner">
+            <p class="guide-note">Información de uso general para la mayoría de equipos; algunos modelos (por ejemplo JBL y otras marcas) pueden tener botones o apps específicas. Consulta siempre el manual de tu bocina.</p>
+
+            <section class="guide-section" aria-labelledby="antes-titulo">
+                <h2 id="antes-titulo">Antes de empezar</h2>
+                <p>Revisa lo siguiente para evitar que la bocina no aparezca o se corte la conexión:</p>
+                <ul>
+                    <li>Carga suficiente en la bocina (o conectada a la corriente si aplica).</li>
+                    <li>Bluetooth encendido en el teléfono y <strong>modo avión desactivado</strong>.</li>
+                    <li>Distancia corta al emparejar (aprox. menos de 1 metro ayuda en el primer enlace).</li>
+                    <li>Si tu modelo usa una <strong>app del fabricante</strong> para funciones extra, tenla instalada.</li>
+                    <li>Que la bocina no esté ya vinculada solo a otro móvil que esté reproduciendo audio; en ese caso desvincula o apaga el otro dispositivo.</li>
+                </ul>
+            </section>
+
+            <section class="guide-section" aria-labelledby="pasos-titulo">
+                <h2 id="pasos-titulo">Pasos para conectar tu bocina</h2>
+                <ol class="guide-steps">
+                    <li>
+                        <h3>Enciende la bocina y el modo emparejamiento</h3>
+                        <p>Enciende el altavoz. Mantén pulsado el botón Bluetooth (o el de emparejamiento) unos segundos hasta que la luz parpadee o suene un tono: eso indica que está <strong>visible</strong> para nuevos dispositivos.</p>
+                    </li>
+                    <li>
+                        <h3>Activa Bluetooth en el celular y elige la bocina</h3>
+                        <p>En <strong>Ajustes &gt; Bluetooth</strong>, activa el Bluetooth y espera la lista. Toca el nombre de tu bocina (suele incluir la marca o modelo). Acepta la vinculación si el sistema pide confirmación.</p>
+                    </li>
+                    <li>
+                        <h3>Comprueba el audio</h3>
+                        <p>Cuando la luz quede fija o suene un “listo”, abre música o un video y verifica que el sonido salga por la bocina. Ajusta volumen en el teléfono y en el propio altavoz si tiene controles.</p>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="guide-section" aria-labelledby="pin-titulo">
+                <h2 id="pin-titulo">Código PIN</h2>
+                <p>Algunos equipos piden un PIN en el primer emparejamiento. Los más habituales son <strong>0000</strong> o <strong>1234</strong>. Si no funcionan, revisa el manual o la etiqueta del producto.</p>
+            </section>
+
+            <section class="guide-section" aria-labelledby="errores-titulo">
+                <h2 id="errores-titulo">Problemas frecuentes y qué hacer</h2>
+                <ul>
+                    <li><strong>No aparece la bocina:</strong> vuelve a entrar en modo emparejamiento (LED parpadeando), reinicia Bluetooth en el celular o apaga y enciende la bocina.</li>
+                    <li><strong>Audio entrecortado:</strong> acerca el teléfono, evita interferencias (microondas, muchos Wi‑Fi cercanos) y revisa la batería de ambos dispositivos.</li>
+                    <li><strong>Suena el celular y no la bocina:</strong> en ajustes de sonido o en el reproductor, elige la bocina como <strong>salida de audio</strong>.</li>
+                    <li><strong>Se desconecta solo:</strong> batería baja, distancia u obstáculos; desactiva ahorro extremo de energía en el móvil si corta el Bluetooth.</li>
+                </ul>
+            </section>
+
+            <section class="guide-section" aria-labelledby="faq-titulo">
+                <h2 id="faq-titulo">Preguntas rápidas</h2>
+                <h3>¿Dos bocinas a la vez?</h3>
+                <p>Depende del teléfono y de la marca. Algunos móviles permiten audio dual; otras marcas ofrecen emparejar varias bocinas de la misma familia desde su app.</p>
+                <h3>¿Tableta u ordenador?</h3>
+                <p>El proceso es igual en esencia: activar Bluetooth, modo emparejamiento en la bocina y seleccionar el dispositivo en la lista.</p>
+            </section>
+
+            <section class="guide-section" aria-labelledby="cuidado-titulo">
+                <h2 id="cuidado-titulo">Cuidados básicos</h2>
+                <ul>
+                    <li>No dejes la bocina cargando indefinidamente una vez al 100% si el fabricante lo desaconseja.</li>
+                    <li>Limpia rejillas con paño seco suave; evita líquidos directos sobre el altavoz.</li>
+                    <li>Actualiza firmware si la marca lo ofrece por app.</li>
+                </ul>
+            </section>
+
+            <section class="guide-section guide-cta-box" style="text-align:center;">
+                <h2 style="border:none;padding:0;margin-bottom:0.75rem;">¿Buscas bocina o audio?</h2>
+                <p style="margin-bottom:1rem;">En SONIC BOX encontramos productos de audio para cada uso. Vuelve al catálogo y elige tu próximo equipo.</p>
+                <div class="guide-cta">
+                    <a href="index.html#productos">Ver productos en SONIC BOX</a>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="chat.js"></script>
+    <script src="auth.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Preguntas frecuentes sobre compras, pagos, envíos, garantías y soporte en SONIC BOX.">
+    <title>Preguntas frecuentes - SONIC BOX</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .faq-page {
+            padding-bottom: 2rem;
+        }
+
+        .faq-hero {
+            background: linear-gradient(180deg, #fff8f0 0%, #ffe0b2 40%, #fff5e6 100%);
+            border-bottom: 3px solid #ff6f00;
+            padding: 6.5rem 1.5rem 2.75rem;
+            text-align: center;
+        }
+
+        .faq-hero h1 {
+            color: #1a237e;
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+        }
+
+        .faq-hero p {
+            color: #5c6b7a;
+            font-size: 1.05rem;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        .faq-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 0;
+            box-sizing: border-box;
+        }
+
+        .faq-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.25rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .faq-section h2 {
+            color: #1a237e;
+            font-size: clamp(1.25rem, 3vw, 1.55rem);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #ff6f00;
+        }
+
+        .faq-item {
+            background: #fafbfc;
+            margin: 1rem 0 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #eceff1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background: #ffffff;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s ease;
+            font-weight: 600;
+            color: #1a237e;
+        }
+
+        .faq-question:hover {
+            background: #fff8f0;
+        }
+
+        .faq-toggle {
+            color: #ff6f00;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+            display: none;
+            color: #555;
+            background: #fafbfc;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            padding-top: 0.5rem;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            line-height: 1.75;
+        }
+
+        .faq-cta {
+            text-align: center;
+            margin-top: 1.25rem;
+            padding: 1.5rem;
+            background: #fff8f0;
+            border-radius: 16px;
+            border: 1px solid #ffe0b2;
+        }
+
+        .faq-cta p {
+            margin: 0 0 1rem;
+            color: #5c6b7a;
+        }
+
+        .faq-cta a {
+            display: inline-block;
+            padding: 0.85rem 1.5rem;
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 14px;
+            box-shadow: 0 10px 24px rgba(255, 111, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .faq-cta a:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .faq-hero {
+                padding: 5.5rem 1rem 2rem;
+            }
+
+            .faq-inner {
+                padding: 1.5rem 1rem 0;
+            }
+
+            .faq-section {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+
+        body.dark-mode .faq-hero {
+            background: linear-gradient(180deg, #14182e 0%, #1a1f35 100%);
+            border-bottom-color: #ff8f00;
+        }
+
+        body.dark-mode .faq-hero h1 {
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .faq-hero p {
+            color: #aeb4d0;
+        }
+
+        body.dark-mode .faq-section {
+            background: #14182e;
+            border-color: #2c3150;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        body.dark-mode .faq-section h2 {
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .faq-item {
+            background: #1b2035;
+            border-color: #2c3150;
+        }
+
+        body.dark-mode .faq-question {
+            background: #14182e;
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .faq-question:hover {
+            background: #1f2438;
+        }
+
+        body.dark-mode .faq-answer,
+        body.dark-mode .faq-answer p {
+            background: #14182e;
+            color: #c4cad9;
+        }
+
+        body.dark-mode .faq-cta {
+            background: #1b2035;
+            border-color: #2c3150;
+        }
+
+        body.dark-mode .faq-cta p {
+            color: #aeb4d0;
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="faq-page">
+        <section class="faq-hero">
+            <h1>Preguntas frecuentes</h1>
+            <p>Resolvemos las dudas más comunes sobre compras, pagos, envíos y soporte en SONIC BOX.</p>
+        </section>
+
+        <div class="faq-inner">
+            <section class="faq-section">
+                <h2>Compras y cuenta</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Es necesario crear una cuenta para comprar?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No es obligatorio, puedes comprar como invitado. Sin embargo, registrarte te permite rastrear tus pedidos y guardar tus datos para compras más rápidas en el futuro.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cómo puedo saber el estado de mi pedido?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Una vez realizada la compra, recibirás un correo con un número de seguimiento y un enlace para monitorear el trayecto de tu paquete en tiempo real.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Puedo modificar o añadir productos a un pedido ya realizado?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Si tu pedido aún no ha sido procesado en bodega, podemos ayudarte. Contáctanos por WhatsApp o correo en la primera hora tras tu compra.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué pasa si un producto que quiero está agotado?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Puedes suscribirte a nuestra lista de espera haciendo clic en "Notificarme cuando esté disponible" en la página del producto, y recibirás un aviso automático.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <h2>Pagos y seguridad</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué métodos de pago puedo utilizar?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceptamos todas las tarjetas de crédito y débito, transferencias bancarias y pagos en efectivo mediante puntos autorizados (como agentes bancarios).</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Los precios incluyen impuestos?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, todos los precios mostrados en SONIC BOX ya incluyen el IVA. No tendrás sorpresas al finalizar tu pago.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Es seguro ingresar mi tarjeta de crédito en su sitio?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Totalmente. Utilizamos pasarelas de pago con encriptación SSL de grado bancario, lo que significa que nosotros nunca almacenamos ni vemos los datos de tu tarjeta.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <h2>Envíos y logística</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cuál es el tiempo de entrega estimado?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para ciudades principales el tiempo es de 2 a 4 días hábiles. Para áreas departamentales o rurales, puede demorar entre 5 y 8 días hábiles.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Tienen entregas el mismo día?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, contamos con servicio de "Entrega Express" para compras realizadas antes de las 11:00 AM dentro de la ciudad capital.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué sucede si no estoy en casa cuando llegue el repartidor?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El servicio de mensajería realizará hasta dos intentos de entrega. Si no logran contactarte, el paquete regresará a nuestra central y coordinaremos un nuevo envío (podría aplicar un costo extra).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <h2>Garantías y devoluciones</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué hago si mi producto llega dañado o incompleto?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Cuentas con 48 horas tras recibirlo para reportar cualquier daño físico. Escríbenos con fotos del empaque y del producto para enviarte un reemplazo inmediato.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Los productos tienen garantía?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, todos nuestros artículos tecnológicos cuentan con una garantía de fábrica (el tiempo varía según el fabricante, especificado en la ficha del producto).</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Puedo devolver un producto si no me gusta?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceptamos devoluciones por retracto dentro de los primeros 5 días, siempre que el producto esté sellado, con empaque original y sin señales de uso.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq-section">
+                <h2>Contacto y soporte</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cómo puedo contactar con soporte técnico?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Estamos disponibles de lunes a viernes de 8:00 AM a 6:00 PM a través de nuestro chat en vivo, correo electrónico de soporte o nuestra línea directa de WhatsApp.</p>
+                    </div>
+                </div>
+                <div class="faq-cta">
+                    <p>¿Necesitas ayuda personalizada?</p>
+                    <a href="https://wa.me/50223005678" target="_blank" rel="noopener noreferrer">Escríbenos en WhatsApp</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(function (question) {
+            question.addEventListener('click', function () {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+    <script src="auth.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>

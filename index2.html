@@ -960,6 +960,84 @@ s<!DOCTYPE html>
             </div>
         </div>
     </div>
+
+    <!-- Sección de Preguntas Frecuentes -->
+    <section id="faq-section" class="section" style="max-width:800px;margin:3rem auto 0 auto;">
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq-item" style="background:#fafbfc;margin:1rem 0 0;border-radius:14px;overflow:hidden;border:1px solid #eceff1;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div class="faq-question" style="background:#fff;padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-weight:600;color:#1a237e;">
+                <span>¿Cuál es la comisión que cobra Sonic Box?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="padding:0 1.5rem 1.25rem;display:none;color:#555;background:#fafbfc;">
+                <p>La comisión varía según la categoría de productos. En general, oscila entre 5% y 15% del precio de venta. Los vendedores premium pueden acceder a tasas reducidas. Te proporcionaremos un desglose detallado durante el proceso de registración.</p>
+            </div>
+        </div>
+        <div class="faq-item" style="background:#fafbfc;margin:1rem 0 0;border-radius:14px;overflow:hidden;border:1px solid #eceff1;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div class="faq-question" style="background:#fff;padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-weight:600;color:#1a237e;">
+                <span>¿Cuánto tiempo tarda en aprobarse mi cuenta?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="padding:0 1.5rem 1.25rem;display:none;color:#555;background:#fafbfc;">
+                <p>El proceso de verificación típicamente tarda 2-3 días hábiles. En caso de que falte documentación, nos pondremos en contacto contigo directamente. Durante este tiempo, puedes preparar tu catálogo de productos.</p>
+            </div>
+        </div>
+        <div class="faq-item" style="background:#fafbfc;margin:1rem 0 0;border-radius:14px;overflow:hidden;border:1px solid #eceff1;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div class="faq-question" style="background:#fff;padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-weight:600;color:#1a237e;">
+                <span>¿Puedo vender múltiples categorías de productos?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="padding:0 1.5rem 1.25rem;display:none;color:#555;background:#fafbfc;">
+                <p>¡Absolutamente! Puedes vender productos de diferentes categorías. Sin embargo, mantener una tienda enfocada suele resultar en mejores ventas. Te recomendamos comenzar con una categoría principal y expandir gradualmente.</p>
+            </div>
+        </div>
+        <div class="faq-item" style="background:#fafbfc;margin:1rem 0 0;border-radius:14px;overflow:hidden;border:1px solid #eceff1;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div class="faq-question" style="background:#fff;padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-weight:600;color:#1a237e;">
+                <span>¿Cómo funciona el sistema de pagos?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="padding:0 1.5rem 1.25rem;display:none;color:#555;background:#fafbfc;">
+                <p>Los fondos de tus ventas se transfieren automáticamente a tu cuenta bancaria cada semana (lunes). Deducimos la comisión de Sonic Box y cualquier costo de envío aplicable. Puedes ver el desglose en tu panel en cualquier momento.</p>
+            </div>
+        </div>
+        <div class="faq-item" style="background:#fafbfc;margin:1rem 0 0;border-radius:14px;overflow:hidden;border:1px solid #eceff1;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div class="faq-question" style="background:#fff;padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-weight:600;color:#1a237e;">
+                <span>¿Qué sucede si un cliente devuelve un producto?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="padding:0 1.5rem 1.25rem;display:none;color:#555;background:#fafbfc;">
+                <p>Nuestro sistema de devoluciones es transparente. Si un cliente solicita una devolución dentro del período permitido, trabajaremos contigo para resolverla. Los costos de envío de devolución dependen de tu política de vendedor.</p>
+            </div>
+        </div>
+        <div class="faq-item" style="background:#fafbfc;margin:1rem 0 0;border-radius:14px;overflow:hidden;border:1px solid #eceff1;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+            <div class="faq-question" style="background:#fff;padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-weight:600;color:#1a237e;">
+                <span>¿Hay algún costo inicial para registrarse?</span>
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer" style="padding:0 1.5rem 1.25rem;display:none;color:#555;background:#fafbfc;">
+                <p>No hay costo de inscripción. Solo pagas comisión sobre las ventas realizadas. Algunos servicios premium opcionales (como publicidad destacada) tienen costos adicionales, pero son completamente voluntarios.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Interactividad para preguntas frecuentes
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function () {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+                const answer = faqItem.querySelector('.faq-answer');
+                if (faqItem.classList.contains('active')) {
+                    answer.style.display = 'block';
+                } else {
+                    answer.style.display = 'none';
+                }
+            });
+        });
+    });
+    </script>
+
     <!-- Footer -->
     <div id="site-footer"></div>
 
@@ -1073,6 +1151,7 @@ s<!DOCTYPE html>
         });
     </script>
     <script src="chat.js"></script>
+    <script src="auth.js"></script>
     <script src="header.js"></script>
     <script src="footer.js"></script>
     </body>

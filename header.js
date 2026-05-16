@@ -1,14 +1,3 @@
-const AUTH_KEY = 'auth_user';
-
-function getCurrentUser() {
-    return JSON.parse(localStorage.getItem(AUTH_KEY));
-}
-
-function logout() {
-    localStorage.removeItem(AUTH_KEY);
-    window.location.href = 'index.html';
-}
-
 const headerHTML = `
     <header>
         <div class="header-top">
@@ -25,7 +14,7 @@ const headerHTML = `
                         <a href="#" onclick="filterByCategory('Todos')">Todos</a>
                         <a href="#" onclick="filterByCategory('Audio')">Audio</a>
                         <a href="#" onclick="filterByCategory('Gaming')">Gaming</a>
-                        <a href="#" onclick="filterByCategory('Vinculación de dispositivos')">Vinculación de dispositivos</a>
+                        <a href="como-conectar-bocina-bluetooth.html">Guía: conectar bocina Bluetooth</a>
                     </div>
                 </div>
                 <div class="search-container">
@@ -45,6 +34,7 @@ const headerHTML = `
                         <span class="text">Mis Favoritos</span>
                     </a>
                 </div>
+                
                 <button class="cart-btn" onclick="openCart()" title="Ver carrito de compras">
                     <span class="icon"><img src="images/Carrito.png" alt="Carrito"></span>
                     <span class="text">Carrito</span>
@@ -307,4 +297,12 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', insertSiteHeader);
+document.addEventListener('DOMContentLoaded', () => {
+    insertSiteHeader();
+    if (typeof initLoginPage === 'function') {
+        initLoginPage();
+    }
+    if (typeof initRegisterPage === 'function') {
+        initRegisterPage();
+    }
+});

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce la misión y visión de SONIC BOX, tu tienda de audio y tecnología.">
+    <title>Quiénes somos - SONIC BOX</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        html { overflow-x: hidden; max-width: 100%; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .static-page { padding-bottom: 2rem; }
+        .static-hero {
+            background: linear-gradient(180deg, #fff8f0 0%, #ffe0b2 40%, #fff5e6 100%);
+            border-bottom: 3px solid #ff6f00;
+            padding: 6.5rem 1.5rem 2.75rem;
+            text-align: center;
+        }
+        .static-hero h1 {
+            color: #1a237e;
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+        }
+        .static-hero p {
+            color: #5c6b7a;
+            font-size: 1.05rem;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+        .static-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 0;
+            box-sizing: border-box;
+        }
+        .static-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.25rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        .static-section h2 {
+            color: #1a237e;
+            font-size: clamp(1.25rem, 3vw, 1.55rem);
+            margin: 0 0 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #ff6f00;
+        }
+        .static-section p {
+            color: #555;
+            margin: 0;
+            line-height: 1.75;
+            font-size: 1.02rem;
+        }
+        .static-logo {
+            display: block;
+            width: 100px;
+            height: auto;
+            margin: 0 auto 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .static-hero { padding: 5.5rem 1rem 2rem; }
+            .static-inner { padding: 1.5rem 1rem 0; }
+            .static-section { padding: 1.5rem 1.25rem; }
+        }
+        body.dark-mode .static-hero {
+            background: linear-gradient(180deg, #14182e 0%, #1a1f35 100%);
+            border-bottom-color: #ff8f00;
+        }
+        body.dark-mode .static-hero h1 { color: #e4e7f1; }
+        body.dark-mode .static-hero p { color: #aeb4d0; }
+        body.dark-mode .static-section {
+            background: #14182e;
+            border-color: #2c3150;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+        body.dark-mode .static-section h2 { color: #e4e7f1; }
+        body.dark-mode .static-section p { color: #c4cad9; }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="static-page">
+        <section class="static-hero">
+            <h1>Quiénes somos</h1>
+            <p>Somos SONIC BOX, tu aliado en tecnología y sonido con productos de calidad y atención cercana.</p>
+        </section>
+
+        <div class="static-inner">
+            <section class="static-section">
+                <img class="static-logo" src="images/logo.png" alt="SONIC BOX" width="100" height="100">
+                <h2>Misión</h2>
+                <p>Brindar a nuestros clientes la mejor experiencia en tecnología y sonido, ofreciendo productos innovadores y un servicio excepcional.</p>
+            </section>
+            <section class="static-section">
+                <h2>Visión</h2>
+                <p>Ser la tienda líder en soluciones de audio y tecnología, reconocida por la calidad, confianza y satisfacción de nuestros clientes.</p>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="auth.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>

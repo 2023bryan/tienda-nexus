@@ -1,3 +1,24 @@
+/* Footer pegado al final del viewport cuando hay poco contenido */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#site-header {
+  flex-shrink: 0;
+}
+
+#site-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+  width: 100%;
+}
+
 .footer {
   background: #c1463c;
   color: #fff;

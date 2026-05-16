@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo vender - SONIC BOX</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .vender-page {
+            padding-bottom: 2rem;
+        }
+
+        /* Hero: tonos crema/naranja como la barra superior del sitio */
+        .vender-hero {
+            background: linear-gradient(180deg, #fff8f0 0%, #ffe0b2 40%, #fff5e6 100%);
+            border-bottom: 3px solid #ff6f00;
+            padding: 6.5rem 1.5rem 2.75rem;
+            text-align: center;
+        }
+
+        .vender-hero h1 {
+            color: #1a237e;
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+        }
+
+        .vender-hero p {
+            color: #5c6b7a;
+            font-size: 1.05rem;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        .vender-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 0;
+            box-sizing: border-box;
+        }
+
+        .vender-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.25rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .vender-section h2 {
+            color: #1a237e;
+            font-size: clamp(1.35rem, 3vw, 1.75rem);
+            margin: 0 0 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid #ff6f00;
+        }
+
+        .vender-section > h3,
+        .vender-section h3 {
+            color: #283593;
+            font-size: 1.25rem;
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .vender-section p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.75;
+        }
+
+        .faq-item {
+            background: #fafbfc;
+            margin: 1rem 0 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #eceff1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background: #ffffff;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s ease;
+            font-weight: 600;
+            color: #1a237e;
+        }
+
+        .faq-question:hover {
+            background: #fff8f0;
+        }
+
+        .faq-toggle {
+            color: #ff6f00;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+            display: none;
+            color: #555;
+            background: #fafbfc;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            padding-top: 0.5rem;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+
+        /* Registro en página: dos columnas (texto + formulario) */
+        .vender-register-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+            gap: 2.5rem 3rem;
+            align-items: start;
+        }
+
+        .vender-info-column {
+            font-size: 0.98rem;
+            color: #444;
+            line-height: 1.75;
+        }
+
+        .vender-info-block + .vender-info-block {
+            margin-top: 2rem;
+        }
+
+        .vender-info-block h3 {
+            color: #1a237e;
+            font-size: 1.12rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem;
+            padding: 0;
+            border: none;
+        }
+
+        .vender-info-block ul {
+            margin: 0;
+            padding-left: 1.35rem;
+        }
+
+        .vender-info-block li {
+            margin-bottom: 0.5rem;
+        }
+
+        .vender-register-lead {
+            color: #555;
+            margin: -0.25rem 0 1.75rem;
+            font-size: 1rem;
+            line-height: 1.55;
+        }
+
+        .vender-register-wrap > h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .vender-register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .vender-field label {
+            display: block;
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #37474f;
+            margin-bottom: 0.35rem;
+        }
+
+        .vender-field .req {
+            color: #e53935;
+        }
+
+        .vender-field input[type="text"],
+        .vender-field input[type="email"],
+        .vender-field input[type="tel"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.85rem 1rem;
+            border: 1px solid #e3e6ef;
+            border-radius: 14px;
+            background: #fafbfd;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .vender-field input:focus {
+            outline: none;
+            border-color: #ff8f00;
+            box-shadow: 0 0 0 3px rgba(255, 143, 0, 0.15);
+            background: #fff;
+        }
+
+        .vender-input-phone-wrap {
+            position: relative;
+        }
+
+        .vender-input-phone-wrap .phone-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            opacity: 0.75;
+            pointer-events: none;
+            color: #78909c;
+        }
+
+        .vender-input-phone-wrap input {
+            padding-left: 2.6rem;
+        }
+
+        .vender-field-optional span.hint {
+            font-weight: 400;
+            color: #78909c;
+            font-size: 0.82rem;
+        }
+
+        .vender-field-radio .radio-legend {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: #37474f;
+            margin-bottom: 0.45rem;
+        }
+
+        .vender-radio-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .vender-radio-row label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-weight: 500;
+            font-size: 0.92rem;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .btn-enviar-vendedor {
+            width: 100%;
+            margin-top: 0.35rem;
+            padding: 1rem 1.25rem;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(255, 111, 0, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-enviar-vendedor:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(255, 111, 0, 0.45);
+        }
+
+        .btn-enviar-vendedor:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .vender-form-success {
+            text-align: center;
+            padding: 2rem 1.25rem;
+            border-radius: 16px;
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            color: #1b5e20;
+        }
+
+        .vender-form-success h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.2rem;
+            color: #2e7d32;
+        }
+
+        .vender-form-success p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #33691e;
+        }
+
+        .vender-field .field-error {
+            font-size: 0.78rem;
+            color: #c62828;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .vender-field.is-invalid input {
+            border-color: #e57373;
+        }
+
+        .vender-field.is-invalid .field-error {
+            display: block;
+        }
+
+        @media (max-width: 960px) {
+            .vender-register-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .vender-hero {
+                padding: 5.5rem 1rem 2rem;
+            }
+
+            .vender-inner {
+                padding: 1.5rem 1rem 0;
+            }
+
+            .vender-section {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+
+        /* Modo oscuro: fondo global en header.css; aquí solo bloques de esta página */
+        body.dark-mode .vender-hero {
+            background: linear-gradient(180deg, #14182e 0%, #1a1f35 100%);
+            border-bottom-color: #ff8f00;
+        }
+
+        body.dark-mode .vender-hero h1 {
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .vender-hero p {
+            color: #aeb4d0;
+        }
+
+        body.dark-mode .vender-section {
+            background: #14182e;
+            color: #e4e7f1;
+            border-color: #2c3150;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        body.dark-mode .vender-section h2 {
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .vender-section p,
+        body.dark-mode .faq-answer,
+        body.dark-mode .faq-answer p {
+            color: #c4cad9;
+        }
+
+        body.dark-mode .vender-section h3 {
+            color: #d7daf0;
+        }
+
+        body.dark-mode .faq-item {
+            background: #1b2035;
+            border-color: #2c3150;
+        }
+
+        body.dark-mode .faq-question {
+            background: #14182e;
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .faq-question:hover {
+            background: #1f2438;
+        }
+
+        body.dark-mode .faq-answer {
+            background: #14182e;
+        }
+
+        body.dark-mode .vender-register-lead {
+            color: #aeb4d0;
+        }
+
+        body.dark-mode .vender-info-column {
+            color: #aeb4d0;
+        }
+
+        body.dark-mode .vender-info-block h3 {
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .vender-field label,
+        body.dark-mode .vender-field-radio .radio-legend {
+            color: #c4cad9;
+        }
+
+        body.dark-mode .vender-field input {
+            background: #121629;
+            border-color: #373c57;
+            color: #e4e7f1;
+        }
+
+        body.dark-mode .vender-field input:focus {
+            background: #1b2035;
+            border-color: #ff8f00;
+        }
+
+        body.dark-mode .vender-input-phone-wrap .phone-icon {
+            color: #9aa3c2;
+        }
+
+        body.dark-mode .vender-field .field-error {
+            color: #ff8a80;
+        }
+
+        body.dark-mode .vender-field-optional .hint {
+            color: #8d95b0;
+        }
+
+        body.dark-mode .vender-form-success {
+            background: #1b3a1e;
+            border-color: #2e7d32;
+            color: #c8e6c9;
+        }
+
+        body.dark-mode .vender-form-success h3 {
+            color: #a5d6a7;
+        }
+
+        body.dark-mode .vender-form-success p {
+            color: #c8e6c9;
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="vender-page">
+        <section class="vender-hero">
+            <h1>¿Cómo vender en SONIC BOX?</h1>
+            <p>Únete a nuestra comunidad de vendedores y comienza a expandir tu negocio hoy mismo</p>
+        </section>
+
+        <div class="vender-inner">
+            <section class="vender-section vender-register-wrap">
+                <h2>Registro de vendedor</h2>
+                <p class="vender-register-lead">Completa el formulario y un asesor de Sonic Box te contactará en 1 día hábil o menos.</p>
+
+                <div class="vender-register-grid">
+                    <div class="vender-info-column">
+                        <div class="vender-info-block">
+                            <h3>Beneficios</h3>
+                            <ul>
+                                <li>Nos encargamos de la logística</li>
+                                <li>Procesos de pago seguros para reducir riesgos por contracargos o fraude con tarjeta</li>
+                                <li>Da a conocer tu marca a clientes en Guatemala y Centroamérica</li>
+                            </ul>
+                        </div>
+                        <div class="vender-info-block">
+                            <h3>Requisitos</h3>
+                            <ul>
+                                <li>Poder emitir factura por los productos que venderás en Sonic Box</li>
+                                <li>Vender producto nuevo y con garantía</li>
+                                <li>Actualizar niveles de inventario periódicamente</li>
+                            </ul>
+                        </div>
+                        <div class="vender-info-block">
+                            <h3>Pasos a seguir</h3>
+                            <ul>
+                                <li>Llena el formulario: un asesor se pondrá en contacto contigo en 1 día hábil o menos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="vender-form-column">
+                        <form id="sellerRegisterForm" class="vender-register-form" novalidate>
+                            <div class="vender-field" data-field="nombre">
+                                <label for="sellerNombre">Nombre completo <span class="req">*</span></label>
+                                <input type="text" id="sellerNombre" name="nombre" autocomplete="name" maxlength="120" placeholder="">
+                                <span class="field-error">Completa este campo.</span>
+                            </div>
+                            <div class="vender-field" data-field="empresa">
+                                <label for="sellerEmpresa">Nombre de la empresa o marca <span class="req">*</span></label>
+                                <input type="text" id="sellerEmpresa" name="empresa" maxlength="160" placeholder="">
+                                <span class="field-error">Completa este campo.</span>
+                            </div>
+                            <div class="vender-field" data-field="email">
+                                <label for="sellerEmail">Correo electrónico <span class="req">*</span></label>
+                                <input type="email" id="sellerEmail" name="email" autocomplete="email" placeholder="">
+                                <span class="field-error">Ingresa un correo válido.</span>
+                            </div>
+                            <div class="vender-field" data-field="telefono">
+                                <label for="sellerTelefono">Número de teléfono <span class="req">*</span></label>
+                                <div class="vender-input-phone-wrap">
+                                    <span class="phone-icon" aria-hidden="true">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                        </svg>
+                                    </span>
+                                    <input type="tel" id="sellerTelefono" name="telefono" autocomplete="tel" placeholder="" inputmode="tel">
+                                </div>
+                                <span class="field-error">Completa este campo.</span>
+                            </div>
+                            <div class="vender-field" data-field="categoria">
+                                <label for="sellerCategoria">Categoría de productos que vendes <span class="req">*</span></label>
+                                <input type="text" id="sellerCategoria" name="categoria" maxlength="120" placeholder="Ej. Audio, accesorios, electrodomésticos">
+                                <span class="field-error">Indica una categoría.</span>
+                            </div>
+                            <div class="vender-field vender-field-optional" data-field="web_redes">
+                                <label for="sellerWeb">Página web o redes sociales de tu empresa <span class="hint">(opcional)</span></label>
+                                <input type="text" id="sellerWeb" name="web_redes" autocomplete="off" placeholder="https://… o @tu_perfil">
+                                <span class="field-error">Si escribes algo, usa una URL o perfil válido.</span>
+                            </div>
+                            <div class="vender-field vender-field-radio" data-field="facturas">
+                                <div class="radio-legend">¿Emites facturas? <span class="req">*</span></div>
+                                <div class="vender-radio-row">
+                                    <label><input type="radio" name="facturas" value="si"> Sí</label>
+                                    <label><input type="radio" name="facturas" value="no"> No</label>
+                                </div>
+                                <span class="field-error">Selecciona una opción.</span>
+                            </div>
+                            <button type="submit" class="btn-enviar-vendedor">Enviar</button>
+                        </form>
+                        <div id="sellerFormSuccess" class="vender-form-success" hidden role="status" aria-live="polite">
+                            <h3>¡Solicitud enviada!</h3>
+                            <p>Gracias. Hemos recibido tus datos; un asesor de Sonic Box te contactará pronto. También puedes escribirnos por WhatsApp desde el pie de página.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="vender-section">
+                <h2>Preguntas frecuentes</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cuál es la comisión que cobra Sonic Box?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La comisión varía según la categoría de productos. En general, oscila entre 5% y 15% del precio de venta. Los vendedores premium pueden acceder a tasas reducidas. Te proporcionaremos un desglose detallado durante el proceso de registración.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cuánto tiempo tarda en aprobarse mi cuenta?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El proceso de verificación típicamente tarda 2-3 días hábiles. En caso de que falte documentación, nos pondremos en contacto contigo directamente. Durante este tiempo, puedes preparar tu catálogo de productos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Puedo vender múltiples categorías de productos?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>¡Absolutamente! Puedes vender productos de diferentes categorías. Sin embargo, mantener una tienda enfocada suele resultar en mejores ventas. Te recomendamos comenzar con una categoría principal y expandir gradualmente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cómo funciona el sistema de pagos?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Los fondos de tus ventas se transfieren automáticamente a tu cuenta bancaria cada semana (lunes). Deducimos la comisión de Sonic Box y cualquier costo de envío aplicable. Puedes ver el desglose en tu panel en cualquier momento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué sucede si un cliente devuelve un producto?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nuestro sistema de devoluciones es transparente. Si un cliente solicita una devolución dentro del período permitido, trabajaremos contigo para resolverla. Los costos de envío de devolución dependen de tu política de vendedor.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Hay algún costo inicial para registrarse?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No hay costo de inscripción. Solo pagas comisión sobre las ventas realizadas. Algunos servicios premium opcionales (como publicidad destacada) tienen costos adicionales, pero son completamente voluntarios.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function () {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        (function () {
+            const form = document.getElementById('sellerRegisterForm');
+            const successEl = document.getElementById('sellerFormSuccess');
+            if (!form || !successEl) return;
+
+            const fields = form.querySelectorAll('.vender-field[data-field]');
+
+            function clearInvalid() {
+                fields.forEach(function (el) {
+                    el.classList.remove('is-invalid');
+                });
+            }
+
+            function isEmailOk(value) {
+                if (!value.trim()) return false;
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+            }
+
+            function isOptionalUrlOk(value) {
+                var v = value.trim();
+                if (!v) return true;
+                if (v.charAt(0) === '@') return v.length > 1;
+                try {
+                    if (/^https?:\/\//i.test(v)) {
+                        new URL(v);
+                        return true;
+                    }
+                    new URL('https://' + v);
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function validate() {
+                clearInvalid();
+                var ok = true;
+                var nombre = form.nombre.value.trim();
+                if (!nombre) {
+                    form.querySelector('[data-field="nombre"]').classList.add('is-invalid');
+                    ok = false;
+                }
+                var empresa = form.empresa.value.trim();
+                if (!empresa) {
+                    form.querySelector('[data-field="empresa"]').classList.add('is-invalid');
+                    ok = false;
+                }
+                var email = form.email.value.trim();
+                if (!isEmailOk(email)) {
+                    form.querySelector('[data-field="email"]').classList.add('is-invalid');
+                    ok = false;
+                }
+                var telefono = form.telefono.value.trim();
+                if (!telefono) {
+                    form.querySelector('[data-field="telefono"]').classList.add('is-invalid');
+                    ok = false;
+                }
+                var categoria = form.categoria.value.trim();
+                if (!categoria) {
+                    form.querySelector('[data-field="categoria"]').classList.add('is-invalid');
+                    ok = false;
+                }
+                var web = form.web_redes.value;
+                if (!isOptionalUrlOk(web)) {
+                    form.querySelector('[data-field="web_redes"]').classList.add('is-invalid');
+                    ok = false;
+                }
+                var facturas = form.querySelector('input[name="facturas"]:checked');
+                if (!facturas) {
+                    form.querySelector('[data-field="facturas"]').classList.add('is-invalid');
+                    ok = false;
+                }
+                return ok;
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!validate()) {
+                    var firstInvalid = form.querySelector('.vender-field.is-invalid');
+                    if (firstInvalid) {
+                        var y = firstInvalid.getBoundingClientRect().top + window.scrollY - 120;
+                        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                    }
+                    return;
+                }
+                var payload = {
+                    nombre: form.nombre.value.trim(),
+                    empresa: form.empresa.value.trim(),
+                    email: form.email.value.trim(),
+                    telefono: form.telefono.value.trim(),
+                    categoria: form.categoria.value.trim(),
+                    web_redes: form.web_redes.value.trim(),
+                    facturas: form.querySelector('input[name="facturas"]:checked').value,
+                    enviadoEn: new Date().toISOString()
+                };
+                try {
+                    var key = 'seller_registrations';
+                    var list = JSON.parse(localStorage.getItem(key) || '[]');
+                    list.push(payload);
+                    localStorage.setItem(key, JSON.stringify(list));
+                } catch (err) {}
+                form.style.display = 'none';
+                successEl.hidden = false;
+                successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            form.addEventListener('input', function (e) {
+                if (e.target && e.target.closest('.vender-field')) {
+                    var wrap = e.target.closest('.vender-field[data-field]');
+                    if (wrap) wrap.classList.remove('is-invalid');
+                }
+            });
+            form.addEventListener('change', function (e) {
+                if (e.target && e.target.name === 'facturas') {
+                    var wrap = form.querySelector('[data-field="facturas"]');
+                    if (wrap) wrap.classList.remove('is-invalid');
+                }
+            });
+        })();
+    </script>
+    <script src="chat.js"></script>
+    <script src="auth.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+</body>
+</html>
