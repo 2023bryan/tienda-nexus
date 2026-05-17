@@ -36,12 +36,8 @@
             margin-bottom: 2rem;
         }
 
-        .cart-header h1 {
-            font-size: 2.25rem;
-            color: #1a237e;
+        .cart-header {
             margin-bottom: 0.5rem;
-            line-height: 1.1;
-            word-break: break-word;
         }
 
         .cart-main {
@@ -134,8 +130,9 @@
         }
 
         .quantity-btn {
-            background: #f8f9fa;
-            border: 1px solid #ddd;
+            background: linear-gradient(180deg, #fff8f0 0%, #ffe0b2 100%);
+            border: 1px solid #ff8f00;
+            color: #bf360c;
             width: 30px;
             height: 30px;
             border-radius: 50%;
@@ -145,10 +142,15 @@
             justify-content: center;
             font-weight: bold;
             transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(255, 111, 0, 0.15);
         }
 
         .quantity-btn:hover {
-            background: #e9ecef;
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            border-color: #ff6f00;
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(255, 111, 0, 0.3);
         }
 
         .quantity-display {
@@ -156,6 +158,11 @@
             min-width: 30px;
             text-align: center;
             font-weight: bold;
+            color: #1a237e;
+            background: #fff8f0;
+            border: 1px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 0.2rem 0.45rem;
         }
 
         .cart-item-remove {
@@ -262,13 +269,14 @@
         }
 
         .continue-shopping {
-            background: #6c757d;
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
             color: white;
+            box-shadow: 0 2px 6px rgba(255, 111, 0, 0.3);
         }
 
         .continue-shopping:hover {
-            background: #5a6268;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 111, 0, 0.4);
         }
 
         .checkout-btn {
@@ -300,21 +308,23 @@
         }
 
         .cart-empty .shop-btn {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
             color: white;
             border: none;
             padding: 1rem 2rem;
             border-radius: 6px;
             font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(255, 111, 0, 0.3);
         }
 
         .cart-empty .shop-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(40,167,69,0.4);
+            box-shadow: 0 4px 12px rgba(255, 111, 0, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -425,7 +435,8 @@
                 min-width: 50px;
                 padding: 0.3rem 0.6rem;
                 border-radius: 10px;
-                background: #f1f3f5;
+                background: #fff8f0;
+                border: 1px solid #ffe0b2;
                 font-size: 0.9rem;
             }
 
@@ -517,14 +528,21 @@
         }
 
         body.dark-mode .quantity-btn {
-            background: #2a2a2a;
-            border-color: #555;
-            color: #e0e0e0;
+            background: linear-gradient(180deg, #2a2218 0%, #3d2e1a 100%);
+            border-color: #ff8f00;
+            color: #ffb74d;
         }
 
         body.dark-mode .quantity-btn:hover {
-            background: #3a3a3a;
-            border-color: #28a745;
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            border-color: #ff6f00;
+            color: #fff;
+        }
+
+        body.dark-mode .quantity-display {
+            background: #2a2218;
+            border-color: #ff8f00;
+            color: #ffe0b2;
         }
         </style>
     <link rel="stylesheet" href="header.css">
@@ -536,7 +554,12 @@
 
     <div class="cart-container">
         <div class="cart-header">
-            <h1>🛒 Carrito de Compras</h1>
+            <div class="store-page-heading store-page-heading--footer-style">
+                <div class="store-page-title">
+                    <img src="images/Carrito.png" alt="" aria-hidden="true">
+                    <h1>Carrito de Compras</h1>
+                </div>
+            </div>
         </div>
 
         <div id="cart-content">
@@ -584,6 +607,9 @@
                         <a href="index.html" class="shop-btn">Ir a la tienda</a>
                     </div>
                 `;
+                if (typeof updateCartCount === 'function') {
+                    updateCartCount();
+                }
                 return;
             }
 

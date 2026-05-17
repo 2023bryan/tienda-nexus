@@ -946,3 +946,51 @@ body.dark-mode .add-to-cart-btn:hover {
     background: linear-gradient(135deg, #f8d963 0%, #fce181 100%);
     box-shadow: 0 6px 16px rgba(244, 211, 94, 0.5);
 }
+
+/* Galería de producto: en móvil, miniaturas debajo de la imagen principal */
+@media (max-width: 768px) {
+    .product-gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .product-gallery > div:not(.gallery-thumbnails) {
+        order: 1;
+        width: 100%;
+    }
+
+    .product-gallery .gallery-thumbnails {
+        order: 2;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.5rem;
+        width: 100%;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+    }
+
+    .product-gallery .thumbnail-image {
+        height: 72px;
+    }
+
+    .product-gallery .main-image {
+        width: 100%;
+        height: auto;
+        min-height: 220px;
+        max-height: min(70vw, 360px);
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-gallery .gallery-thumbnails {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .product-gallery .thumbnail-image {
+        height: 64px;
+    }
+}

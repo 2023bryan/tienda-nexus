@@ -69,6 +69,54 @@ body {
   text-align: left;
   display: inline-block;
 }
+/* Título de página Favoritos / Carrito (naranja claro como el resto del sitio) */
+.store-page-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0 auto;
+  padding: 0;
+  color: #1a237e;
+  text-decoration: none;
+  font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  width: fit-content;
+}
+.store-page-title img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.store-page-title h1,
+.store-page-title h2 {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+.store-page-heading {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.store-page-heading--footer-style {
+  background: linear-gradient(180deg, #fff8f0 0%, #ffe0b2 40%, #fff5e6 100%);
+  border-bottom: 3px solid #ff6f00;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin: 0 auto 2rem;
+  max-width: 1400px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.store-page-heading--footer-style .store-page-title {
+  margin: 0 auto;
+}
 .footer-brand {
   display: flex;
   flex-direction: column;
